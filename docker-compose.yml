@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+
+  mysql:
+    image: mysql
+    container_name: hexagonaldemo_mysql
+    volumes:
+      - ./docs/ddl:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      LANG: C.UTF-8
+    ports:
+      - 3306:3306
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass redisPassword
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:
+    external:
+      name: hexagonaldemo_mysql_data
+
+networks:
+  default:
+    external:
+      name: hexagonaldemo_network

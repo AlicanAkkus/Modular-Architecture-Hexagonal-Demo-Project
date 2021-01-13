@@ -1,0 +1,11 @@
+rootProject.name = 'hexagonal-demo'
+
+include ':ticket-api'
+include ':ticket-api:domain'
+include ':ticket-api:infra'
+
+include ':payment-api'
+include ':payment-api:domain'
+include ':payment-api:infra'
+
+

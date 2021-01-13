@@ -1,0 +1,48 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+import org.springframework.cloud.contract.verifier.config.TestMode
+
+apply plugin: 'spring-cloud-contract'
+
+dependencies {
+    compile project.parent.project("domain")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+
+    compile group: 'javax.xml.bind', name: 'jaxb-api'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core'
+    compile group: 'javax.activation', name: 'activation'
+    compile group: 'mysql', name: 'mysql-connector-java'
+    compile group: 'com.zaxxer', name: 'HikariCP'
+    compile group: 'commons-codec', name: 'commons-codec'
+
+    compile group: 'io.springfox', name: 'springfox-swagger2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui'
+
+    compileOnly("org.projectlombok:lombok")
+
+    annotationProcessor("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-stub-runner'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-verifier'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock'
+    testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone'
+
+    testCompile files("${project.rootDir}/payment-api/infra/build/libs/infra-stubs.jar")
+}
+
+contracts {
+    generatedTestSourcesDir = project.file("src/test/java/")
+    basePackageForTests = 'com.hexagonaldemo.ticketapi.contract'
+    nameSuffixForTests = 'ContractTest'
+    testFramework = TestFramework.JUNIT5
+    testMode = TestMode.EXPLICIT
+
+    baseClassMappings {
+        baseClassMapping("ticket", "com.hexagonaldemo.ticketapi.contract.base.BaseTicketContract")
+    }
+}

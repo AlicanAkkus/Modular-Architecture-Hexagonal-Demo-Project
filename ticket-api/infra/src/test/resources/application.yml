@@ -1,0 +1,57 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# SPRING
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+spring:
+  application:
+    name: hexagonaldemo-ticket-api
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:4306}/ticket?createDatabaseIfNotExist=true
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 100
+      idle-timeout: 30000
+      pool-name: hexagonaldemo-ticket-api
+      max-lifetime: 2000000
+      connection-timeout: 30000
+    type: com.zaxxer.hikari.HikariDataSource
+    initialization-mode: always
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+    default-property-inclusion: non_null
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+stubrunner:
+  ids:
+    - hexagonal-demo.payment-api:infra:+:8090
+    -
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LOGGING
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logging:
+  level:
+    com.hexagonaldemo.orderapi: DEBUG
+    org.springframework.test: INFO
+    org.springframework.integration: WARN
+    org.springframework.scheduling: WARN
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: ERROR
+    org.springframework.orm.jpa: WARN
+    com.zaxxer.hikari: WARN
+    org.hibernate.tool: WARN

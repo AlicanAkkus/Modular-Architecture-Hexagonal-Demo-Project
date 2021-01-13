@@ -1,0 +1,9 @@
+dependencies {
+    compile group: 'org.projectlombok', name: 'lombok'
+    compile group: 'org.springframework', name: 'spring-tx'
+    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
+
+    annotationProcessor("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+}

@@ -1,0 +1,18 @@
+description = 'Ticket API'
+jar.archiveBaseName.set('ticket-api')
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project('infra')
+}
+
+springBoot {
+    mainClassName = 'com.hexagonaldemo.ticketapi.TicketApiApplication'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}
