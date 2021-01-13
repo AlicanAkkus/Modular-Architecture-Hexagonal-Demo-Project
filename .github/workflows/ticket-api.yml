@@ -47,7 +47,7 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar --skipInfraSetup -Dorg.gradle.daemon=false
+          ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false
 
       - name: Upload Jar File
         uses: actions/upload-artifact@v1

@@ -46,4 +46,4 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew verifierStubsJar :ticket-api:build --skipInfraSetup -Dorg.gradle.daemon=false
+          ./gradlew verifierStubsJar :ticket-api:build -PskipInfraSetup -Dorg.gradle.daemon=false
