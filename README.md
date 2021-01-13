@@ -2,21 +2,21 @@
 
 This project is a sample implementation for Hexagonal Architecture (aka Ports And Adapters Pattern) written in Java.
 
-![Build Ticket API Image](https://github.com/lemiorhan/hexagonal/workflows/Build%20Ticket%20API%20Image/badge.svg)
-![Build Payment API Image](https://github.com/lemiorhan/hexagonal/workflows/Build%20Payment%20API%20Image/badge.svg)
+![Build Ticket API Image](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Ticket%20API%20Image/badge.svg)
+![Payment API Run Build On Each Pull Request](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Payment%20API%20Run%20Build%20On%20Each%20Pull%20Request/badge.svg)
 
 ## Table of Contents
-* [Motivation](https://github.com/lemiorhan/hexagonal/README.MD)
-* [What is the Hexagonal Architecture](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Technologies Used](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Usage](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Useful Links From Authors](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Useful Links about Hexagonal Architecture](https://github.com/lemiorhan/hexagonal/README.MD)  
-* [History](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Roadmap](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Contributing](https://github.com/lemiorhan/hexagonal/README.MD)
-* [Authors](https://github.com/lemiorhan/hexagonal/README.MD)
-* [License](https://github.com/lemiorhan/hexagonal/README.MD)
+* [Motivation](#Motivation)
+* [What is the Hexagonal Architecture](#What-is-the-Hexagonal-Architecture)
+* [Technologies Used](#Technologies-Used)
+* [Usage](#Usage)
+* [Useful Links From Authors](#Useful-Links-From-Authors)
+* [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
+* [History](#History)
+* [Roadmap](#Roadmap)
+* [Contributing](#Contributing)
+* [Authors](#Authors)
+* [License](#License)
 
 ### Motivation
 
@@ -92,7 +92,7 @@ Please feel free to open tickets to suggest new features and improvement points.
 ### Contributing
 Please feel free to contribute by adding new templates to this project:
 
-* Fork it (https://github.com/lemiorhan/hexagonal)
+* Fork this repository
 * Create your feature branch (git checkout -b feature/fooBar)
 * Commit your changes (git commit -am 'Add some fooBar')
 * Push to the branch (git push origin feature/fooBar)
