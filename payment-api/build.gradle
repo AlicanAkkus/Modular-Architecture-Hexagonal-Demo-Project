@@ -1,0 +1,18 @@
+description = 'Payment API'
+jar.archiveBaseName.set('payment-api')
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile project('infra')
+}
+
+springBoot {
+    mainClassName = 'com.hexagonaldemo.paymentapi.PaymentApiApplication'
+}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}

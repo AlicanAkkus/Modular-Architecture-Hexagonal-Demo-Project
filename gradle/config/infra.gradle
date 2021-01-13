@@ -1,0 +1,9 @@
+task infra_setup_up(type: Exec) {
+    commandLine 'sh', '-c', "$rootProject.projectDir/infra-setup.sh infra up"
+    setIgnoreExitValue(true)
+}
+
+task infra_setup_down(type: Exec) {
+    commandLine 'sh', '-c', "$rootProject.projectDir/infra-setup.sh infra down"
+    setIgnoreExitValue(true)
+}

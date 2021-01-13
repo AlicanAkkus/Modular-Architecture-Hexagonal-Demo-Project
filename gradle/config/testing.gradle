@@ -1,0 +1,108 @@
+test {
+    maxParallelForks = 1
+    failFast true
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter'
+    }
+}
+
+project.test {
+    def outputCache = new LinkedList<String>()
+
+    beforeTest { TestDescriptor td -> outputCache.clear() }
+
+    onOutput { TestDescriptor td, TestOutputEvent toe ->
+        outputCache.add(toe.getMessage())
+        while (outputCache.size() > 1000) outputCache.remove()
+    }
+
+    afterTest { TestDescriptor td, TestResult tr ->
+        if (tr.resultType == TestResult.ResultType.FAILURE && outputCache.size() > 0) {
+            println()
+            println(" Output of ${td.className}.${td.name}:")
+            outputCache.each { print(" > $it") }
+        }
+    }
+}
+
+tasks.withType(Test) {
+    reports.html.enabled = false
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+        exceptionFormat = 'full'
+        afterSuite { desc, result ->
+            if (!desc.parent)
+                println """Results: ${result.resultType} (${result.testCount} tests, ${
+                    result.successfulTestCount
+                } successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"""
+        }
+    }
+}
+
+task unitTest(type: Test) {}
+task integrationTest(type: Test) {}
+task contractTest(type: Test) {}
+task stubTest(type: Test) {}
+task functionalTest(type: Test) {}
+task allTest(type: Test) {}
+
+project.afterEvaluate({
+
+    // ALL TESTS EXCEPT FUNCTIONAL TESTS
+    configure("test", [], ['functionalTest'])
+
+    // ONLY UNIT TEST, CHANGE SET DETECTION SKIPPED
+    configure("unitTest", null, ['integrationTest', 'contractTest', 'stubTest', 'functionalTest'])
+
+    // ONLY INTEGRATION TEST, CHANGE SET DETECTION SKIPPED
+    configure("integrationTest", ['integrationTest'], null)
+
+    // ONLY CONTRACT TEST, CHANGE SET DETECTION SKIPPED
+    configure("contractTest", ['contractTest'], null)
+
+    // ONLY STUB TEST, CHANGE SET DETECTION SKIPPED
+    configure("stubTest", ['stubTest'], null)
+
+    // ONLY FUNCTIONAL TEST, CHANGE SET DETECTION SKIPPED
+    configure("functionalTest", ['functionalTest'], null)
+
+    // ALL TESTS EXCEPT FUNCTIONAL TESTS, CHANGE SET DETECTION SKIPPED
+    configure("allTest", [], ['functionalTest'])
+})
+
+def configure(String taskName, includeJunit5Tags, excludeJunit5Tags) {
+    tasks.named(taskName).configure {
+        useJUnitPlatform {
+            if (includeJunit5Tags) {
+                if (includeJunit5Tags.size() == 0) includeTags "any()"
+                else includeTags includeJunit5Tags as String[]
+            }
+            if (excludeJunit5Tags) {
+                if (excludeJunit5Tags.size() == 0) excludeTags "any()"
+                else excludeTags excludeJunit5Tags as String[]
+            }
+        }
+    }
+}
+
+if (!project.hasProperty('skipInfraSetup')) {
+    def infra_setup_up = rootProject.getTasksByName("infra_setup_up", false)[0]
+    def infra_setup_down = rootProject.getTasksByName("infra_setup_down", false)[0]
+
+    ['test', 'integrationTest', 'functionalTest', 'allTest'].each { task ->
+        project."$task".dependsOn infra_setup_up
+        infra_setup_down.mustRunAfter project."$task"
+        project."$task".finalizedBy infra_setup_down
+    }
+}
+
+if (project.tasks.findByName('generateContractTests')) {
+    contractTest.dependsOn generateContractTests
+    test.dependsOn generateContractTests
+    allTest.dependsOn generateContractTests
+}
+
+if (project.tasks.findByName('verifierStubsJar')) {
+    stubTest.dependsOn verifierStubsJar
+}
+

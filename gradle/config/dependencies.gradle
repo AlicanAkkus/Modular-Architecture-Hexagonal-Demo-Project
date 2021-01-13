@@ -1,0 +1,127 @@
+apply plugin: 'io.spring.dependency-management'
+
+ext {
+    // ============ DEPENDENCIES ============
+
+    version_slf4j = '1.7.25'
+    version_junit5 = '5.6.0'
+    version_junit5_suite = '1.6.0'
+    version_assertJ = '3.10.0'
+    version_mockito = '2.21.0'
+
+    // ============ DEPENDENCY MANAGEMENT ============
+
+    version_spring = '5.2.3.RELEASE'
+    version_springBoot = '2.2.1.RELEASE'
+    version_springCloud = '2.2.1.RELEASE'
+    version_springCloudDependencies = 'Hoxton.RELEASE'
+    version_springCloudStreamDependencies = 'Horsham.RELEASE'
+    version_springRetry = '1.2.3.RELEASE'
+    version_commonsLang3 = '3.7'
+    version_byteBuddy = '1.8.14'
+    version_objenesis = '2.6'
+    version_jaxb = '2.3.0'
+    version_jaxbImpl = '2.3.0.1'
+    version_jaxbCore = '2.3.0.1'
+    version_activation = '1.1.1'
+    version_lombok = '1.18.12'
+    version_jacksonDataFormatXml = '2.9.4'
+    version_hikari = '3.2.0'
+    version_wiremock = '2.26.0'
+    version_javax_validation = '2.0.1.Final'
+    version_jackson = '2.10.2'
+    version_commons_codec = '1.13'
+    version_httpComponents = '4.5.6'
+    version_jsr305 = '2.0.3'
+    version_commons_io = '2.6'
+    version_typesafe = '1.3.3'
+    version_mysql = '8.0.17'
+    version_common_text = '1.8'
+    version_jsch = '0.1.55'
+    version_commons_vfs2 = '2.6.0'
+    version_springfoxSwagger2 = '2.9.2'
+    version_restAssured = '4.3.3'
+    version_commonsPool = '2.9.0'
+    version_lettuce = '6.0.1.RELEASE'
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: rootProject.version_slf4j
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: rootProject.version_slf4j
+    compile group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
+    compile group: 'org.apache.commons', name: 'commons-text', version: rootProject.version_common_text
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: rootProject.version_junit5
+    testCompile group: 'org.junit.platform', name: 'junit-platform-suite-api', version: rootProject.version_junit5_suite
+    testCompile group: 'org.junit.platform', name: 'junit-platform-commons', version: rootProject.version_junit5_suite
+    testCompile group: 'org.assertj', name: 'assertj-core', version: rootProject.version_assertJ
+    testCompile group: 'org.mockito', name: 'mockito-core', version: rootProject.version_mockito
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: rootProject.version_mockito
+}
+
+dependencyManagement {
+    dependencies {
+        //junit & testing
+        dependency group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: rootProject.version_junit5
+        dependency group: 'net.bytebuddy', name: 'byte-buddy', version: rootProject.version_byteBuddy
+        dependency group: 'org.objenesis', name: 'objenesis', version: rootProject.version_objenesis
+        dependency group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: rootProject.version_wiremock
+
+        //spring
+        dependency group: 'org.springframework', name: 'spring-web', version: rootProject.version_spring
+        dependency group: 'org.springframework', name: 'spring-test', version: rootProject.version_spring
+        dependency group: 'org.springframework', name: 'spring-aspects', version: rootProject.version_spring
+        dependency group: 'org.springframework.retry', name: 'spring-retry', version: rootProject.version_springRetry
+
+        //swagger
+        dependency group: 'io.springfox', name: 'springfox-swagger2', version: rootProject.version_springfoxSwagger2
+        dependency group: 'io.springfox', name: 'springfox-swagger-ui', version: rootProject.version_springfoxSwagger2
+
+        //spring boot
+        dependency group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: rootProject.version_springBoot
+
+        //spring bom imports
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${rootProject.version_springBoot}"
+            mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${rootProject.version_springCloud}"
+        }
+
+        // redis
+        dependency group: 'org.springframework.integration', name: 'spring-integration-redis', version: rootProject.version_spring
+        dependency group: 'io.lettuce', name: 'lettuce-core', version: rootProject.version_lettuce
+
+        //sun
+        dependency group: 'com.sun.xml.bind', name: 'jaxb-impl', version: rootProject.version_jaxbImpl
+        dependency group: 'com.sun.xml.bind', name: 'jaxb-core', version: rootProject.version_jaxbCore
+        dependency group: 'com.sun.xml.bind', name: 'jaxb-osgi', version: rootProject.version_jaxbCore
+
+        //javax
+        dependency group: 'javax.xml.bind', name: 'jaxb-api', version: rootProject.version_jaxb
+        dependency group: 'javax.activation', name: 'activation', version: rootProject.version_activation
+        dependency group: 'javax.validation', name: 'validation-api', version: rootProject.version_javax_validation
+
+        //commons
+        dependency group: 'commons-io', name: 'commons-io', version: rootProject.version_commons_io
+        dependency group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
+
+        //db
+        dependency group: 'com.zaxxer', name: 'HikariCP', version: rootProject.version_hikari
+        dependency group: 'mysql', name: 'mysql-connector-java', version: rootProject.version_mysql
+
+        //jackson
+        dependency group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: rootProject.version_jacksonDataFormatXml
+        dependency group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: rootProject.version_jackson
+        dependency group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: rootProject.version_jackson
+
+        //misc
+        dependency group: 'org.projectlombok', name: 'lombok', version: rootProject.version_lombok
+
+        // rest-assured
+        dependency group: 'io.rest-assured', name: 'rest-assured-all', version: rootProject.version_restAssured
+
+        // @NotNull annotation gives compilation warning
+        // https://stackoverflow.com/questions/11104667/java-compilation-error-using-findbugs-com-sun-tools-javac-code-symbolcompletio
+        dependency group: 'com.google.code.findbugs', name: 'jsr305', version: rootProject.version_jsr305
+    }
+}

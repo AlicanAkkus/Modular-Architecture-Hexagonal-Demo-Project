@@ -1,0 +1,15 @@
+def version = [
+        dependencyManagement: '1.0.9.RELEASE',
+        versions            : '0.27.0',
+        springBoot          : '2.2.1.RELEASE',
+        springCloudContract : '2.2.1.RELEASE',
+        nebulaLint          : '16.0.2'
+]
+
+dependencies {
+    classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: version.dependencyManagement
+    classpath group: 'com.github.ben-manes', name: 'gradle-versions-plugin', version: version.versions
+    classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: version.springBoot
+    classpath group: 'org.springframework.cloud', name: 'spring-cloud-contract-gradle-plugin', version: version.springCloudContract
+    classpath group: 'nebula.lint', name: 'nebula.lint.gradle.plugin', version: version.nebulaLint
+}
