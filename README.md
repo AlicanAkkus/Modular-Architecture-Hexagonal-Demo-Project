@@ -2,8 +2,8 @@
 
 This project is a sample implementation for Hexagonal Architecture (aka Ports And Adapters Pattern) written in Java.
 
-![Build Ticket API Image](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Ticket%20API%20Image/badge.svg)
-![Payment API Run Build On Each Pull Request](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Payment%20API%20Run%20Build%20On%20Each%20Pull%20Request/badge.svg)
+![Build Ticket API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Ticket%20API%20Image/badge.svg)
+![Build Payment API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Payment%20API%20Image/badge.svg)
 
 ## Table of Contents
 * [Motivation](#Motivation)
