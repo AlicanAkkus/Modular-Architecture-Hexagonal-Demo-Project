@@ -82,7 +82,7 @@ You can boot up all apis and infra with the following commands.
 
 ### History
 
-This repository is a side project developed while preparing the conference talk "Growing Hexagonal Microservices With TDD" at Java Day Istanbul 2020.
+This repository is a side project developed while preparing the conference talk "Growing Hexagonal Microservices With TDD" at Java Day Istanbul 2020. As the authors of this repository, we've been using hexagonal architecture in all microservices (i.e. more than 50+ microservices) running in production since 2017. We believe modularity is the key for building maintainable and high quality software. That's why we shared our demo project with the community to attract their interest on the topic.
 
 ### Roadmap
 
