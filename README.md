@@ -14,7 +14,8 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 * [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
 * [History](#History)
 * [Roadmap](#Roadmap)
-* [Contributing](CONTRIBUTING.md)
+* [Contributing](#Contributing)
+* [Code of Conduct](#Code-of-Conduct)
 * [Authors](#Authors)
 * [License](#License)
 
@@ -91,6 +92,9 @@ Please feel free to open tickets to suggest new features and improvement points.
 
 ### Contributing
 Please [feel free to contribute](CONTRIBUTING.md). 
+
+### Code of Conduct
+Please take a lot at [code of conduct](CODE_OF_CONDUCT.md) before opening issues or creating pull requests.
 
 ### Authors
 * [Lemi Orhan Ergin](https://github.com/lemiorhan) - [@lemiorhan](https://twitter.com/lemiorhan)
