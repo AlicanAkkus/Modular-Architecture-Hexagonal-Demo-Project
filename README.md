@@ -14,7 +14,7 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 * [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
 * [History](#History)
 * [Roadmap](#Roadmap)
-* [Contributing](#Contributing)
+* [Contributing](CONTRIBUTING.md)
 * [Authors](#Authors)
 * [License](#License)
 
@@ -90,13 +90,7 @@ We will add additional automated tests to show how hexagonal architecture has im
 Please feel free to open tickets to suggest new features and improvement points.
 
 ### Contributing
-Please feel free to contribute by adding new templates to this project:
-
-* Fork this repository
-* Create your feature branch (git checkout -b feature/fooBar)
-* Commit your changes (git commit -am 'Add some fooBar')
-* Push to the branch (git push origin feature/fooBar)
-* Create a new Pull Request
+Please [feel free to contribute](CONTRIBUTING.md). 
 
 ### Authors
 * [Lemi Orhan Ergin](https://github.com/lemiorhan) - [@lemiorhan](https://twitter.com/lemiorhan)
