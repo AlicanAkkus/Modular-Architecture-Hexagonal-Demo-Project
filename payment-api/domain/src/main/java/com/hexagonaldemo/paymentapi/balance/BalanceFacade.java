@@ -17,12 +17,13 @@ public class BalanceFacade {
         return balanceDataPort.retrieve(accountId);
     }
 
-    public Balance update(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
+    public Balance create(BalanceTransactionCreate balanceTransactionCreate) {
+        Balance balance = retrieve(balanceTransactionCreate.getAccountId());
         return balanceDataPort.update(balance, balanceTransactionCreate);
     }
 
-    public void validate(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
+    public void validate(BalanceTransactionCreate balanceTransactionCreate) {
+        Balance balance = retrieve(balanceTransactionCreate.getAccountId());
         balanceValidator.validate(balance, balanceTransactionCreate);
     }
-
 }

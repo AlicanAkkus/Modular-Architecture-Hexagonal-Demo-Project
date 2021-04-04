@@ -17,5 +17,4 @@ public class AccountFacade {
     public void makeFree(Long accountId) {
         accountLockPort.unlock(accountId);
     }
-
 }

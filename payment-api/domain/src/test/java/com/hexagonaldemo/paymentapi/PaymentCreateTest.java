@@ -1,5 +1,7 @@
 package com.hexagonaldemo.paymentapi;
 
+import com.hexagonaldemo.paymentapi.account.AccountFacade;
+import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
 import com.hexagonaldemo.paymentapi.adapters.BalanceFakeDataAdapter;
 import com.hexagonaldemo.paymentapi.adapters.PaymentFakeDataAdapter;
 import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
@@ -56,7 +58,7 @@ public class PaymentCreateTest {
 
         // and
         BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeDataAdapter(balanceBeforePayment, balanceAfterPayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(new PaymentFakeDataAdapter(expectedPayment), balanceFacade);
+        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeDataAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -96,7 +98,7 @@ public class PaymentCreateTest {
 
         // and
         BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeDataAdapter(balanceBeforePayment, balanceBeforePayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(new PaymentFakeDataAdapter(expectedPayment), balanceFacade);
+        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeDataAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -110,6 +112,20 @@ public class PaymentCreateTest {
         //then
         assertThat(throwable).isNotNull().isInstanceOf(PaymentApiBusinessException.class);
         assertThat(((PaymentApiBusinessException) throwable).getKey()).isEqualTo("paymentapi.balance.notSufficient");
+    }
+
+    private AccountLockPort retrieveFakeAccountLockPort() {
+        return new AccountLockPort() {
+            @Override
+            public boolean lock(Long accountId) {
+                return false;
+            }
+
+            @Override
+            public boolean unlock(Long accountId) {
+                return false;
+            }
+        };
     }
 
 }

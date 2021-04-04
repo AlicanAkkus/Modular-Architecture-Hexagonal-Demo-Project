@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @Builder
 public class BalanceTransactionCreate {
 
+    private Long accountId;
     private BigDecimal amount;
     private BalanceTransactionType type;
 

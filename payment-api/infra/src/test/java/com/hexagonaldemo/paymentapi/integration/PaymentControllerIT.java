@@ -24,10 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PaymentControllerIT extends AbstractIT {
 
     @Autowired
-    BalanceDataPort balanceDataPort;
-
-    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
-    };
+    private BalanceDataPort balanceDataPort;
 
     @Test
     void should_create_payment_when_balance_is_sufficient() {
@@ -38,7 +35,7 @@ class PaymentControllerIT extends AbstractIT {
     }
 
     private void doPayment(Long accountId, String price, String lastBalance) {
-        doPayment(accountId,price,lastBalance, HttpStatus.CREATED, null);
+        doPayment(accountId, price, lastBalance, HttpStatus.CREATED, null);
     }
 
     private void doPayment(Long accountId, String price, String lastBalance, HttpStatus httpStatus, String errorCode) {
@@ -77,4 +74,7 @@ class PaymentControllerIT extends AbstractIT {
                 .extracting("accountId", "price", "referenceCode")
                 .contains(accountId, new BigDecimal(price), "ref1");
     }
+
+    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
+    };
 }
