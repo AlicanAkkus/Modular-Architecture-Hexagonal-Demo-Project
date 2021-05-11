@@ -1,4 +1,4 @@
-package balance
+package contracts.balance
 
 import org.springframework.cloud.contract.spec.Contract
 

@@ -1,15 +1,13 @@
 package com.hexagonaldemo.ticketapi.ticket;
 
-import com.hexagonaldemo.ticketapi.account.model.Account;
 import com.hexagonaldemo.ticketapi.account.port.AccountDataPort;
-import com.hexagonaldemo.ticketapi.event.model.Event;
-import com.hexagonaldemo.ticketapi.event.port.EventDataPort;
+import com.hexagonaldemo.ticketapi.meetup.port.MeetupDataPort;
 import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
-import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
+import com.hexagonaldemo.ticketapi.payment.port.PaymentApiPort;
 import com.hexagonaldemo.ticketapi.ticket.command.BuyTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
-import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
+import com.hexagonaldemo.ticketapi.ticket.port.TicketDataPort;
+import com.hexagonaldemo.ticketapi.ticket.port.TicketEventPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,19 +19,29 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class TicketFacade {
 
-    private final EventDataPort eventDataPort;
-    private final TicketPort ticketPort;
-    private final PaymentPort paymentPort;
+    private final MeetupDataPort meetupDataPort;
+    private final TicketDataPort ticketDataPort;
+    private final PaymentApiPort paymentPort;
     private final AccountDataPort accountDataPort;
+    private final TicketEventPort ticketEventPort;
 
+    /**
+     * Buy action contains a payment and a reservation.
+     */
     public Ticket buy(BuyTicket buyTicket) {
-        Account account = accountDataPort.retrieve(buyTicket.getAccountId());
-        Event event = eventDataPort.retrieve(buyTicket.getEventId());
+        var account = accountDataPort.retrieve(buyTicket.getAccountId());
+        var event = meetupDataPort.retrieve(buyTicket.getMeetupId());
 
-        Payment payment = paymentPort.pay(buildCreatePayment(account.getId(), event.getPrice(), buyTicket.getCount(), buyTicket.getReferenceCode()));
+        var payment = paymentPort.pay(buildCreatePayment(account.getId(), event.getPrice(), buyTicket.getCount(), buyTicket.getReferenceCode()));
         log.debug("Ticket price payed by account {} as {}", account.getId(), payment.getPrice());
 
-        return ticketPort.buy(buyTicket);
+        var reservedTicket = ticketDataPort.reserve(buyTicket);
+        log.debug("Ticket price reserved by account {}", account.getId());
+
+        ticketEventPort.publish(reservedTicket);
+        log.debug("Ticket create event is sent for ticket {}", reservedTicket);
+
+        return reservedTicket;
     }
 
     private CreatePayment buildCreatePayment(Long accountId, BigDecimal eventPrice, Integer ticketCount, String referenceCode) {

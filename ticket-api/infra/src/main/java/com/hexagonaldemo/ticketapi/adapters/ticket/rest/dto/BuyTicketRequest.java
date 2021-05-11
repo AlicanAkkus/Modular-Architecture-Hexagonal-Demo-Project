@@ -23,7 +23,7 @@ public class BuyTicketRequest {
 
     @NotNull
     @Positive
-    private Long eventId;
+    private Long meetupId;
 
     @NotNull
     @Positive
@@ -34,9 +34,14 @@ public class BuyTicketRequest {
     public BuyTicket toModel() {
         return BuyTicket.builder()
                 .accountId(accountId)
-                .eventId(eventId)
+                .meetupId(meetupId)
                 .count(count)
-                .referenceCode(Optional.ofNullable(referenceCode).orElse(UUID.randomUUID().toString()))
+                .referenceCode(calculateReferenceCode())
                 .build();
+    }
+
+    private String calculateReferenceCode() {
+        return Optional.ofNullable(referenceCode)
+                .orElse(UUID.randomUUID().toString());
     }
 }

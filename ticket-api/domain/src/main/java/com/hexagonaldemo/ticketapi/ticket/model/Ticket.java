@@ -12,8 +12,8 @@ public class Ticket {
 
     private Long id;
     private Long accountId;
-    private Long eventId;
-    private LocalDateTime boughtDate;
+    private Long meetupId;
+    private LocalDateTime reserveDate;
     private BigDecimal price;
     private Integer count;
 }

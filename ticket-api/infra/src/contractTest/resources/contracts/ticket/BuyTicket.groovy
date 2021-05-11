@@ -1,4 +1,4 @@
-package ticket
+package contracts.ticket
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -15,7 +15,7 @@ Contract.make {
                 """
                     {
                         "accountId": 123,
-                        "eventId": 5,
+                        "meetupId": 5,
                         "count": 2,
                         "referenceCode": "123e4567-e89b-12d3-a456-426614174000"
                     }
@@ -30,9 +30,9 @@ Contract.make {
                         "data": {
                             "id": 1,
                             "accountId": 123,
-                            "eventId": 5,
+                            "meetupId": 5,
                             "count": 2,
-                            "boughtDate": "2020-01-01T12:12:12",
+                            "reserveDate": "2020-01-01T12:12:12",
                             "price": 90.00
                         }
                     }

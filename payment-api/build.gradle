@@ -4,7 +4,7 @@ jar.archiveBaseName.set('payment-api')
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile project('infra')
+    implementation project('infra')
 }
 
 springBoot {
@@ -13,6 +13,6 @@ springBoot {
 
 bootRun {
     if (project.hasProperty('args')) {
-        args project.args.split(',')
+        args project.args.split(',' as Closure)
     }
 }

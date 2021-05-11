@@ -1,8 +1,8 @@
 def version = [
-        dependencyManagement: '1.0.9.RELEASE',
+        dependencyManagement: '1.0.11.RELEASE',
         versions            : '0.27.0',
         springBoot          : '2.2.1.RELEASE',
-        springCloudContract : '2.2.1.RELEASE',
+        springCloudContract : '3.0.3-SNAPSHOT',
         nebulaLint          : '16.0.2'
 ]
 

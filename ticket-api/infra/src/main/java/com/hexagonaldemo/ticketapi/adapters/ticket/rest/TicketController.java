@@ -22,7 +22,7 @@ public class TicketController extends BaseController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Response<TicketResponse> buy(@Valid @RequestBody BuyTicketRequest buyTicketRequest) {
-        Ticket ticket = ticketFacade.buy(buyTicketRequest.toModel());
+        var ticket = ticketFacade.buy(buyTicketRequest.toModel());
         return respond(TicketResponse.fromModel(ticket));
     }
 }

@@ -7,23 +7,33 @@ import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
 import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
+import com.hexagonaldemo.ticketapi.payment.port.PaymentApiPort;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.ConnectException;
+import java.net.UnknownHostException;
 import java.util.Objects;
+import java.util.concurrent.TimeoutException;
 
 import static org.springframework.http.HttpMethod.POST;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "adapters.payment.enabled", havingValue = "true")
-public class PaymentRestAdapter implements PaymentPort {
+public class PaymentRestAdapter implements PaymentApiPort {
 
     private final RestTemplate restTemplate;
     private final PaymentApiProperties paymentApiProperties;
@@ -31,27 +41,39 @@ public class PaymentRestAdapter implements PaymentPort {
     };
 
     @Override
+    @Retryable(value = {TimeoutException.class, HttpServerErrorException.class, HttpClientErrorException.class, UnknownHostException.class, ConnectException.class, NullPointerException.class, RestClientException.class},
+            maxAttemptsExpression = "${adapters.payment.retryAttempts}",
+            backoff = @Backoff(delayExpression = "${adapters.payment.retryDelay}"))
     public Payment pay(CreatePayment createPayment) {
-        PaymentCreateRequest paymentCreateRequest = PaymentCreateRequest.builder()
+
+        var paymentCreateRequest = PaymentCreateRequest.builder()
                 .accountId(createPayment.getAccountId())
                 .price(createPayment.getPrice())
                 .referenceCode(createPayment.getReferenceCode())
                 .build();
 
-        String url = preparePaymentUrl();
-
-        var exchange = restTemplate.exchange(url, POST, new HttpEntity<>(paymentCreateRequest), this.paymentResponseType);
-        Response<PaymentResponse> body = exchange.getBody();
-
-        if (Objects.isNull(body)) throw new TicketApiBusinessException("ticketapi.payment.emptyResponse");
-        PaymentResponse paymentResponse = body.getData();
+        var response = callApi(paymentCreateRequest, preparePaymentUrl());
 
         return Payment.builder()
-                .id(paymentResponse.getId())
-                .accountId(paymentResponse.getAccountId())
-                .price(paymentResponse.getPrice())
-                .referenceCode(paymentResponse.getReferenceCode())
+                .id(response.getId())
+                .accountId(response.getAccountId())
+                .price(response.getPrice())
+                .referenceCode(response.getReferenceCode())
                 .build();
+    }
+
+    @Recover
+    public Payment pay(Exception e, CreatePayment createPayment) {
+        log.error("Couldn't connect to payment api to do payment for {}", createPayment, e);
+        throw new TicketApiBusinessException("ticketapi.payment.client.error");
+    }
+
+    private PaymentResponse callApi(PaymentCreateRequest paymentCreateRequest, String url) {
+        var exchange = restTemplate.exchange(url, POST, new HttpEntity<>(paymentCreateRequest), this.paymentResponseType);
+        var body = exchange.getBody();
+
+        if (Objects.isNull(body)) throw new TicketApiBusinessException("ticketapi.payment.emptyResponse");
+        return body.getData();
     }
 
     private String preparePaymentUrl() {

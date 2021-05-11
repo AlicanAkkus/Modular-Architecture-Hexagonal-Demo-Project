@@ -3,7 +3,7 @@ package com.hexagonaldemo.ticketapi.ticket.port;
 import com.hexagonaldemo.ticketapi.ticket.command.BuyTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 
-public interface TicketPort {
+public interface TicketDataPort {
 
-    Ticket buy(BuyTicket buyTicket);
+    Ticket reserve(BuyTicket buyTicket);
 }

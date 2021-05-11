@@ -7,7 +7,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
-    show-sql: true
+    show-sql: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
@@ -37,10 +37,44 @@ spring:
   resources:
     add-mappings: false
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# SPRING CLOUD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  cloud:
+    config:
+      enabled: false
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: false
+          brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
+        bindings:
+          ticketCreateInput:
+            consumer:
+              startOffset: latest
+      bindings:
+        ticketCreateInput:
+          destination: ticketCreate.test.topic
+          group: hexagonaldemo-${random.int(100000)}
+        ticketCreateOutput:
+          destination: ticketCreate.test.topic
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# CONTRACT TESTS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 stubrunner:
   ids:
     - hexagonal-demo.payment-api:infra:+:8090
-    -
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# INFRA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+kafka:
+  enabled: true
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # LOGGING
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

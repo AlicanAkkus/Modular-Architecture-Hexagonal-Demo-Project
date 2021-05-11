@@ -41,7 +41,7 @@ tasks.withType(Test) {
 
 task unitTest(type: Test) {}
 task integrationTest(type: Test) {}
-task contractTest(type: Test) {}
+task apiContractTest(type: Test) {}
 task stubTest(type: Test) {}
 task functionalTest(type: Test) {}
 task allTest(type: Test) {}
@@ -58,7 +58,7 @@ project.afterEvaluate({
     configure("integrationTest", ['integrationTest'], null)
 
     // ONLY CONTRACT TEST, CHANGE SET DETECTION SKIPPED
-    configure("contractTest", ['contractTest'], null)
+    configure("apiContractTest", ['contractTest'], null)
 
     // ONLY STUB TEST, CHANGE SET DETECTION SKIPPED
     configure("stubTest", ['stubTest'], null)

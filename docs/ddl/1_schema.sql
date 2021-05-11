@@ -62,7 +62,7 @@ create table if not exists ticket
     status      int default 0  not null comment '-1: deleted, 0:passive, 1:active',
     price       decimal(30, 8) not null comment 'price in try',
     count       int            not null,
-    bought_date datetime       not null,
+    payment_date datetime       not null,
     account_id  bigint         not null,
     event_id    bigint         not null
 );

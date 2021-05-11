@@ -3,7 +3,7 @@ apply plugin: 'io.spring.dependency-management'
 ext {
     // ============ DEPENDENCIES ============
 
-    version_slf4j = '1.7.25'
+    version_slf4j = '1.7.30'
     version_junit5 = '5.6.0'
     version_junit5_suite = '1.6.0'
     version_assertJ = '3.10.0'
@@ -11,11 +11,11 @@ ext {
 
     // ============ DEPENDENCY MANAGEMENT ============
 
-    version_spring = '5.2.3.RELEASE'
-    version_springBoot = '2.2.1.RELEASE'
-    version_springCloud = '2.2.1.RELEASE'
+    version_spring = '5.2.4.RELEASE'
+    version_springBoot = '2.2.5.RELEASE'
+    version_springCloudKafka = '3.0.8.RELEASE'
+    version_springCloudContract = '3.0.3-SNAPSHOT'
     version_springCloudDependencies = 'Hoxton.RELEASE'
-    version_springCloudStreamDependencies = 'Horsham.RELEASE'
     version_springRetry = '1.2.3.RELEASE'
     version_commonsLang3 = '3.7'
     version_byteBuddy = '1.8.14'
@@ -43,21 +43,20 @@ ext {
     version_restAssured = '4.3.3'
     version_commonsPool = '2.9.0'
     version_lettuce = '6.0.1.RELEASE'
+    version_kafka = '2.6.0'
 }
 
 dependencies {
-    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: rootProject.version_slf4j
-    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: rootProject.version_slf4j
-    compile group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
-    compile group: 'org.apache.commons', name: 'commons-text', version: rootProject.version_common_text
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
+    implementation group: 'org.apache.commons', name: 'commons-text', version: rootProject.version_common_text
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: rootProject.version_junit5
-    testCompile group: 'org.junit.platform', name: 'junit-platform-suite-api', version: rootProject.version_junit5_suite
-    testCompile group: 'org.junit.platform', name: 'junit-platform-commons', version: rootProject.version_junit5_suite
-    testCompile group: 'org.assertj', name: 'assertj-core', version: rootProject.version_assertJ
-    testCompile group: 'org.mockito', name: 'mockito-core', version: rootProject.version_mockito
-    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: rootProject.version_mockito
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: rootProject.version_junit5
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: rootProject.version_junit5_suite
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: rootProject.version_junit5_suite
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: rootProject.version_assertJ
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: rootProject.version_mockito
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: rootProject.version_mockito
 }
 
 dependencyManagement {
@@ -66,7 +65,6 @@ dependencyManagement {
         dependency group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: rootProject.version_junit5
         dependency group: 'net.bytebuddy', name: 'byte-buddy', version: rootProject.version_byteBuddy
         dependency group: 'org.objenesis', name: 'objenesis', version: rootProject.version_objenesis
-        dependency group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: rootProject.version_wiremock
 
         //spring
         dependency group: 'org.springframework', name: 'spring-web', version: rootProject.version_spring
@@ -84,11 +82,14 @@ dependencyManagement {
         //spring bom imports
         imports {
             mavenBom "org.springframework.boot:spring-boot-dependencies:${rootProject.version_springBoot}"
-            mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${rootProject.version_springCloud}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${rootProject.version_springCloudDependencies}"
+            mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${rootProject.version_springCloudContract}"
         }
 
         // redis
         dependency group: 'org.springframework.integration', name: 'spring-integration-redis', version: rootProject.version_spring
+        dependency group: 'org.springframework.cloud', name: 'spring-cloud-starter-stream-kafka', version: rootProject.version_springCloudKafka
+        dependency group: 'org.apache.kafka', name: 'connect-api', version: rootProject.version_kafka
         dependency group: 'io.lettuce', name: 'lettuce-core', version: rootProject.version_lettuce
 
         //sun

@@ -38,7 +38,7 @@ We recommend Hexagonal Architecture for those who want to write clean, maintaina
 You can use any programming language for implementing Hexagonal Architecture. Here is the list of technologies we used for the demo application;
 * Spring Boot 2
 * Java 11
-* Gradle 6
+* Gradle 7
 * Mono Repo  
 * Docker
 * Mysql  

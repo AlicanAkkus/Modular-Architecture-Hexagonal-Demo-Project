@@ -14,6 +14,13 @@ TEST_REDIS_IMAGE='bitnami/redis:latest'
 TEST_REDIS_ENVS='REDIS_PASSWORD=redisPassword'
 TEST_REDIS_PORT=6379
 
+TEST_KAFKA_NAME='hexagonaldemo_test_kafka'
+TEST_KAFKA_ENVS='--env KAFKA_BROKER_ID=1 --env KAFKA_ZOOKEEPER_CONNECT='hexagonaldemo_test_zookeeper:2181' --env KAFKA_ADVERTISED_LISTENERS='PLAINTEXT://localhost:9092' --env KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 --env KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0 --env KAFKA_AUTO_CREATE_TOPICS_ENABLE=true'
+TEST_KAFKA_DATA='hexagonaldemo_test_kafka_data'
+
+TEST_ZOOKEEPER_NAME='hexagonaldemo_test_zookeeper'
+TEST_ZOOKEEPER_ENVS='--env ZOOKEEPER_CLIENT_PORT=2181 --env ZOOKEEPER_TICK_TIME=2000'
+
 #####################################
 # DOCKER
 #####################################
@@ -91,6 +98,50 @@ down_db() {
 }
 
 #####################################
+# KAFKA
+#####################################
+up_kafka() {
+    if [[ ! $(isUp 9092) ]]; then
+        echo ">> starting: up kafka"
+        # shellcheck disable=SC2086
+        create_volume $TEST_KAFKA_DATA
+        docker run --network ${TEST_NETWORK} --name ${TEST_KAFKA_NAME} -v ${TEST_KAFKA_DATA} -m 512m -p 9092:9092 -d ${TEST_KAFKA_ENVS} confluentinc/cp-kafka
+    else
+        echo ">> kafka is already up"
+    fi
+}
+
+down_kafka() {
+    if [[ ! $(isDown 9092) ]]; then
+        echo ">> down kafka"
+        docker rm -f ${TEST_KAFKA_NAME}
+        docker volume rm ${TEST_KAFKA_DATA}
+    else
+        echo ">> kafka is already down"
+    fi
+}
+
+up_zookeeper() {
+    if [[ ! $(isUp 2181) ]]; then
+        echo ">> up zookeeper"
+        # shellcheck disable=SC2086
+        docker run --network ${TEST_NETWORK} --name ${TEST_ZOOKEEPER_NAME} -m 512m -p 2181:2181 -d ${TEST_ZOOKEEPER_ENVS} confluentinc/cp-zookeeper
+    else
+        echo ">> zookeeper is already up"
+    fi
+
+}
+
+down_zookeeper() {
+    if [[ ! $(isDown 2181) ]]; then
+        echo ">> down zookeeper"
+        docker rm -f ${TEST_ZOOKEEPER_NAME}
+    else
+        echo ">> zookeeper is already down"
+    fi
+}
+
+#####################################
 # REDIS
 #####################################
 
@@ -127,15 +178,33 @@ case "${1}" in
         "up") echo Starting redis && up_redis;;
         "down") echo Stopping redis && down_redis;;
         esac;;
+    "kafka")
+        case "${2}" in
+        "up")
+            echo Starting zookeeper && up_zookeeper;
+            echo Starting kafka && up_kafka;
+            ;;
+        "down")
+            echo Stopping zookeeper && down_zookeeper;
+            echo Stopping kafka && down_kafka;
+            ;;
+        esac;;
     "infra")
         case "${2}" in
         "up")
             echo Starting db && up_db;
-            echo Starting redis && up_redis;;
+            echo Starting redis && up_redis;
+            echo Starting zookeeper && up_zookeeper;
+            echo Starting kafka && up_kafka;
+            ;;
         "down")
             echo Stopping db && down_db;
-            echo Stopping redis && down_redis;;
-        esac;;
+            echo Stopping redis && down_redis;
+            echo Stopping zookeeper && down_zookeeper;
+            echo Stopping kafka && down_kafka;
+            ;;
+        esac
+        ;;
     *)
         echo Unknown command! "${1}"
 esac

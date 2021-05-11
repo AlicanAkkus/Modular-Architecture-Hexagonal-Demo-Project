@@ -17,8 +17,8 @@ public class TicketResponse {
 
     private Long id;
     private Long accountId;
-    private Long eventId;
-    private LocalDateTime boughtDate;
+    private Long meetupId;
+    private LocalDateTime reserveDate;
     private BigDecimal price;
     private Integer count;
 
@@ -26,8 +26,8 @@ public class TicketResponse {
         return TicketResponse.builder()
                 .id(ticket.getId())
                 .accountId(ticket.getAccountId())
-                .eventId(ticket.getEventId())
-                .boughtDate(ticket.getBoughtDate())
+                .meetupId(ticket.getMeetupId())
+                .reserveDate(ticket.getReserveDate())
                 .price(ticket.getPrice())
                 .count(ticket.getCount())
                 .build();

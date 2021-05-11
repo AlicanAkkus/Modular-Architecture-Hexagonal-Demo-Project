@@ -26,20 +26,20 @@ public class TicketEntity extends AbstractEntity {
     private Integer count;
 
     @Column(nullable = false)
-    private LocalDateTime boughtDate;
+    private LocalDateTime reserveDate;
 
     @Column(nullable = false)
     private Long accountId;
 
     @Column(nullable = false)
-    private Long eventId;
+    private Long meetupId;
 
     public Ticket toModel() {
         return Ticket.builder()
                 .id(super.getId())
                 .accountId(accountId)
-                .eventId(eventId)
-                .boughtDate(boughtDate)
+                .meetupId(meetupId)
+                .reserveDate(reserveDate)
                 .price(price)
                 .count(count)
                 .build();

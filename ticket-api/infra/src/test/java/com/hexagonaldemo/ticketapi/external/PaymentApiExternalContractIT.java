@@ -40,6 +40,6 @@ public class PaymentApiExternalContractIT {
         //then
         assertThat(payment).isNotNull();
         assertThat(payment).extracting("id", "accountId", "price", "referenceCode")
-                .contains(1L, 1L, new BigDecimal("10.00"), "ref1");
+                .contains(1L, 1L, BigDecimal.valueOf(10.0), "ref1");
     }
 }

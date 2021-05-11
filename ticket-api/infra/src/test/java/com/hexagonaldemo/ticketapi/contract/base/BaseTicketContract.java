@@ -19,8 +19,8 @@ public class BaseTicketContract extends AbstractContractTest {
         return Ticket.builder()
                 .id(1L)
                 .accountId(123L)
-                .eventId(5L)
-                .boughtDate(LocalDateTime.of(2020, 1, 1, 12, 12, 12))
+                .meetupId(5L)
+                .reserveDate(LocalDateTime.of(2020, 1, 1, 12, 12, 12))
                 .price(BigDecimal.valueOf(90.00))
                 .count(2)
                 .build();

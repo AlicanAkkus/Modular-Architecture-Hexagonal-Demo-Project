@@ -1,4 +1,4 @@
-package com.hexagonaldemo.ticketapi.event.model;
+package com.hexagonaldemo.ticketapi.meetup.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class Event {
+public class Meetup {
 
     private Long id;
     private String name;

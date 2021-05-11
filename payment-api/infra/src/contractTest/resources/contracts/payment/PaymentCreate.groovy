@@ -1,4 +1,4 @@
-package payment
+package contracts.payment
 
 import org.springframework.cloud.contract.spec.Contract
 

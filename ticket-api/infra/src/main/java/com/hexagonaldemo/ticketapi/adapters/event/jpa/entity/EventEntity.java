@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.adapters.event.jpa.entity;
 
 import com.hexagonaldemo.ticketapi.common.entity.AbstractEntity;
-import com.hexagonaldemo.ticketapi.event.model.Event;
+import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
@@ -31,8 +31,8 @@ public class EventEntity extends AbstractEntity {
     @Column(nullable = false)
     private LocalDateTime eventDate;
 
-    public Event toModel() {
-        return Event.builder()
+    public Meetup toModel() {
+        return Meetup.builder()
                 .id(super.getId())
                 .name(name)
                 .website(website)
