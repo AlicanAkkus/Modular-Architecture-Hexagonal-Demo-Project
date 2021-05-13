@@ -1,0 +1,19 @@
+package com.hexagonaldemo.ticketapi.common.event.consumer;
+
+import com.hexagonaldemo.ticketapi.adapters.payment.event.message.PaymentRollbackEvent;
+import com.hexagonaldemo.ticketapi.adapters.reservation.event.message.TicketReservedEvent;
+import com.hexagonaldemo.ticketapi.common.event.configuration.KafkaTestStreams;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public class PaymentRollbackEventKafkaStreamTestConsumer extends AbstractEventKafkaStreamTestConsumer<PaymentRollbackEvent> {
+
+    @Override
+    @StreamListener(KafkaTestStreams.PAYMENT_ROLLBACK_INPUT)
+    public synchronized void consume(PaymentRollbackEvent event) {
+        consumerInternal(event);
+    }
+}

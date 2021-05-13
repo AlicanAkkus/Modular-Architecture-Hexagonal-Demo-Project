@@ -12,7 +12,7 @@ public class BaseTicketContract extends AbstractContractTest {
 
     @Override
     void setUp() {
-        when(ticketFacade.buy(any())).thenReturn(buildTicket());
+        when(reserveTicketCommandHandler.handle(any())).thenReturn(buildTicket());
     }
 
     private Ticket buildTicket() {

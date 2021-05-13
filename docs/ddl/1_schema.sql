@@ -42,7 +42,7 @@ create table balance_transaction
 use ticket;
 -- #####################################
 
-create table if not exists event
+create table if not exists meetup
 (
     id         bigint auto_increment primary key,
     created_at datetime       not null,

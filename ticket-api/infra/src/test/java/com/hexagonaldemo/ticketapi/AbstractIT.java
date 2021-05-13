@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi;
 
-import com.hexagonaldemo.ticketapi.kafka.TicketEventKafkaStreamConsumer;
+import com.hexagonaldemo.ticketapi.common.event.consumer.ReservationEventKafkaStreamTestConsumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -12,13 +12,13 @@ public abstract class AbstractIT {
     protected TestRestTemplate testRestTemplate;
 
     @Autowired
-    protected TicketEventKafkaStreamConsumer ticketEventKafkaStreamConsumer;
+    protected ReservationEventKafkaStreamTestConsumer reservationEventKafkaStreamTestConsumer;
 
     @LocalServerPort
     protected Integer port;
 
     @BeforeEach
     void setUp() {
-        ticketEventKafkaStreamConsumer.reset();
+        reservationEventKafkaStreamTestConsumer.reset();
     }
 }

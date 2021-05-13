@@ -50,20 +50,30 @@ spring:
           auto-create-topics: false
           brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
         bindings:
-          ticketCreateInput:
+          ticketReservedInput:
+            consumer:
+              startOffset: latest
+          paymentRollbackInput:
             consumer:
               startOffset: latest
       bindings:
-        ticketCreateInput:
-          destination: ticketCreate.test.topic
+        ticketReservedInput:
+          destination: ticketReserved.test.topic
           group: hexagonaldemo-${random.int(100000)}
-        ticketCreateOutput:
-          destination: ticketCreate.test.topic
+        ticketReservedOutout:
+          destination: ticketReserved.test.topic
+        paymentRollbackInput:
+          destination: paymentRollback.test.topic
+          group: hexagonaldemo-${random.int(100000)}
+        paymentRollbackOutout:
+          destination: paymentRollback.test.topic
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CONTRACT TESTS
+# TESTS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+commandhandler:
+  enabled: false
 stubrunner:
   ids:
     - hexagonal-demo.payment-api:infra:+:8090
@@ -81,11 +91,12 @@ kafka:
 
 logging:
   level:
-    com.hexagonaldemo.orderapi: DEBUG
-    org.springframework.test: INFO
+    com.hexagonaldemo: DEBUG
+    org.springframework: INFO
     org.springframework.integration: WARN
     org.springframework.scheduling: WARN
     org.hibernate.engine.jdbc.spi.SqlExceptionHelper: ERROR
     org.springframework.orm.jpa: WARN
     com.zaxxer.hikari: WARN
     org.hibernate.tool: WARN
+    org.apache.kafka: WARN

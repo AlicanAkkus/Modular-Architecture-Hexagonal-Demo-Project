@@ -7,7 +7,7 @@ import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
 import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.payment.port.PaymentApiPort;
+import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -33,7 +33,7 @@ import static org.springframework.http.HttpMethod.POST;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "adapters.payment.enabled", havingValue = "true")
-public class PaymentRestAdapter implements PaymentApiPort {
+public class PaymentRestAdapter implements PaymentPort {
 
     private final RestTemplate restTemplate;
     private final PaymentApiProperties paymentApiProperties;
