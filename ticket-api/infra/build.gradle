@@ -36,6 +36,8 @@ dependencies {
     testImplementation files("${project.rootDir}/payment-api/infra/build/libs/infra-stubs.jar")
 }
 
+tasks.copyContracts.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
+tasks.generateClientStubs.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
 tasks.generateContractTests.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
 tasks.test.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
 tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')

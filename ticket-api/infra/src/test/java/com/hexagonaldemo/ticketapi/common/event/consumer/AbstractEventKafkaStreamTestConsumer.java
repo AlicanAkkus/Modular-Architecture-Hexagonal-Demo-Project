@@ -20,10 +20,10 @@ public abstract class AbstractEventKafkaStreamTestConsumer<T extends Event> {
 
     private Deque<T> eventsQueue;
 
-    abstract void consume(@Payload T event);
+    public abstract void consume(@Payload T event);
 
     protected void consumerInternal(T event) {
-        log.info("Event received: {}", event);
+        log.info("Event received:: {}", event);
 
         initializeEventQueue();
         keepEvent(event);
@@ -31,6 +31,7 @@ public abstract class AbstractEventKafkaStreamTestConsumer<T extends Event> {
         log.info("Event added to the kafka event list as {}th entry, event: {}", queueSize(), event);
     }
 
+    @Synchronized
     public void wait(int maxWaitInSec, int expectedEventSize) {
         initializeEventQueue();
         try {

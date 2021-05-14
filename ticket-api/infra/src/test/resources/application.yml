@@ -42,8 +42,6 @@ spring:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   cloud:
-    config:
-      enabled: false
     stream:
       kafka:
         binder:
@@ -60,12 +58,12 @@ spring:
         ticketReservedInput:
           destination: ticketReserved.test.topic
           group: hexagonaldemo-${random.int(100000)}
-        ticketReservedOutout:
+        ticketReservedOutput:
           destination: ticketReserved.test.topic
         paymentRollbackInput:
           destination: paymentRollback.test.topic
           group: hexagonaldemo-${random.int(100000)}
-        paymentRollbackOutout:
+        paymentRollbackOutput:
           destination: paymentRollback.test.topic
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

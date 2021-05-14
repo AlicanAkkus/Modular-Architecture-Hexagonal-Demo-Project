@@ -51,11 +51,11 @@ ext {
 
 dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
-    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: rootProject.version_logstackEncoder
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: rootProject.version_logback
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: rootProject.version_logback
-    implementation group: 'ch.qos.logback', name: 'logback-access', version: rootProject.version_logback
-    implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: rootProject.version_jaxbAnnotations
+    //implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: rootProject.version_logstackEncoder
+    //implementation group: 'ch.qos.logback', name: 'logback-core', version: rootProject.version_logback
+    //implementation group: 'ch.qos.logback', name: 'logback-classic', version: rootProject.version_logback
+    //implementation group: 'ch.qos.logback', name: 'logback-access', version: rootProject.version_logback
+    //implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: rootProject.version_jaxbAnnotations
 
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
     implementation group: 'org.apache.commons', name: 'commons-text', version: rootProject.version_common_text
