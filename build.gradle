@@ -15,3 +15,4 @@ allprojects {
     apply from: "$rootProject.projectDir/gradle/config/dependencies.gradle"
     apply from: "$rootProject.projectDir/gradle/config/testing.gradle"
 }
+apply from: "$rootProject.projectDir/gradle/config/sonar.gradle"

@@ -3,7 +3,8 @@ def version = [
         versions            : '0.27.0',
         springBoot          : '2.2.1.RELEASE',
         springCloudContract : '3.0.3-SNAPSHOT',
-        nebulaLint          : '16.0.2'
+        nebulaLint          : '16.0.2',
+        sonarqube           : '3.2.0'
 ]
 
 dependencies {
@@ -12,4 +13,5 @@ dependencies {
     classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: version.springBoot
     classpath group: 'org.springframework.cloud', name: 'spring-cloud-contract-gradle-plugin', version: version.springCloudContract
     classpath group: 'nebula.lint', name: 'nebula.lint.gradle.plugin', version: version.nebulaLint
+    classpath group: 'org.sonarsource.scanner.gradle', name: 'sonarqube-gradle-plugin', version: version.sonarqube
 }

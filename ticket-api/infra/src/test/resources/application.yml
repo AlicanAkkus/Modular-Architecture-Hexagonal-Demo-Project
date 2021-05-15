@@ -92,6 +92,7 @@ logging:
     com.hexagonaldemo: DEBUG
     org.springframework: INFO
     org.springframework.cloud: WARN
+    org.springframework.kafka: WARN
     org.springframework.integration: WARN
     org.springframework.scheduling: WARN
     org.hibernate.engine.jdbc.spi.SqlExceptionHelper: ERROR
