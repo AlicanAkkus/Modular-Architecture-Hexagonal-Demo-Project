@@ -75,11 +75,14 @@ adapters:
 
 logging:
   level:
-    com.hexagonaldemo.orderapi: DEBUG
-    org.springframework.test: INFO
+    com.hexagonaldemo: DEBUG
+    org.springframework: INFO
+    org.springframework.cloud: WARN
+    org.springframework.kafka: WARN
     org.springframework.integration: WARN
     org.springframework.scheduling: WARN
     org.hibernate.engine.jdbc.spi.SqlExceptionHelper: ERROR
     org.springframework.orm.jpa: WARN
     com.zaxxer.hikari: WARN
     org.hibernate.tool: WARN
+    org.apache.kafka: WARN

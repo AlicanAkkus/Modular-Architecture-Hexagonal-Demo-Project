@@ -44,18 +44,12 @@ ext {
     version_commonsPool = '2.9.0'
     version_lettuce = '6.0.1.RELEASE'
     version_kafka = '2.6.0'
-    version_logback = '1.2.3'
-    version_logstackEncoder = '6.3'
-    version_jaxbAnnotations = '2.11.0'
+    version_groovy = '3.0.8'
 }
 
 dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
-    //implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: rootProject.version_logstackEncoder
-    //implementation group: 'ch.qos.logback', name: 'logback-core', version: rootProject.version_logback
-    //implementation group: 'ch.qos.logback', name: 'logback-classic', version: rootProject.version_logback
-    //implementation group: 'ch.qos.logback', name: 'logback-access', version: rootProject.version_logback
-    //implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: rootProject.version_jaxbAnnotations
+    implementation group: 'org.codehaus.groovy', name: 'groovy', version: rootProject.version_groovy
 
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: rootProject.version_commonsLang3
     implementation group: 'org.apache.commons', name: 'commons-text', version: rootProject.version_common_text

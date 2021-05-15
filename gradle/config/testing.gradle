@@ -31,10 +31,15 @@ tasks.withType(Test) {
         events 'passed', 'failed', 'skipped'
         exceptionFormat = 'full'
         afterSuite { desc, result ->
-            if (!desc.parent)
-                println """Results: ${result.resultType} (${result.testCount} tests, ${
-                    result.successfulTestCount
-                } successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"""
+            if (!desc.parent) {
+                def color = { color, text ->
+                    def colors = [black: 30, red: 31, green: 32, yellow: 33, blue: 34, magenta: 35, cyan: 36, white: 37]
+                    return new String((char) 27) + "[${colors[color]}m${text}" + new String((char) 27) + "[0m"
+                }
+                def text = """\nResults: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"""
+                if (result.resultType == TestResult.ResultType.SUCCESS) println "${color 'green', text}"
+                else println "${color 'red', text}"
+            }
         }
     }
 }
