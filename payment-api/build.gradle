@@ -13,6 +13,6 @@ springBoot {
 
 bootRun {
     if (project.hasProperty('args')) {
-        args project.args.split(',' as Closure)
+        args project.args.split(',')
     }
 }

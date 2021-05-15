@@ -39,6 +39,13 @@ jobs:
         with:
           java-version: 11
 
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache gradle dependencies
         uses: actions/cache@v1
         with:
@@ -54,3 +61,9 @@ jobs:
         with:
           name: ticket-api-jar
           path: ticket-api/build/libs
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonarqube --info
