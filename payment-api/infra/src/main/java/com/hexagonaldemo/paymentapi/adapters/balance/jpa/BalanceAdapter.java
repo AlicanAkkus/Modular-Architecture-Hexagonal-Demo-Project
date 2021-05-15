@@ -4,7 +4,7 @@ import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceEntity;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceTransactionEntity;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
-import com.hexagonaldemo.paymentapi.balance.port.BalanceDataPort;
+import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import com.hexagonaldemo.paymentapi.common.model.Status;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
-public class BalanceDataAdapter implements BalanceDataPort {
+public class BalanceAdapter implements BalancePort {
 
     private final BalanceJpaRepository balanceJpaRepository;
     private final BalanceTransactionJpaRepository balanceTransactionJpaRepository;
@@ -35,7 +35,7 @@ public class BalanceDataAdapter implements BalanceDataPort {
     }
 
     private void createBalanceTransaction(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
-        BalanceTransactionEntity balanceTransactionEntity = new BalanceTransactionEntity();
+        var balanceTransactionEntity = new BalanceTransactionEntity();
         balanceTransactionEntity.setBalanceId(balance.getId());
         balanceTransactionEntity.setAmount(balanceTransactionCreate.getAmount());
         balanceTransactionEntity.setType(balanceTransactionCreate.getType());
@@ -44,7 +44,7 @@ public class BalanceDataAdapter implements BalanceDataPort {
     }
 
     private Balance updateBalance(Balance balance) {
-        BalanceEntity balanceEntity = balanceJpaRepository.findById(balance.getId())
+        var balanceEntity = balanceJpaRepository.findById(balance.getId())
                 .orElseThrow(()-> new PaymentApiBusinessException("paymentapi.balance.notFound"));
 
         balanceEntity.setAmount(balance.getAmount());
@@ -53,7 +53,7 @@ public class BalanceDataAdapter implements BalanceDataPort {
     }
 
     private BalanceEntity createBalance(Long accountId) {
-        BalanceEntity balanceEntity = new BalanceEntity();
+        var balanceEntity = new BalanceEntity();
         balanceEntity.setAmount(BigDecimal.ZERO);
         balanceEntity.setAccountId(accountId);
         balanceEntity.setStatus(Status.ACTIVE);

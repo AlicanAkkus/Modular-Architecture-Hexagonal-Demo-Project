@@ -65,7 +65,7 @@ public abstract class AbstractEventKafkaStreamTestConsumer<T extends Event> {
 
     private void sleepOneSecond() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000); //NOSONAR
         } catch (InterruptedException e) {
             log.error("Sleep interrupted", e);
         }

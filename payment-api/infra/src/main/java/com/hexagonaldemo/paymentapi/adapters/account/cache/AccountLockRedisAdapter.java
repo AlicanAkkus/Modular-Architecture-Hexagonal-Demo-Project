@@ -19,17 +19,16 @@ public class AccountLockRedisAdapter implements AccountLockPort {
     private final RedisLockRegistry redisLockRegistry;
 
     @Override
-    public boolean lock(Long accountId) {
+    public void lock(Long accountId) {
         if (Objects.isNull(accountId) || !redisLockRegistry.obtain(String.valueOf(accountId)).tryLock()) {
             log.error("Could not lock for account {}", accountId);
             throw new PaymentApiBusinessException("paymentapi.account.lockFailed");
         }
         log.info("Acquired lock for account {}", accountId);
-        return true;
     }
 
     @Override
-    public boolean unlock(Long accountId) {
+    public void unlock(Long accountId) {
         try {
             redisLockRegistry.obtain(String.valueOf(accountId)).unlock();
             log.info("Released lock for account {}", accountId);
@@ -39,6 +38,5 @@ public class AccountLockRedisAdapter implements AccountLockPort {
             // therefore we swallow the exception, no worries
             log.info("Lock is expired for account {}", accountId);
         }
-        return true;
     }
 }

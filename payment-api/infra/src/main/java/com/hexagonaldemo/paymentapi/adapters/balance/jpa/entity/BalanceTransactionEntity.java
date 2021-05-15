@@ -3,7 +3,6 @@ package com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransaction;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.common.entity.AbstractEntity;
-import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;

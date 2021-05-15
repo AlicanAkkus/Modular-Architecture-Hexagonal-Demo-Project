@@ -20,7 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @IT
-public class PaymentNotificationAdapterIT extends AbstractIT {
+class PaymentNotificationAdapterIT extends AbstractIT {
 
     @Autowired
     PaymentNotificationAdapter paymentNotificationAdapter;

@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.*;
 @IT
 @Sql(scripts = "classpath:sql/meetups.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class MeetupAdapterIT extends AbstractIT {
+class MeetupAdapterIT extends AbstractIT {
 
     @Autowired
     MeetupAdapter meetupAdapter;

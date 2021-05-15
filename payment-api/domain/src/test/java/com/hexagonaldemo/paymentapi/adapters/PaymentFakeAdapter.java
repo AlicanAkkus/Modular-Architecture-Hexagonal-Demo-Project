@@ -2,13 +2,13 @@ package com.hexagonaldemo.paymentapi.adapters;
 
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
-import com.hexagonaldemo.paymentapi.payment.port.PaymentDataPort;
+import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 
-public class PaymentFakeDataAdapter implements PaymentDataPort {
+public class PaymentFakeAdapter implements PaymentPort {
 
     private final Payment payment;
 
-    public PaymentFakeDataAdapter(Payment payment) {
+    public PaymentFakeAdapter(Payment payment) {
         this.payment = payment;
     }
 

@@ -2,10 +2,8 @@ package com.hexagonaldemo.ticketapi.adapters.payment.event.message;
 
 import com.hexagonaldemo.ticketapi.common.model.Event;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @ToString

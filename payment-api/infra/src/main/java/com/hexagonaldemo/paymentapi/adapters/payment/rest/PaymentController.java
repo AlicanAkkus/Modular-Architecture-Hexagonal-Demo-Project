@@ -22,7 +22,7 @@ public class PaymentController extends BaseController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Response<PaymentResponse> pay(@RequestBody @Valid PaymentCreateRequest paymentCreateRequest) {
-        Payment payment = paymentFacade.pay(paymentCreateRequest.toModel());
+        var payment = paymentFacade.pay(paymentCreateRequest.toModel());
         return respond(PaymentResponse.fromModel(payment));
     }
 }

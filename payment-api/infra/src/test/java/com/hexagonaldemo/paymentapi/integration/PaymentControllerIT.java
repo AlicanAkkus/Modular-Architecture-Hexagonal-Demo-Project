@@ -4,7 +4,7 @@ import com.hexagonaldemo.paymentapi.AbstractIT;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentCreateRequest;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
-import com.hexagonaldemo.paymentapi.balance.port.BalanceDataPort;
+import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PaymentControllerIT extends AbstractIT {
 
     @Autowired
-    private BalanceDataPort balanceDataPort;
+    private BalancePort balancePort;
 
     @Test
     void should_create_payment_when_balance_is_sufficient() {
@@ -54,7 +54,7 @@ class PaymentControllerIT extends AbstractIT {
                 paymentResponseType);
 
         //then
-        Balance balance = balanceDataPort.retrieve(accountId);
+        Balance balance = balancePort.retrieve(accountId);
         assertThat(balance.getAmount()).isEqualTo(new BigDecimal(lastBalance));
 
         //and

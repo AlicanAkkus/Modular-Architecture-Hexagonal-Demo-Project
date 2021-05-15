@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Real account adapter has not been created yet.
- * todo icini doldur
+ * Throughout the development, we will add real implementation of the port.
+ * The code is left as it is intentionally.
  */
 @Service
 @ConditionalOnProperty(name = "adapters.account.enabled", havingValue = "true", matchIfMissing = true)

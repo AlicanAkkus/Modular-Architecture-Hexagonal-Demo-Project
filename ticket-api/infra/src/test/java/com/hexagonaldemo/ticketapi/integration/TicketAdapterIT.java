@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @IT
 @Sql(scripts = "classpath:sql/meetups.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class TicketAdapterIT extends AbstractIT {
+class TicketAdapterIT extends AbstractIT {
 
     @Autowired
     TicketAdapter ticketAdapter;

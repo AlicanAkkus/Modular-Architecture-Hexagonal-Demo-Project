@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class TicketApiDataNotFoundException extends RuntimeException {
 
-    private String key;
+    private final String key;
     private final String[] args;
 
     public TicketApiDataNotFoundException(String key) {

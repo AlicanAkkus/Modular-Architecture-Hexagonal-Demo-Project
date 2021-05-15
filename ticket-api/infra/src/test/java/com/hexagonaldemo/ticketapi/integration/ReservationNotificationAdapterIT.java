@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
 @IT
-public class ReservationNotificationAdapterIT extends AbstractIT {
+class ReservationNotificationAdapterIT extends AbstractIT {
 
     @Autowired
     ReservationNotificationAdapter reservationNotificationAdapter;

@@ -28,12 +28,3 @@ jacoco {
 task cleanJacoco(dependsOn: 'clean') { delete "$buildDir/jacoco" }
 
 jacocoTestReport.dependsOn(test)
-
-sonarqube {
-    project.afterEvaluate {
-        if (!project.projectDir.exists()) {
-            println "[DEBUG] Sonarqube is disabled for $project.name"
-            skipProject = true
-        }
-    }
-}

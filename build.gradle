@@ -13,7 +13,8 @@ allprojects {
     apply from: "$rootProject.projectDir/gradle/config/java-config.gradle"
     apply from: "$rootProject.projectDir/gradle/config/idea.gradle"
     apply from: "$rootProject.projectDir/gradle/config/dependencies.gradle"
-    apply from: "$rootProject.projectDir/gradle/config/jacoco.gradle"
     apply from: "$rootProject.projectDir/gradle/config/testing.gradle"
+    apply from: "$rootProject.projectDir/gradle/config/jacoco.gradle"
 }
+
 apply from: "$rootProject.projectDir/gradle/config/sonar.gradle"

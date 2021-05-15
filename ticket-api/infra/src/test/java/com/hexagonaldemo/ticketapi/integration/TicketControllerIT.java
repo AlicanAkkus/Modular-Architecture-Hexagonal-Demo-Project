@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.*;
 
 @IT
-public class TicketControllerIT extends AbstractIT {
+class TicketControllerIT extends AbstractIT {
 
     private final ParameterizedTypeReference<Response<DataResponse<TicketResponse>>> retrieveTicketResponseType = new ParameterizedTypeReference<>() {
     };
@@ -66,6 +66,6 @@ public class TicketControllerIT extends AbstractIT {
         // then - assert data
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().getData()).isNotNull();
-        assertThat(responseEntity.getBody().getData().getItems()).isNotNull().hasSize(0);
+        assertThat(responseEntity.getBody().getData().getItems()).isNotNull().isEmpty();
     }
 }

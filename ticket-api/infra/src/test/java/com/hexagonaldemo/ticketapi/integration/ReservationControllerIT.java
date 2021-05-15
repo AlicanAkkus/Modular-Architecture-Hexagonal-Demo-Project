@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.*;
 
 @IT
-public class ReservationControllerIT extends AbstractIT {
+class ReservationControllerIT extends AbstractIT {
 
     private final ParameterizedTypeReference<Response<ReserveTicketResponse>> reserveTicketResponseType = new ParameterizedTypeReference<>() {
     };

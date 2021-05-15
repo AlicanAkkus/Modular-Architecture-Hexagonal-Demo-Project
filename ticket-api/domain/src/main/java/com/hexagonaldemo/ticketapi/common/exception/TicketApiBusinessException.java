@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class TicketApiBusinessException extends RuntimeException {
 
-    private String key;
+    private final String key;
     private final String[] args;
 
     public TicketApiBusinessException(String key) {

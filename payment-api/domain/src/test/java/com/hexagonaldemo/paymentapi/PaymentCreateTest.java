@@ -2,8 +2,8 @@ package com.hexagonaldemo.paymentapi;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
-import com.hexagonaldemo.paymentapi.adapters.BalanceFakeDataAdapter;
-import com.hexagonaldemo.paymentapi.adapters.PaymentFakeDataAdapter;
+import com.hexagonaldemo.paymentapi.adapters.BalanceFakeAdapter;
+import com.hexagonaldemo.paymentapi.adapters.PaymentFakeAdapter;
 import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-public class PaymentCreateTest {
+class PaymentCreateTest {
 
     @Test
     void should_create_payment_when_balance_is_sufficient() {
@@ -57,8 +57,8 @@ public class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeDataAdapter(balanceBeforePayment, balanceAfterPayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeDataAdapter(expectedPayment));
+        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment), new BalanceValidator());
+        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -97,8 +97,8 @@ public class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeDataAdapter(balanceBeforePayment, balanceBeforePayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeDataAdapter(expectedPayment));
+        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment), new BalanceValidator());
+        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -117,13 +117,11 @@ public class PaymentCreateTest {
     private AccountLockPort retrieveFakeAccountLockPort() {
         return new AccountLockPort() {
             @Override
-            public boolean lock(Long accountId) {
-                return false;
+            public void lock(Long accountId) {
             }
 
             @Override
-            public boolean unlock(Long accountId) {
-                return false;
+            public void unlock(Long accountId) {
             }
         };
     }

@@ -2,7 +2,7 @@ package com.hexagonaldemo.paymentapi.balance;
 
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
-import com.hexagonaldemo.paymentapi.balance.port.BalanceDataPort;
+import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BalanceFacade {
 
-    private final BalanceDataPort balanceDataPort;
+    private final BalancePort balancePort;
     private final BalanceValidator balanceValidator;
 
     public Balance retrieve(Long accountId) {
-        return balanceDataPort.retrieve(accountId);
+        return balancePort.retrieve(accountId);
     }
 
     public Balance create(BalanceTransactionCreate balanceTransactionCreate) {
-        Balance balance = retrieve(balanceTransactionCreate.getAccountId());
-        return balanceDataPort.update(balance, balanceTransactionCreate);
+        var balance = retrieve(balanceTransactionCreate.getAccountId());
+        return balancePort.update(balance, balanceTransactionCreate);
     }
 
     public void validate(BalanceTransactionCreate balanceTransactionCreate) {
-        Balance balance = retrieve(balanceTransactionCreate.getAccountId());
+        var balance = retrieve(balanceTransactionCreate.getAccountId());
         balanceValidator.validate(balance, balanceTransactionCreate);
     }
 }

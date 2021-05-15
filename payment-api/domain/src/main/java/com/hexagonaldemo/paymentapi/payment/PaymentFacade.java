@@ -6,7 +6,7 @@ import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
-import com.hexagonaldemo.paymentapi.payment.port.PaymentDataPort;
+import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class PaymentFacade {
 
     private final BalanceFacade balanceFacade;
     private final AccountFacade accountFacade;
-    private final PaymentDataPort paymentDataPort;
+    private final PaymentPort paymentPort;
 
     @Transactional
     public Payment pay(PaymentCreate paymentCreate) {
@@ -27,7 +27,7 @@ public class PaymentFacade {
         var balanceTransaction = buildBalanceTransactionCreate(paymentCreate);
         balanceFacade.validate(balanceTransaction);
 
-        var payment = paymentDataPort.create(paymentCreate);
+        var payment = paymentPort.create(paymentCreate);
         balanceFacade.create(balanceTransaction);
         accountFacade.makeFree(paymentCreate.getAccountId());
 

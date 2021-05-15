@@ -21,7 +21,7 @@ public class BalanceController extends BaseController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Response<BalanceResponse> retrieve(@RequestParam("accountId") Long accountId) {
-        Balance balance = balanceFacade.retrieve(accountId);
+        var balance = balanceFacade.retrieve(accountId);
         log.info("Balance is retrieved for account {} as {}", accountId, balance);
         return respond(BalanceResponse.fromModel(balance));
     }

@@ -13,14 +13,12 @@ import org.springframework.stereotype.Component;
 public class AccountLockFakeAdapter implements AccountLockPort {
 
     @Override
-    public boolean lock(Long accountId) {
+    public void lock(Long accountId) {
         log.info("Acquired lock for account {}", accountId);
-        return true;
     }
 
     @Override
-    public boolean unlock(Long accountId) {
+    public void unlock(Long accountId) {
         log.info("Released lock for account {}", accountId);
-        return true;
     }
 }
