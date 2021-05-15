@@ -80,8 +80,8 @@ jobs:
           name: ticket-api-jar
           path: ticket-api/build/libs
 
-      - name: Build and analyze
+      - name: Analyze with Sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonarqube --info
+        run: ./gradlew sonarqube -PskipInfraSetup -Dorg.gradle.daemon=false --info

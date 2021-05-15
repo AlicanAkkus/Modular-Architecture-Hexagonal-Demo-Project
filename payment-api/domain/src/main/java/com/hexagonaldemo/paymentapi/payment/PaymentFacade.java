@@ -24,10 +24,10 @@ public class PaymentFacade {
     @Transactional
     public Payment pay(PaymentCreate paymentCreate) {
         accountFacade.makeBusy(paymentCreate.getAccountId());
-        BalanceTransactionCreate balanceTransaction = buildBalanceTransactionCreate(paymentCreate);
+        var balanceTransaction = buildBalanceTransactionCreate(paymentCreate);
         balanceFacade.validate(balanceTransaction);
 
-        Payment payment = paymentDataPort.create(paymentCreate);
+        var payment = paymentDataPort.create(paymentCreate);
         balanceFacade.create(balanceTransaction);
         accountFacade.makeFree(paymentCreate.getAccountId());
 
