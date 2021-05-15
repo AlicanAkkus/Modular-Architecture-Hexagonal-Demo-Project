@@ -83,4 +83,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonarqube -PskipInfraSetup -Dorg.gradle.daemon=false --info
+        run: ./gradlew build sonarqube -PskipInfraSetup -Dorg.gradle.daemon=false --info
