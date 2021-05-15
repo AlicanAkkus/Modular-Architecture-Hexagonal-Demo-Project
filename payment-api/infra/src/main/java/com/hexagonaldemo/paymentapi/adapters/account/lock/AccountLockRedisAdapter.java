@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters.account.cache;
+package com.hexagonaldemo.paymentapi.adapters.account.lock;
 
 import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;

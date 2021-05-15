@@ -9,6 +9,42 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    services:
+
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: my-secret-pw
+        ports:
+          - 4306:3306
+
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+      zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        env:
+          ZOOKEEPER_CLIENT_PORT: 2181
+          ZOOKEEPER_TICK_TIME: 2000
+
+      kafka:
+        image: confluentinc/cp-kafka:latest
+        ports:
+          - 29092:29092
+        env:
+          KAFKA_BROKER_ID: 1
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
     steps:
       - uses: actions/checkout@v2
         with:
