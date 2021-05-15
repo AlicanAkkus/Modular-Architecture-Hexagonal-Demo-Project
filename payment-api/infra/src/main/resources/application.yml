@@ -41,3 +41,22 @@ spring:
     password: redisPassword
 server:
   port: 8090
+
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # SPRING CLOUD
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: false
+          brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
+        bindings:
+          paymentRollbackInput:
+            consumer:
+              startOffset: latest
+      bindings:
+        paymentRollbackInput:
+          destination: paymentRollback.test.topic
+          group: hexagonaldemo-${random.int(100000)}

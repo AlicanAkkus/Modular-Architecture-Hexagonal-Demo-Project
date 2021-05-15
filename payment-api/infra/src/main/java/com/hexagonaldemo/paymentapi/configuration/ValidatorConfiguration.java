@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.common.configuration;
+package com.hexagonaldemo.paymentapi.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;

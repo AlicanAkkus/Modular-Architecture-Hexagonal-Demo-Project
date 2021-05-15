@@ -2,8 +2,8 @@ name: Sonar Analysis
 
 on:
   push:
-    branches:
-      - main
+    branches-ignore:
+      - '**'
 
 jobs:
   build:

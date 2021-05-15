@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.common.configuration.cache;
+package com.hexagonaldemo.paymentapi.configuration;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
