@@ -1,5 +1,3 @@
-apply plugin: "org.sonarqube"
-
 test {
     maxParallelForks = 1
     failFast true

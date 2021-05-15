@@ -3,5 +3,18 @@ sonarqube {
         property "sonar.projectKey", "hex"
         property "sonar.organization", "hexagonal"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.core.codeCoveragePlugin", "jacoco"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.groovy.coveragePlugin", "jacoco"
+        property "sonar.dynamicAnalysis", "reuseReports"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.coverage.jacoco.xmlReportPaths", subprojects.collect { subProject ->
+            subProject.tasks.jacocoTestReport.reports.xml.destination
+        }
+        property "sonar.scm.disabled", "true"
+        property "sonar.coverage.exclusions","**/model/**,**/dto/**,**/entity/**," +
+                "**/*Configuration*,**/configuration/**,**/*Application*," +
+                "**/*Exception*,**/common/**,**/*Port*"
+
     }
 }

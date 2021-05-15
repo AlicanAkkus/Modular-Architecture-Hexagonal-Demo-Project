@@ -1,0 +1,39 @@
+apply plugin: 'jacoco'
+apply plugin: "org.sonarqube"
+
+tasks.withType(Test) {
+    jacoco {
+        enabled = true
+        include '**'
+        destinationFile = file("${project.buildDir}/jacoco/test.exec")
+    }
+}
+
+jacocoTestReport {
+    executionData fileTree(project.buildDir).include("/jacoco/test.exec")
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/jacoco/jacoco.xml")
+        csv.enabled false
+        html.enabled true
+        html.destination file("${buildDir}/jacoco/reports")
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("${project.buildDir}/jacoco/test")
+}
+
+task cleanJacoco(dependsOn: 'clean') { delete "$buildDir/jacoco" }
+
+jacocoTestReport.dependsOn(test)
+
+sonarqube {
+    project.afterEvaluate {
+        if (!project.projectDir.exists()) {
+            println "[DEBUG] Sonarqube is disabled for $project.name"
+            skipProject = true
+        }
+    }
+}
