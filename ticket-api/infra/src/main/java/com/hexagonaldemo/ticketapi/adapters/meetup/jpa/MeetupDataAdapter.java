@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class MeetupAdapter implements MeetupPort {
+public class MeetupDataAdapter implements MeetupPort {
 
     private final MeetupJpaRepository meetupJpaRepository;
 

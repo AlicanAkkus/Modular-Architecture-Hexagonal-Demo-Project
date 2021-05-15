@@ -2,7 +2,7 @@ package com.hexagonaldemo.paymentapi.contract.base;
 
 import com.hexagonaldemo.paymentapi.TestApplication;
 import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
-import com.hexagonaldemo.paymentapi.payment.PaymentFacade;
+import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,7 +27,7 @@ public abstract class AbstractContractTest {
     protected BalanceFacade balanceFacade;
 
     @MockBean
-    protected PaymentFacade paymentFacade;
+    protected PaymentCreateCommandHandler paymentCreateCommandHandler;
 
     @BeforeEach
     public void doBeforeEach() {

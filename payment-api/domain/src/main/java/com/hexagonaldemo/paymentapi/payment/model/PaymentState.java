@@ -3,5 +3,6 @@ package com.hexagonaldemo.paymentapi.payment.model;
 public enum PaymentState {
     SUCCESS,
     FAIL,
-    PENDING
+    ROLLBACK_SUCCESS,
+    ROLLBACK_FAIL
 }

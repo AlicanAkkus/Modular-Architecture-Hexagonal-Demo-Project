@@ -2,10 +2,9 @@ package com.hexagonaldemo.ticketapi.integration;
 
 import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
-import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.TicketAdapter;
+import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.TicketDataAdapter;
 import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.entity.TicketEntity;
 import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.repository.TicketJpaRepository;
-import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiDataNotFoundException;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
@@ -21,10 +20,10 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @IT
 @Sql(scripts = "classpath:sql/meetups.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class TicketAdapterIT extends AbstractIT {
+class TicketDataAdapterIT extends AbstractIT {
 
     @Autowired
-    TicketAdapter ticketAdapter;
+    TicketDataAdapter ticketAdapter;
 
     @Autowired
     TicketJpaRepository ticketJpaRepository;

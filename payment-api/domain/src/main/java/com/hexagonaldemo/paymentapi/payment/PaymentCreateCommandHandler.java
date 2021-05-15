@@ -2,10 +2,11 @@ package com.hexagonaldemo.paymentapi.payment;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
-import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
-import com.hexagonaldemo.paymentapi.payment.model.Payment;
+import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
+import com.hexagonaldemo.paymentapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,14 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PaymentFacade {
+public class PaymentCreateCommandHandler implements CommandHandler<Payment, PaymentCreate> {
 
     private final BalanceFacade balanceFacade;
     private final AccountFacade accountFacade;
     private final PaymentPort paymentPort;
 
     @Transactional
-    public Payment pay(PaymentCreate paymentCreate) {
+    public Payment handle(PaymentCreate paymentCreate) {
         accountFacade.makeBusy(paymentCreate.getAccountId());
         var balanceTransaction = buildBalanceTransactionCreate(paymentCreate);
         balanceFacade.validate(balanceTransaction);

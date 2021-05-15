@@ -2,8 +2,11 @@ name: Sonar Analysis
 
 on:
   push:
-    branches-ignore:
-      - '**'
+    paths:
+      - ticket-api/**
+      - payment-api/**
+    branches:
+      - main
 
 jobs:
   build:

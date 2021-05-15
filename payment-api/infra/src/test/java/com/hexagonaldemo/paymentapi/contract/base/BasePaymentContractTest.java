@@ -21,7 +21,7 @@ public class BasePaymentContractTest extends AbstractContractTest {
                 .updatedAt(LocalDateTime.of(2020,3,14,13,12,11))
                 .build());
 
-        when(paymentFacade.pay(any())).thenReturn(Payment.builder()
+        when(paymentCreateCommandHandler.handle(any())).thenReturn(Payment.builder()
                 .id(1L)
                 .accountId(1L)
                 .price(BigDecimal.TEN)

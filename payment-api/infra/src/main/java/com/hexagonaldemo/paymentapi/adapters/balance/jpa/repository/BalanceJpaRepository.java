@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters.balance.jpa;
+package com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository;
 
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

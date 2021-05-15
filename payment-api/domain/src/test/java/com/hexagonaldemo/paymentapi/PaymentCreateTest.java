@@ -8,7 +8,7 @@ import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
-import com.hexagonaldemo.paymentapi.payment.PaymentFacade;
+import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
@@ -58,7 +58,7 @@ class PaymentCreateTest {
 
         // and
         BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
+        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -67,7 +67,7 @@ class PaymentCreateTest {
                 .referenceCode("ref1")
                 .build();
 
-        Payment payment = paymentFacade.pay(paymentCreate);
+        Payment payment = paymentCreateCommandHandler.handle(paymentCreate);
 
         //then
         assertThat(payment).isNotNull().isEqualTo(Payment.builder()
@@ -98,7 +98,7 @@ class PaymentCreateTest {
 
         // and
         BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment), new BalanceValidator());
-        PaymentFacade paymentFacade = new PaymentFacade(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
+        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -107,7 +107,7 @@ class PaymentCreateTest {
                 .referenceCode("ref1")
                 .build();
 
-        Throwable throwable = catchThrowable(() -> paymentFacade.pay(paymentCreate));
+        Throwable throwable = catchThrowable(() -> paymentCreateCommandHandler.handle(paymentCreate));
 
         //then
         assertThat(throwable).isNotNull().isInstanceOf(PaymentApiBusinessException.class);

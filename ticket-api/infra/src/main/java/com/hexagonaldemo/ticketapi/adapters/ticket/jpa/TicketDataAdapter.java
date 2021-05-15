@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class TicketAdapter implements TicketPort {
+public class TicketDataAdapter implements TicketPort {
 
     private final TicketJpaRepository ticketJpaRepository;
     private final MeetupJpaRepository meetupJpaRepository;

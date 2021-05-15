@@ -2,6 +2,8 @@ package com.hexagonaldemo.paymentapi.adapters.balance.jpa;
 
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceEntity;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceTransactionEntity;
+import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceJpaRepository;
+import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceTransactionJpaRepository;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
@@ -15,7 +17,7 @@ import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
-public class BalanceAdapter implements BalancePort {
+public class BalanceDataAdapter implements BalancePort {
 
     private final BalanceJpaRepository balanceJpaRepository;
     private final BalanceTransactionJpaRepository balanceTransactionJpaRepository;

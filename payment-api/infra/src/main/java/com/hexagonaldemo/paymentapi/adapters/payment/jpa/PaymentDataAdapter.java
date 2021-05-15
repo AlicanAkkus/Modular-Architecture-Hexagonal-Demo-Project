@@ -1,6 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters.payment.jpa;
 
 import com.hexagonaldemo.paymentapi.adapters.payment.jpa.entity.PaymentEntity;
+import com.hexagonaldemo.paymentapi.adapters.payment.jpa.repository.PaymentJpaRepository;
 import com.hexagonaldemo.paymentapi.common.model.Status;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PaymentAdapter implements PaymentPort {
+public class PaymentDataAdapter implements PaymentPort {
 
     private final PaymentJpaRepository paymentJpaRepository;
 
