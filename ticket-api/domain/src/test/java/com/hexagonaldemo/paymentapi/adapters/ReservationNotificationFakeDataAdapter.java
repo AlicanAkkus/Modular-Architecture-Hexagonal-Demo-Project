@@ -1,10 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
-import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import com.hexagonaldemo.ticketapi.reservation.port.ReservationNotificationPort;
-import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
-import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

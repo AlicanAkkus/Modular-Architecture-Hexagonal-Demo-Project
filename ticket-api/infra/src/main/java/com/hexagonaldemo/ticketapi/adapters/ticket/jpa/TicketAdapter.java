@@ -6,6 +6,7 @@ import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.repository.TicketJpaRepos
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiDataNotFoundException;
 import com.hexagonaldemo.ticketapi.common.model.Status;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,13 @@ public class TicketAdapter implements TicketPort {
         ticketEntity.setCount(createTicket.getCount());
 
         return ticketJpaRepository.save(ticketEntity).toModel();
+    }
+
+    @Override
+    public List<Ticket> retrieve(RetrieveTicket retrieveTicket) {
+        return ticketJpaRepository.findAllByAccountId(retrieveTicket.getAccountId()).stream()
+                .map(TicketEntity::toModel)
+                .collect(Collectors.toList());
     }
 
     private BigDecimal calculateTotalPrice(CreateTicket createTicket) {

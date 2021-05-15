@@ -91,6 +91,7 @@ logging:
   level:
     com.hexagonaldemo: DEBUG
     org.springframework: INFO
+    org.springframework.cloud: WARN
     org.springframework.integration: WARN
     org.springframework.scheduling: WARN
     org.hibernate.engine.jdbc.spi.SqlExceptionHelper: ERROR

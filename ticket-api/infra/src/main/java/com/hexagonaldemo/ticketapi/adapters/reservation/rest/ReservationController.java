@@ -18,12 +18,12 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/tickets")
 public class ReservationController extends BaseController {
 
-    private final CommandHandler<Ticket, ReserveTicket> reservationFacade;
+    private final CommandHandler<Ticket, ReserveTicket> reserveTicketCommandHandler;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Response<ReserveTicketResponse> reserveTicket(@Valid @RequestBody ReserveTicketRequest reserveTicketRequest) {
-        var reservedTicket = reservationFacade.handle(reserveTicketRequest.toModel());
+        var reservedTicket = reserveTicketCommandHandler.handle(reserveTicketRequest.toModel());
         return respond(ReserveTicketResponse.fromModel(reservedTicket));
     }
 }

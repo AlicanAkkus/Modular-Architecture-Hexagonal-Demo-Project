@@ -61,13 +61,13 @@ create_network(){
 
 isDBUp() {
     x=1
-    while [[ $(docker logs $TEST_DB_NAME 2>/dev/null --tail 100 ) != *"ready for connections"* ]] && [  ${x} -le 30 ]; do
+    while [[ $(docker logs $TEST_DB_NAME 2>/dev/null --tail 100 ) != *"started"* ]] && [  ${x} -le 30 ]; do
         sleep 1;
         x=$(( x + 1 ))
         printf "."
     done
 
-    if [[ $(docker logs $TEST_DB_NAME 2>/dev/null --tail 100 ) != *"ready for connections"* ]]; then
+    if [[ $(docker logs $TEST_DB_NAME 2>/dev/null --tail 100 ) != *"started"* ]]; then
         printf "DB cannot be boot up in %s seconds, quited." "$x"
         exit 1
     else

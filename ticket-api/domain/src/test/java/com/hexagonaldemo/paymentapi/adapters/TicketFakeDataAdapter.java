@@ -1,10 +1,8 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
-import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
-import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 
@@ -19,27 +17,47 @@ public class TicketFakeDataAdapter implements TicketPort {
 
     @Override
     public Ticket create(CreateTicket createTicket) {
-        failedCreateScenario(createTicket);
-        return succeededCreateScenario(createTicket);
-    }
-
-    private void failedCreateScenario(CreateTicket reserveTicket) {
-        if (reserveTicket.getAccountId().equals(CREATE_FAIL_ACCOUNT_ID)) {
+        if (createTicket.getAccountId().equals(CREATE_FAIL_ACCOUNT_ID)) {
             throw new TicketApiBusinessException("ticketapi.ticket.cannotBeCreated");
         }
-    }
-
-    private Ticket succeededCreateScenario(CreateTicket createTicket) {
         if (!FAILING_IDS.contains(createTicket.getAccountId())) {
             return Ticket.builder()
                     .id(1L)
                     .accountId(createTicket.getAccountId())
                     .count(createTicket.getCount())
-                    .reserveDate(LocalDateTime.of(2021,1,1,19,0,0))
+                    .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
                     .price(BigDecimal.valueOf(100.00))
                     .meetupId(createTicket.getMeetupId())
                     .build();
         }
         throw new RuntimeException("uncovered test scenario occurred");
+    }
+
+    @Override
+    public List<Ticket> retrieve(RetrieveTicket retrieveTicket) {
+        return List.of(Ticket.builder()
+                        .id(2L)
+                        .count(1)
+                        .meetupId(1001L)
+                        .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
+                        .price(BigDecimal.valueOf(100.00))
+                        .accountId(retrieveTicket.getAccountId())
+                        .build(),
+                Ticket.builder()
+                        .id(2L)
+                        .count(1)
+                        .meetupId(1002L)
+                        .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
+                        .price(BigDecimal.valueOf(110.00))
+                        .accountId(retrieveTicket.getAccountId())
+                        .build(),
+                Ticket.builder()
+                        .id(3L)
+                        .count(1)
+                        .meetupId(1003L)
+                        .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
+                        .price(BigDecimal.valueOf(120.00))
+                        .accountId(retrieveTicket.getAccountId())
+                        .build());
     }
 }
