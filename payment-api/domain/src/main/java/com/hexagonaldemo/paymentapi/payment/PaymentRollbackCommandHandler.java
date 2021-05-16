@@ -27,6 +27,7 @@ public class PaymentRollbackCommandHandler implements VoidCommandHandler<Payment
     private final AccountFacade accountFacade;
     private final PaymentPort paymentPort;
 
+    @Override
     @Transactional
     public void handle(PaymentRollback paymentRollback) {
         var payment = paymentPort.retrieve(paymentRollback.getId());

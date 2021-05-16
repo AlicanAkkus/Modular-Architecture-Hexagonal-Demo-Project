@@ -16,6 +16,7 @@ public class BalanceRetrieveCommandHandler implements CommandHandler<Balance, Ba
 
     private final BalancePort balancePort;
 
+    @Override
     public Balance handle(BalanceRetrieve balanceRetrieve) {
         return balancePort.retrieve(balanceRetrieve.getAccountId());
     }

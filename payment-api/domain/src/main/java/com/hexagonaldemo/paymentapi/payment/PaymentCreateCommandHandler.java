@@ -28,6 +28,7 @@ public class PaymentCreateCommandHandler implements CommandHandler<Payment, Paym
     private final PaymentPort paymentPort;
     private final BalanceValidator balanceValidator;
 
+    @Override
     @Transactional
     public Payment handle(PaymentCreate paymentCreate) {
         accountFacade.makeBusy(paymentCreate.getAccountId());
