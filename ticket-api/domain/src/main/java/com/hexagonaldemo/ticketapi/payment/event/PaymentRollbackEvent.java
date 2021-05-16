@@ -1,6 +1,7 @@
-package com.hexagonaldemo.ticketapi.adapters.payment.event.message;
+package com.hexagonaldemo.ticketapi.payment.event;
 
 import com.hexagonaldemo.ticketapi.common.model.Event;
+import com.hexagonaldemo.ticketapi.common.util.CurrentTimeFactory;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import lombok.*;
 
@@ -18,7 +19,7 @@ public class PaymentRollbackEvent implements Event {
 
     public static PaymentRollbackEvent from(Payment payment) {
         return PaymentRollbackEvent.builder()
-                .eventCreatedAt(LocalDateTime.now())
+                .eventCreatedAt(CurrentTimeFactory.now())
                 .id(payment.getId())
                 .build();
     }

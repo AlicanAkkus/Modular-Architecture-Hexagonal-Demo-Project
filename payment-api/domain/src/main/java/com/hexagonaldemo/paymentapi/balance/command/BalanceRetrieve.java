@@ -9,13 +9,11 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class BalanceTransactionCreate implements Command {
+public class BalanceRetrieve implements Command {
 
     private Long accountId;
-    private BigDecimal amount;
-    private BalanceTransactionType type;
 
-    public BigDecimal getAmountAsNumeric() {
-        return type.equals(BalanceTransactionType.WITHDRAW) ? amount.multiply(new BigDecimal("-1")) : amount;
+    public static BalanceRetrieve from(Long accountId) {
+        return BalanceRetrieve.builder().accountId(accountId).build();
     }
 }

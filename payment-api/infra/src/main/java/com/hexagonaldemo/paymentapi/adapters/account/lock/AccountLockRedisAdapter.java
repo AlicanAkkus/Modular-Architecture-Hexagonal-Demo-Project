@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.account.lock;
 
-import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
+import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "adapters.account.lock.enabled", havingValue = "true")
-public class AccountLockRedisAdapter implements AccountLockPort {
+public class AccountLockRedisAdapter implements LockPort {
 
     private final RedisLockRegistry redisLockRegistry;
 

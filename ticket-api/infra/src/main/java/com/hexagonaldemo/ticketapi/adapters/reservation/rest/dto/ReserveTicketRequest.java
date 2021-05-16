@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.adapters.reservation.rest.dto;
 
-import com.hexagonaldemo.ticketapi.reservation.command.ReserveTicket;
+import com.hexagonaldemo.ticketapi.reservation.command.TicketReserve;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,8 +31,8 @@ public class ReserveTicketRequest {
 
     private String referenceCode;
 
-    public ReserveTicket toModel() {
-        return ReserveTicket.builder()
+    public TicketReserve toModel() {
+        return TicketReserve.builder()
                 .accountId(accountId)
                 .meetupId(meetupId)
                 .count(count)

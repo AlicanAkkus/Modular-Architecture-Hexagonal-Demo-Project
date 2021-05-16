@@ -1,15 +1,16 @@
-package com.hexagonaldemo.ticketapi.reservation.command;
+package com.hexagonaldemo.ticketapi.payment.command;
 
 import com.hexagonaldemo.ticketapi.common.model.Command;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
-public class ReserveTicket implements Command {
+public class PaymentCreate implements Command {
 
     private Long accountId;
-    private Long meetupId;
-    private Integer count;
+    private BigDecimal price;
     private String referenceCode;
 }

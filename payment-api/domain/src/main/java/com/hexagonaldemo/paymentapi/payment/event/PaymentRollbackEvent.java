@@ -1,6 +1,7 @@
-package com.hexagonaldemo.paymentapi.adapters.payment.event.message;
+package com.hexagonaldemo.paymentapi.payment.event;
 
 import com.hexagonaldemo.paymentapi.common.model.Event;
+import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,5 +15,11 @@ public class PaymentRollbackEvent implements Event {
 
     private LocalDateTime eventCreatedAt;
     private Long id;
+
+    public PaymentRollback toModel() {
+        return PaymentRollback.builder()
+                .id(id)
+                .build();
+    }
 }
 

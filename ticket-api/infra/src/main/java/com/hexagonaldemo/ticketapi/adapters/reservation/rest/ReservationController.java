@@ -5,7 +5,7 @@ import com.hexagonaldemo.ticketapi.adapters.reservation.rest.dto.ReserveTicketRe
 import com.hexagonaldemo.ticketapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.ticketapi.common.rest.BaseController;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.reservation.command.ReserveTicket;
+import com.hexagonaldemo.ticketapi.reservation.command.TicketReserve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/tickets")
 public class ReservationController extends BaseController {
 
-    private final CommandHandler<Ticket, ReserveTicket> reserveTicketCommandHandler;
+    private final CommandHandler<Ticket, TicketReserve> reserveTicketCommandHandler;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

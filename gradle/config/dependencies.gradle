@@ -48,6 +48,8 @@ ext {
 }
 
 dependencies {
+    implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: rootProject.version_slf4j
+    implementation group: 'org.slf4j', name: 'log4j-over-slf4j', version: rootProject.version_slf4j
     implementation group: 'org.slf4j', name: 'slf4j-api', version: rootProject.version_slf4j
     implementation group: 'org.codehaus.groovy', name: 'groovy', version: rootProject.version_groovy
 

@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.account;
 
-import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
+import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AccountFacade {
 
-    private final AccountLockPort accountLockPort;
+    private final LockPort lockPort;
 
     public void makeBusy(Long accountId) {
-        accountLockPort.lock(accountId);
+        lockPort.lock(accountId);
     }
 
     public void makeFree(Long accountId) {
-        accountLockPort.unlock(accountId);
+        lockPort.unlock(accountId);
     }
 }

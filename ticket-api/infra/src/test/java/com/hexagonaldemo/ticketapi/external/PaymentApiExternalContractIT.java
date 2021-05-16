@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.external;
 
 import com.hexagonaldemo.ticketapi.adapters.payment.rest.PaymentRestAdapter;
-import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
+import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -28,14 +28,14 @@ public class PaymentApiExternalContractIT {
     @Test
     void should_pay() {
         //given
-        CreatePayment createPayment = CreatePayment.builder()
+        PaymentCreate paymentCreate = PaymentCreate.builder()
                 .accountId(1L)
                 .price(BigDecimal.TEN)
                 .referenceCode("ref1")
                 .build();
 
         //when
-        Payment payment = paymentRestAdapter.pay(createPayment);
+        Payment payment = paymentRestAdapter.pay(paymentCreate);
 
         //then
         assertThat(payment).isNotNull();

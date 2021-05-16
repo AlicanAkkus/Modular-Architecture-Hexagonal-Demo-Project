@@ -5,7 +5,7 @@ import com.hexagonaldemo.ticketapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.ticketapi.adapters.payment.rest.properties.PaymentApiProperties;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.payment.command.CreatePayment;
+import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
@@ -44,12 +44,12 @@ public class PaymentRestAdapter implements PaymentPort {
     @Retryable(value = {TimeoutException.class, HttpServerErrorException.class, HttpClientErrorException.class, UnknownHostException.class, ConnectException.class, NullPointerException.class, RestClientException.class},
             maxAttemptsExpression = "${adapters.payment.retryAttempts}",
             backoff = @Backoff(delayExpression = "${adapters.payment.retryDelay}"))
-    public Payment pay(CreatePayment createPayment) {
+    public Payment pay(PaymentCreate paymentCreate) {
 
         var paymentCreateRequest = PaymentCreateRequest.builder()
-                .accountId(createPayment.getAccountId())
-                .price(createPayment.getPrice())
-                .referenceCode(createPayment.getReferenceCode())
+                .accountId(paymentCreate.getAccountId())
+                .price(paymentCreate.getPrice())
+                .referenceCode(paymentCreate.getReferenceCode())
                 .build();
 
         var response = callApi(paymentCreateRequest, preparePaymentUrl());
@@ -63,8 +63,8 @@ public class PaymentRestAdapter implements PaymentPort {
     }
 
     @Recover
-    public Payment pay(Exception e, CreatePayment createPayment) {
-        log.error("Couldn't connect to payment api to do payment for {}", createPayment, e);
+    public Payment pay(Exception e, PaymentCreate paymentCreate) {
+        log.error("Couldn't connect to payment api to do payment for {}", paymentCreate, e);
         throw new TicketApiBusinessException("ticketapi.payment.client.error");
     }
 

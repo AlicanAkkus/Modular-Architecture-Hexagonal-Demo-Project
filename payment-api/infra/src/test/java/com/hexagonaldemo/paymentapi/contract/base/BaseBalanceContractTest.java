@@ -1,7 +1,6 @@
 package com.hexagonaldemo.paymentapi.contract.base;
 
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
-import com.hexagonaldemo.paymentapi.payment.model.Payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +12,7 @@ public class BaseBalanceContractTest extends AbstractContractTest {
 
     @Override
     void setUp() {
-        when(balanceFacade.retrieve(any())).thenReturn(Balance.builder()
+        when(balanceRetrieveCommandHandler.handle(any())).thenReturn(Balance.builder()
                 .id(1L)
                 .accountId(1L)
                 .amount(BigDecimal.TEN)

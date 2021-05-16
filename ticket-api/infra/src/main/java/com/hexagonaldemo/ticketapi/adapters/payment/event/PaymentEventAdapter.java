@@ -1,9 +1,7 @@
 package com.hexagonaldemo.ticketapi.adapters.payment.event;
 
-import com.hexagonaldemo.ticketapi.adapters.payment.event.message.PaymentRollbackEvent;
-import com.hexagonaldemo.ticketapi.notification.NotificationPublisher;
-import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
+import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
+import com.hexagonaldemo.ticketapi.common.event.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,15 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "kafka.enabled", havingValue = "true")
-public class PaymentNotificationAdapter implements NotificationPublisher<Payment> {
+public class PaymentEventAdapter implements EventPublisher<PaymentRollbackEvent> {
 
     private final PaymentEventKafkaStream paymentEventKafkaStream;
 
     @Override
-    public void publish(Payment payment) {
-        var paymentRollbackEvent = PaymentRollbackEvent.from(payment);
+    public void publish(PaymentRollbackEvent paymentRollbackEvent) {
         log.info("Sending paymentRollbackEvent {}", paymentRollbackEvent);
-
         paymentEventKafkaStream.paymentRollbackOutput().send(MessageBuilder.withPayload(paymentRollbackEvent).build());
     }
 }

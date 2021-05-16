@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.common.event.consumer;
 
-import com.hexagonaldemo.ticketapi.adapters.reservation.event.message.TicketReservedEvent;
+import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.common.event.configuration.KafkaTestStreams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;

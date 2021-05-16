@@ -1,31 +1,27 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
-import com.hexagonaldemo.ticketapi.payment.model.Payment;
-import com.hexagonaldemo.ticketapi.payment.port.PaymentRollbackNotificationPort;
-import com.hexagonaldemo.ticketapi.reservation.port.ReservationNotificationPort;
-import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
+import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
+import com.hexagonaldemo.ticketapi.payment.port.PaymentRollbackEventPort;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.util.Arrays;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class PaymentRollbackFakeDataAdapter implements PaymentRollbackNotificationPort {
+public class PaymentRollbackFakeDataAdapter implements PaymentRollbackEventPort {
 
-    private List<Payment> events = new ArrayList<>();
+    private List<PaymentRollbackEvent> events = new ArrayList<>();
 
     @Override
-    public void publish(Payment payment) {
-        events.add(payment);
-        log.info("[FAKE] payment is published: {}", payment);
+    public void publish(PaymentRollbackEvent paymentRollbackEvent) {
+        events.add(paymentRollbackEvent);
+        log.info("[FAKE] paymentRollbackEvent is published: {}", paymentRollbackEvent);
     }
 
-    public void assertContains(Payment... payment) {
-        assertThat(events).containsAnyElementsOf(List.of(payment));
+    public void assertContains(PaymentRollbackEvent... paymentRollbackEvents) {
+        assertThat(events).containsAnyElementsOf(List.of(paymentRollbackEvents));
     }
 
     public void assertNull() {

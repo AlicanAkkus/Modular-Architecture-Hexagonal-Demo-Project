@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "commandhandler.enabled", havingValue = "true")
-public class RetrieveTicketCommandHandler implements CommandHandler<List<Ticket>, RetrieveTicket> {
+public class TicketRetrieveCommandHandler implements CommandHandler<List<Ticket>, RetrieveTicket> {
 
     private final TicketPort ticketPort;
 

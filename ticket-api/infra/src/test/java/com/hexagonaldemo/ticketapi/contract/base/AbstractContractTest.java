@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.contract.base;
 
 import com.hexagonaldemo.ticketapi.TestApplication;
-import com.hexagonaldemo.ticketapi.reservation.ReserveTicketCommandHandler;
+import com.hexagonaldemo.ticketapi.reservation.TicketReserveCommandHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -23,7 +23,7 @@ public abstract class AbstractContractTest {
     private Integer port;
 
     @MockBean
-    protected ReserveTicketCommandHandler reserveTicketCommandHandler;
+    protected TicketReserveCommandHandler ticketReserveCommandHandler;
 
     @BeforeEach
     public void doBeforeEach() {

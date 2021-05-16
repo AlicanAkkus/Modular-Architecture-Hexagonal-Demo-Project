@@ -1,10 +1,11 @@
 package com.hexagonaldemo.paymentapi;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
-import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
+import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.adapters.BalanceFakeAdapter;
 import com.hexagonaldemo.paymentapi.adapters.PaymentFakeAdapter;
-import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
+import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
@@ -57,8 +58,12 @@ class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment), new BalanceValidator());
-        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
+        BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler = new BalanceTransactionCreateCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment));
+        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceTransactionCreateCommandHandler,
+                new BalanceRetrieveCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment)),
+                new AccountFacade(retrieveFakeAccountLockPort()),
+                new PaymentFakeAdapter(expectedPayment),
+                new BalanceValidator());
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -97,8 +102,12 @@ class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceFacade balanceFacade = new BalanceFacade(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment), new BalanceValidator());
-        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceFacade, new AccountFacade(retrieveFakeAccountLockPort()), new PaymentFakeAdapter(expectedPayment));
+        BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler = new BalanceTransactionCreateCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment));
+        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceTransactionCreateCommandHandler,
+                new BalanceRetrieveCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment)),
+                new AccountFacade(retrieveFakeAccountLockPort()),
+                new PaymentFakeAdapter(expectedPayment),
+                new BalanceValidator());
 
         //when
         PaymentCreate paymentCreate = PaymentCreate.builder()
@@ -114,8 +123,8 @@ class PaymentCreateTest {
         assertThat(((PaymentApiBusinessException) throwable).getKey()).isEqualTo("paymentapi.balance.notSufficient");
     }
 
-    private AccountLockPort retrieveFakeAccountLockPort() {
-        return new AccountLockPort() {
+    private LockPort retrieveFakeAccountLockPort() {
+        return new LockPort() {
             @Override
             public void lock(Long accountId) {
             }

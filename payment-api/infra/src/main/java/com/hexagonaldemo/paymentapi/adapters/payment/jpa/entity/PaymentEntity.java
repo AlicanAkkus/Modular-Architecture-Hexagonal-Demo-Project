@@ -1,6 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters.payment.jpa.entity;
 
 import com.hexagonaldemo.paymentapi.common.entity.AbstractEntity;
+import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,4 +29,14 @@ public class PaymentEntity extends AbstractEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PaymentState state;
+
+    public Payment toModel() {
+        return Payment.builder()
+                .id(super.getId())
+                .accountId(accountId)
+                .price(price)
+                .referenceCode(referenceCode)
+                .state(state)
+                .build();
+    }
 }

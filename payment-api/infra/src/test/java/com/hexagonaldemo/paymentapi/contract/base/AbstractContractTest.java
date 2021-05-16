@@ -1,7 +1,9 @@
 package com.hexagonaldemo.paymentapi.contract.base;
 
 import com.hexagonaldemo.paymentapi.TestApplication;
-import com.hexagonaldemo.paymentapi.balance.BalanceFacade;
+import com.hexagonaldemo.paymentapi.balance.BalanceCompensateCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +26,13 @@ public abstract class AbstractContractTest {
     private Integer port;
 
     @MockBean
-    protected BalanceFacade balanceFacade;
+    protected BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler;
+
+    @MockBean
+    protected BalanceRetrieveCommandHandler balanceRetrieveCommandHandler;
+
+    @MockBean
+    protected BalanceCompensateCommandHandler balanceCompensateCommandHandler;
 
     @MockBean
     protected PaymentCreateCommandHandler paymentCreateCommandHandler;

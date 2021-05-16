@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.account.port;
 
-public interface AccountLockPort {
+public interface LockPort {
 
     void lock(Long accountId);
 

@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.account.lock;
 
-import com.hexagonaldemo.paymentapi.account.port.AccountLockPort;
+import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "adapters.account.lock.enabled", havingValue = "false", matchIfMissing = true)
-public class AccountLockFakeAdapter implements AccountLockPort {
+public class AccountLockFakeAdapter implements LockPort {
 
     @Override
     public void lock(Long accountId) {

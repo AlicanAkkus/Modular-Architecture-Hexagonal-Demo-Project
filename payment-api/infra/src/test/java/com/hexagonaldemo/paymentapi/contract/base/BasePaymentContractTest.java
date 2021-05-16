@@ -13,7 +13,7 @@ public class BasePaymentContractTest extends AbstractContractTest {
 
     @Override
     void setUp() {
-        when(balanceFacade.retrieve(any())).thenReturn(Balance.builder()
+        when(balanceRetrieveCommandHandler.handle(any())).thenReturn(Balance.builder()
                 .id(1L)
                 .accountId(1L)
                 .amount(BigDecimal.TEN)
