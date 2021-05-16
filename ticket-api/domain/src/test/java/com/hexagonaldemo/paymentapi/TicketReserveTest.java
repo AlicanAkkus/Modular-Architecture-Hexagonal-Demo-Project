@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class TicketReserveCommandHandlerTest {
+public class TicketReserveTest {
 
     TicketReserveCommandHandler ticketReserveCommandHandler;
     PaymentRollbackFakeDataAdapter paymentRollbackNotificationPort = new PaymentRollbackFakeDataAdapter();

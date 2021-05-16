@@ -21,6 +21,7 @@ public class BalanceFakeAdapter implements BalancePort {
 
     @Override
     public Balance update(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
+        updatedBalance.setAmount(updatedBalance.getAmount().add(balanceTransactionCreate.getAmount()));
         return updatedBalance;
     }
 }

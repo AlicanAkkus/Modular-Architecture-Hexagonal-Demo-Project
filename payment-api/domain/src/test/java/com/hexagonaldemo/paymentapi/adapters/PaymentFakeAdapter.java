@@ -3,6 +3,7 @@ package com.hexagonaldemo.paymentapi.adapters;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
+import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 
 public class PaymentFakeAdapter implements PaymentPort {
@@ -19,11 +20,12 @@ public class PaymentFakeAdapter implements PaymentPort {
     }
 
     @Override
-    public Payment retrieve(Long accountId) {
-        return null;
+    public Payment retrieve(Long id) {
+        return payment;
     }
 
     @Override
     public void rollback(PaymentRollback paymentRollback) {
+        payment.setState(PaymentState.ROLLBACKED);
     }
 }

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @With
 @ToString
+@EqualsAndHashCode
 public class Balance {
 
     private Long id;
