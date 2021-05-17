@@ -10,6 +10,7 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 * [What is the Hexagonal Architecture](#What-is-the-Hexagonal-Architecture)
 * [Technologies Used](#Technologies-Used)
 * [Usage](#Usage)
+* [What You Will Learn](#What-You-Will-Learn)  
 * [Useful Links From Authors](#Useful-Links-From-Authors)
 * [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
 * [History](#History)
@@ -66,6 +67,19 @@ You can boot up all apis and infra with the following commands.
 # This command stops db, redis and kills all apis
 ./run.sh down-all
 ```
+
+### What You Will Learn
+
+* Implementing two microservices with spring boot
+* Designing the apis with hexagonal architecture
+* Packaging by functions and screaming architecture
+* Ports and adapter separate business from integration points  
+* Writing behaviour focused unit tests at domain module
+* Writing integration tests isolated from business at infra module
+* Using gradle to configure microservices and modules
+* Using mono-repo to handle all apis in single git repository
+* Implementing consumer driven contract tests
+* Creating different testing styles for validating data adapters, event consumers/publishers, controllers 
 
 ### Useful Links From Authors
 
