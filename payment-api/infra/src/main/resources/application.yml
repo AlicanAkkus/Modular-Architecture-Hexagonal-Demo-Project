@@ -7,7 +7,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
-    show-sql: true
+    show-sql: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false

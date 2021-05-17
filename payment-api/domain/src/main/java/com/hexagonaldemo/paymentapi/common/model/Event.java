@@ -1,5 +1,5 @@
 package com.hexagonaldemo.paymentapi.common.model;
 
-public interface Event {
-
+public interface Event<T> {
+    T toModel();
 }

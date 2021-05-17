@@ -39,7 +39,7 @@ public abstract class AbstractEventKafkaStreamTestConsumer<T extends Event> {
             int checkCount = 0;
             while (true) {
                 if (!(checkCount++ < maxWaitInSec)) break;
-                if (eventsQueue.size() > expectedEventSize) break;
+                if (eventsQueue.size() >= expectedEventSize) break;
                 sleepOneSecond();
             }
             LocalDateTime endTime = LocalDateTime.now();

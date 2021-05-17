@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentRollbackEvent implements Event {
+public class PaymentRollbackEvent implements Event<PaymentRollback> {
 
     private LocalDateTime eventCreatedAt;
     private Long id;

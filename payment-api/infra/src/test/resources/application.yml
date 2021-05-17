@@ -7,7 +7,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   jpa:
-    show-sql: true
+    show-sql: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
@@ -35,9 +35,6 @@ spring:
     throw-exception-if-no-handler-found: true
   resources:
     add-mappings: false
-server:
-  port: 8090
-
 
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # SPRING CLOUD
@@ -59,6 +56,13 @@ server:
           group: hexagonaldemo-${random.int(100000)}
         paymentRollbackOutput:
           destination: paymentRollback.test.topic
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# INFRA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server:
+  port: 8090
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ADAPTERS

@@ -10,9 +10,7 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-stream-kafka'
-    implementation group: 'org.apache.kafka', name: 'connect-api'
 
     implementation group: 'javax.xml.bind', name: 'jaxb-api'
     implementation group: 'com.sun.xml.bind', name: 'jaxb-impl'

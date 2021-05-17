@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 public class PaymentRollback implements Command {
 
     private Long id;
