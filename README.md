@@ -44,6 +44,7 @@ You can use any programming language for implementing Hexagonal Architecture. He
 * Docker
 * Mysql  
 * Redis  
+* Kafka
 * Dockerized Integration Tests
 * Consumer Driven Contract Testing
 
