@@ -49,7 +49,7 @@ contracts {
     testMode = TestMode.EXPLICIT
 
     baseClassMappings {
-        baseClassMapping("payment", "com.hexagonaldemo.paymentapi.contract.base.BasePaymentContractTest")
-        baseClassMapping("balance", "com.hexagonaldemo.paymentapi.contract.base.BaseBalanceContractTest")
+        baseClassMapping("payment", "com.hexagonaldemo.paymentapi.contract.BasePaymentContractTest")
+        baseClassMapping("balance", "com.hexagonaldemo.paymentapi.contract.BaseBalanceContractTest")
     }
 }

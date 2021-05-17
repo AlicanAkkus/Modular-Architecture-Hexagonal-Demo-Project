@@ -1,4 +1,4 @@
-package com.hexagonaldemo.ticketapi.contract.base;
+package com.hexagonaldemo.ticketapi.contract;
 
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 

@@ -50,6 +50,6 @@ contracts {
     testMode = TestMode.EXPLICIT
 
     baseClassMappings {
-        baseClassMapping("ticket", "com.hexagonaldemo.ticketapi.contract.base.BaseTicketContract")
+        baseClassMapping("ticket", "com.hexagonaldemo.ticketapi.contract.BaseTicketContract")
     }
 }
