@@ -112,8 +112,8 @@ Please [feel free to contribute](CONTRIBUTING.md).
 Please take a lot at [code of conduct](CODE_OF_CONDUCT.md) before opening issues or creating pull requests.
 
 ### Authors
-* [Lemi Orhan Ergin](https://github.com/lemiorhan) - [@lemiorhan](https://twitter.com/lemiorhan)
-* [Alican Akkuş](https://github.com/AlicanAkkus) - [@alican_akkus](https://twitter.com/alican_akkus)
+* **Lemi Orhan Ergin**, Software Crafter at [Craftgate](https://craftgate.io) - [Github](https://github.com/lemiorhan), [Twitter](https://twitter.com/lemiorhan), [Linkedin](https://www.linkedin.com/in/lemiorhan/)
+* **Alican Akkuş**, Software Crafter at [Craftgate](https://craftgate.io) - [Github](https://github.com/AlicanAkkus), [Twitter](https://twitter.com/alican_akkus), [Linkedin](https://www.linkedin.com/in/aakkus/)
 
 ### License
 
