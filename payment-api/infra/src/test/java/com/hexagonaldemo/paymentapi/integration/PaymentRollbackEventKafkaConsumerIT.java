@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
+class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
 
     @Autowired
     PaymentRollbackEventKafkaStreamTestPublisher paymentRollbackEventKafkaStreamTestPublisher;

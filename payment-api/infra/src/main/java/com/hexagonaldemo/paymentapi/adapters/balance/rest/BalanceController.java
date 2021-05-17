@@ -1,7 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.balance.rest;
 
 import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceResponse;
-import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceRetrieve;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.commandhandler.CommandHandler;

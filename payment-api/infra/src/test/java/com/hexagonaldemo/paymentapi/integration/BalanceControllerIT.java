@@ -2,8 +2,6 @@ package com.hexagonaldemo.paymentapi.integration;
 
 import com.hexagonaldemo.paymentapi.AbstractIT;
 import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceResponse;
-import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentResponse;
-import com.hexagonaldemo.paymentapi.balance.command.BalanceRetrieve;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;

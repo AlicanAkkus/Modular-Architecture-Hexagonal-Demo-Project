@@ -1,12 +1,10 @@
 package com.hexagonaldemo.paymentapi.payment;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
-import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceRetrieve;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
-import com.hexagonaldemo.paymentapi.balance.model.BalanceTransaction;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;

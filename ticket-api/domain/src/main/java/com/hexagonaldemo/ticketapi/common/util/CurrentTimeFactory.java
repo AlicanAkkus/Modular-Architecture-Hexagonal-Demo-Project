@@ -6,6 +6,9 @@ import java.time.LocalTime;
 
 public class CurrentTimeFactory {
 
+    private CurrentTimeFactory() {
+    }
+
     private static LocalDateTime customLocalDateTime;
 
     public static LocalDateTime now() {

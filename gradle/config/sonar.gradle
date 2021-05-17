@@ -2,6 +2,12 @@ sonarqube {
     properties {
         property "sonar.projectKey", "hex"
         property "sonar.organization", "hexagonal"
+
+        property "sonar.projectKey", "hex"
+        property "sonar.projectName", "hexagonal-demo"
+        property "sonar.organization", "hexagonal"
+        property "sonar.login", "db2b87c604ecbe1728a930d6567d26c54c816c81"
+
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.core.codeCoveragePlugin", "jacoco"
         property "sonar.java.coveragePlugin", "jacoco"
@@ -11,9 +17,9 @@ sonarqube {
             subProject.tasks.jacocoTestReport.reports.xml.destination
         }
         property "sonar.scm.disabled", "true"
-        property "sonar.coverage.exclusions","**/model/**,**/dto/**,**/entity/**," +
-                "**/*Configuration*,**/configuration/**,**/*Application*," +
-                "**/*Exception*,**/common/**,**/*Port*"
+        property "sonar.coverage.exclusions","**/model/**,**/dto/**,**/entity/**,**/command/**,**/event/**," +
+                "**/*Configuration*,**/configuration/**,**/*Application*,**/*Properties*,**/*Fake*," +
+                "**/*Exception*,**/common/**,**/*Port*,**/*ContractTest*"
 
     }
 }

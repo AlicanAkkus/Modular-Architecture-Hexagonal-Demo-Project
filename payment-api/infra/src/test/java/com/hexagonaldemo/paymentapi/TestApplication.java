@@ -1,9 +1,7 @@
 package com.hexagonaldemo.paymentapi;
 
-import org.junit.jupiter.api.Tag;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("contractTest")

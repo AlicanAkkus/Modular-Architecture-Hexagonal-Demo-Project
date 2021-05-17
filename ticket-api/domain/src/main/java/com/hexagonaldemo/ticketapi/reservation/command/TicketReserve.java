@@ -3,7 +3,6 @@ package com.hexagonaldemo.ticketapi.reservation.command;
 import com.hexagonaldemo.ticketapi.common.model.Command;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @Builder

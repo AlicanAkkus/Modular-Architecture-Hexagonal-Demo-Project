@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureStubRunner
 @TestPropertySource("classpath:payment-contract.properties")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PaymentApiExternalContractIT {
+class PaymentApiExternalContractIT {
 
     @Autowired
     private PaymentRestAdapter paymentRestAdapter;

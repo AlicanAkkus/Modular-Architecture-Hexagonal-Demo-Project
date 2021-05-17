@@ -1,11 +1,7 @@
 package com.hexagonaldemo.paymentapi.payment;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
-import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.command.BalanceCompensate;
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
-import com.hexagonaldemo.paymentapi.balance.model.Balance;
-import com.hexagonaldemo.paymentapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.paymentapi.common.commandhandler.VoidCommandHandler;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;

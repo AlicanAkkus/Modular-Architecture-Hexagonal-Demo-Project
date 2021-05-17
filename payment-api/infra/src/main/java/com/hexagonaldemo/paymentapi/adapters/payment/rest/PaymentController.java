@@ -5,7 +5,6 @@ import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.paymentapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.paymentapi.common.rest.BaseController;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
-import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import lombok.RequiredArgsConstructor;

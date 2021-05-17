@@ -1,8 +1,8 @@
 package com.hexagonaldemo.paymentapi.payment.port;
 
+import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
 
 public interface PaymentPort {
 
