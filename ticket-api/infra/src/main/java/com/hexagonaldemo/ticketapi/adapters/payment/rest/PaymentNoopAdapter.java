@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @ConditionalOnProperty(name = "adapters.payment.enabled", havingValue = "false", matchIfMissing = true)
-public class PaymentFakeAdapter implements PaymentPort {
+public class PaymentNoopAdapter implements PaymentPort {
+
+    public static final long NOOP_ID = 0L;
 
     @Override
     public Payment pay(PaymentCreate paymentCreate) {
         return Payment.builder()
-                .id(1L)
+                .id(NOOP_ID)
                 .accountId(paymentCreate.getAccountId())
                 .price(paymentCreate.getPrice())
                 .referenceCode(paymentCreate.getReferenceCode())

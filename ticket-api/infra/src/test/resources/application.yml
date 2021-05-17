@@ -84,6 +84,20 @@ kafka:
   enabled: true
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ADAPTERS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+adapters:
+  payment:
+    enabled: true
+    retryAttempts: 3
+    retryDelay: 1
+    baseUrl: http://localhost:9780
+    paymentPath: /payments
+  account:
+    enabled: true
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # LOGGING
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

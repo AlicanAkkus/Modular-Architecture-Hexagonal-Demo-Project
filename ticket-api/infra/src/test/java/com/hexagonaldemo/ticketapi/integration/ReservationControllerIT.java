@@ -4,22 +4,20 @@ import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
 import com.hexagonaldemo.ticketapi.adapters.reservation.rest.dto.ReserveTicketRequest;
 import com.hexagonaldemo.ticketapi.adapters.reservation.rest.dto.ReserveTicketResponse;
-import com.hexagonaldemo.ticketapi.common.rest.DataResponse;
 import com.hexagonaldemo.ticketapi.common.rest.ErrorResponse;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
 
 @IT
 class ReservationControllerIT extends AbstractIT {

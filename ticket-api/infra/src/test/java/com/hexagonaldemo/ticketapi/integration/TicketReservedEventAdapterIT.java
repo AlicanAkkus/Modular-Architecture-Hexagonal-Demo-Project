@@ -3,8 +3,8 @@ package com.hexagonaldemo.ticketapi.integration;
 import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
 import com.hexagonaldemo.ticketapi.adapters.reservation.event.TicketReservedEventAdapter;
-import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.common.event.consumer.ReservationEventKafkaStreamTestConsumer;
+import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

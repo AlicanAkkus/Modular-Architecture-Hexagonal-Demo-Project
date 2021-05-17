@@ -17,15 +17,9 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.ConnectException;
-import java.net.UnknownHostException;
 import java.util.Objects;
-import java.util.concurrent.TimeoutException;
 
 import static org.springframework.http.HttpMethod.POST;
 
@@ -37,11 +31,11 @@ public class PaymentRestAdapter implements PaymentPort {
 
     private final RestTemplate restTemplate;
     private final PaymentApiProperties paymentApiProperties;
-    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<Response<PaymentResponse>>() {
+    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
     };
 
     @Override
-    @Retryable(value = {TimeoutException.class, HttpServerErrorException.class, HttpClientErrorException.class, UnknownHostException.class, ConnectException.class, NullPointerException.class, RestClientException.class},
+    @Retryable(value = {Exception.class},
             maxAttemptsExpression = "${adapters.payment.retryAttempts}",
             backoff = @Backoff(delayExpression = "${adapters.payment.retryDelay}"))
     public Payment pay(PaymentCreate paymentCreate) {

@@ -3,14 +3,15 @@ package com.hexagonaldemo.ticketapi.integration;
 import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
 import com.hexagonaldemo.ticketapi.adapters.payment.event.PaymentEventAdapter;
-import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
 import com.hexagonaldemo.ticketapi.common.event.consumer.PaymentRollbackEventKafkaStreamTestConsumer;
+import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
 
 @IT
 class PaymentRollbackEventAdapterIT extends AbstractIT {

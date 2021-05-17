@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.adapters.reservation.event;
 
-import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.common.event.EventPublisher;
+import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

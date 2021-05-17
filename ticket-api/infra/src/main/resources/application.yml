@@ -73,5 +73,7 @@ adapters:
     enabled: true
     retryAttempts: 3
     retryDelay: 1
+    baseUrl: http://localhost:8090
+    paymentPath: /payments
   account:
     enabled: true
