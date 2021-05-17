@@ -4,9 +4,11 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 
 ![Build Ticket API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Ticket%20API%20Image/badge.svg)
 ![Build Payment API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Payment%20API%20Image/badge.svg)
+
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=ncloc)](https://sonarcloud.io/dashboard?id=hex)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=coverage)](https://sonarcloud.io/dashboard?id=hex)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=sqale_index)](https://sonarcloud.io/dashboard?id=hex)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hex)
 
 ## Table of Contents
 * [Motivation](#Motivation)
