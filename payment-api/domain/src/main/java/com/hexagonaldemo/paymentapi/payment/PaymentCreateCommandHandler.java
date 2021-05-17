@@ -14,12 +14,14 @@ import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "commandhandler.enabled", havingValue = "true")
 public class PaymentCreateCommandHandler implements CommandHandler<Payment, PaymentCreate> {
 
     private final CommandHandler<Balance, BalanceTransactionCreate> balanceTransactionCreateCommandHandler;

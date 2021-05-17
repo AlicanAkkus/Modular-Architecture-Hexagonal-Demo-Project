@@ -33,7 +33,9 @@ class TicketControllerIT extends AbstractIT {
         long accountId = 10L;
 
         // when
-        var responseEntity = testRestTemplate.exchange("/api/v1/tickets?accountId=" + accountId, HttpMethod.GET, new HttpEntity<>(null, null), retrieveTicketResponseType);
+        var responseEntity = testRestTemplate.exchange("/api/v1/tickets?accountId=" + accountId,
+                HttpMethod.GET,
+                new HttpEntity<>(null, null), retrieveTicketResponseType);
 
         // then - assert response
         assertThat(responseEntity).isNotNull()
@@ -57,7 +59,9 @@ class TicketControllerIT extends AbstractIT {
         long accountId = 6661L;
 
         // when
-        var responseEntity = testRestTemplate.exchange("/api/v1/tickets?accountId=" + accountId, HttpMethod.GET, new HttpEntity<>(null, null), retrieveTicketResponseType);
+        var responseEntity = testRestTemplate.exchange("/api/v1/tickets?accountId=" + accountId,
+                HttpMethod.GET,
+                new HttpEntity<>(null, null), retrieveTicketResponseType);
 
         // then - assert response
         assertThat(responseEntity).isNotNull()

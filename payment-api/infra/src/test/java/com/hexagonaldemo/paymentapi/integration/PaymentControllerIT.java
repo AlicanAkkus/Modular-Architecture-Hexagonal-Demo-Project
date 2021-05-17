@@ -19,19 +19,17 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Sql(scripts = "classpath:sql/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class PaymentControllerIT extends AbstractIT {
 
-    @Autowired
-    private BalancePort balancePort;
+    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
+    };
 
     @Test
     void should_create_payment_when_balance_is_sufficient() {
-        doPayment(1L, "10.00", "10.00");
-        doPayment(1L, "5.50", "4.50");
-        doPayment(1L, "5.00", "4.50", HttpStatus.UNPROCESSABLE_ENTITY, "12");
-        doPayment(1L, "4.50", "0.00");
+        doPayment(1L, "10.0", "10.0");
+        doPayment(2L, "10.0", "20.0");
+        doPayment(6661L, "5.0", "4.5", HttpStatus.UNPROCESSABLE_ENTITY, "12");
+        doPayment(6661L, "4.0", "0.0", HttpStatus.UNPROCESSABLE_ENTITY, "12");
     }
 
     private void doPayment(Long accountId, String price, String lastBalance) {
@@ -54,15 +52,11 @@ class PaymentControllerIT extends AbstractIT {
                 paymentResponseType);
 
         //then
-        Balance balance = balancePort.retrieve(accountId);
-        assertThat(balance.getAmount()).isEqualTo(new BigDecimal(lastBalance));
-
-        //and
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(httpStatus);
         assertThat(response.getBody()).isNotNull();
 
-        if (!httpStatus.is2xxSuccessful()) {
+        if (hasSufficientBalance(price, lastBalance)) {
             assertThat(response.getBody().getErrors()).isNotNull();
             assertThat(response.getBody().getErrors().getErrorCode()).isEqualTo(errorCode);
             return;
@@ -75,6 +69,7 @@ class PaymentControllerIT extends AbstractIT {
                 .contains(accountId, new BigDecimal(price), "ref1");
     }
 
-    private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
-    };
+    private boolean hasSufficientBalance(String price, String lastBalance) {
+        return new BigDecimal(lastBalance).doubleValue() < new BigDecimal(price).doubleValue();
+    }
 }

@@ -64,6 +64,9 @@ server:
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+commandhandler:
+  enabled: false
+
 adapters:
   account:
     lock:
