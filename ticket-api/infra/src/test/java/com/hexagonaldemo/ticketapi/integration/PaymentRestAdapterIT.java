@@ -16,11 +16,12 @@ import org.springframework.http.HttpStatus;
 import java.math.BigDecimal;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.http.Fault.EMPTY_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @IT
-public class PaymentRestAdapterIT extends AbstractIT {
+class PaymentRestAdapterIT extends AbstractIT {
 
     private static final WireMockServer wireMockServer = new WireMockServer(9780);
 
@@ -46,6 +47,16 @@ public class PaymentRestAdapterIT extends AbstractIT {
                         .withRequestBody(containing("6661"))
                         .willReturn(aResponse()
                                 .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        )
+        );
+
+        wireMockServer.stubFor(
+                post(urlMatching("/payments"))
+                        .withRequestBody(containing("6662"))
+                        .willReturn(aResponse()
+                                .withBody((String) null)
+                                .withHeader("Content-Type", "application/json")
+                                .withStatus(HttpStatus.OK.value())
                         )
         );
     }
@@ -91,5 +102,20 @@ public class PaymentRestAdapterIT extends AbstractIT {
         assertThatExceptionOfType(TicketApiBusinessException.class)
                 .isThrownBy(() -> paymentRestAdapter.pay(paymentCreate))
                 .withMessage("ticketapi.payment.client.error");
+    }
+
+    @Test
+    void should_call_payment_api_fails_with_empty_response() {
+        // given
+        PaymentCreate paymentCreate = PaymentCreate.builder()
+                .accountId(6662L)
+                .price(BigDecimal.valueOf(100.0))
+                .referenceCode("test ref code")
+                .build();
+
+        // when
+        assertThatExceptionOfType(TicketApiBusinessException.class)
+                .isThrownBy(() -> paymentRestAdapter.pay(paymentCreate))
+                .withMessage("ticketapi.payment.emptyResponse");
     }
 }

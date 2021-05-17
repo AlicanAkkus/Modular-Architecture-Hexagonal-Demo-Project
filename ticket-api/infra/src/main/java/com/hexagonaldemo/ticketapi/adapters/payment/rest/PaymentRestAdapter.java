@@ -57,6 +57,12 @@ public class PaymentRestAdapter implements PaymentPort {
     }
 
     @Recover
+    public Payment pay(TicketApiBusinessException e, PaymentCreate paymentCreate) {
+        log.error("Couldn't connect to payment api to do payment for {}", paymentCreate, e);
+        throw e;
+    }
+
+    @Recover
     public Payment pay(Exception e, PaymentCreate paymentCreate) {
         log.error("Couldn't connect to payment api to do payment for {}", paymentCreate, e);
         throw new TicketApiBusinessException("ticketapi.payment.client.error");
