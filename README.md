@@ -79,7 +79,7 @@ You can boot up all apis and infra with the following commands.
 * Implementing two microservices with spring boot
 * Designing the apis with hexagonal architecture
 * Packaging by functions and screaming architecture
-* Ports and adapter separate business from integration points  
+* How Ports and adapters separate business from integration points  
 * Writing behaviour focused unit tests at domain module
 * Writing integration tests isolated from business at infra module
 * Using gradle to configure microservices and modules
