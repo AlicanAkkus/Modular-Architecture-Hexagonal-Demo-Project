@@ -8,6 +8,7 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=ncloc)](https://sonarcloud.io/dashboard?id=hex)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=coverage)](https://sonarcloud.io/dashboard?id=hex)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=sqale_index)](https://sonarcloud.io/dashboard?id=hex)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=code_smells)](https://sonarcloud.io/dashboard?id=hex)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hex)
 
 ## Table of Contents
