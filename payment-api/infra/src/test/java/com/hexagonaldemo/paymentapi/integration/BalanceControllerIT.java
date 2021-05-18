@@ -1,6 +1,7 @@
 package com.hexagonaldemo.paymentapi.integration;
 
 import com.hexagonaldemo.paymentapi.AbstractIT;
+import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceResponse;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@IT
 class BalanceControllerIT extends AbstractIT {
 
     private final ParameterizedTypeReference<Response<BalanceResponse>> balanceResponseType = new ParameterizedTypeReference<>() {

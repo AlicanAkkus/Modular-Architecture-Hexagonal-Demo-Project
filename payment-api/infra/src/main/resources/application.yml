@@ -38,13 +38,10 @@ spring:
   redis:
     host: localhost
     port: 6379
-    password: redisPassword
-server:
-  port: 8090
 
-  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # SPRING CLOUD
-  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# SPRING CLOUD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   cloud:
     stream:
@@ -60,3 +57,14 @@ server:
         paymentRollbackInput:
           destination: paymentRollback.test.topic
           group: hexagonaldemo-${random.int(100000)}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# INFRA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server:
+  port: 8090
+
+redis:
+  accountLockDuration: 10000
+  password: redisPassword

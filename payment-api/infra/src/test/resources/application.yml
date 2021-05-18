@@ -64,6 +64,10 @@ spring:
 server:
   port: 8090
 
+redis:
+  accountLockDuration: 10000
+  password: redisPassword
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -74,7 +78,7 @@ commandhandler:
 adapters:
   account:
     lock:
-      enabled: false
+      enabled: true
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # LOGGING

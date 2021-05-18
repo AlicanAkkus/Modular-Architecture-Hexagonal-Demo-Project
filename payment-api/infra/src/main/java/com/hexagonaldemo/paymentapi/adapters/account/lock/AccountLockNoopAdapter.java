@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "adapters.account.lock.enabled", havingValue = "false", matchIfMissing = true)
-public class AccountLockFakeAdapter implements LockPort {
+public class AccountLockNoopAdapter implements LockPort {
 
     @Override
     public void lock(Long accountId) {

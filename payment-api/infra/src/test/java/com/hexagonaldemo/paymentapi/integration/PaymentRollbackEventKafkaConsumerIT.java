@@ -1,6 +1,7 @@
 package com.hexagonaldemo.paymentapi.integration;
 
 import com.hexagonaldemo.paymentapi.AbstractIT;
+import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.common.EventAssertion;
 import com.hexagonaldemo.paymentapi.common.commandhandler.FakePaymentRollbackCommandHandler;
 import com.hexagonaldemo.paymentapi.common.consumer.PaymentRollbackEventKafkaStreamTestPublisher;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 
 @Slf4j
+@IT
 class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
 
     @Autowired

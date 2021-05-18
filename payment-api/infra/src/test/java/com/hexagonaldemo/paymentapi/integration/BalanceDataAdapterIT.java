@@ -1,4 +1,8 @@
 package com.hexagonaldemo.paymentapi.integration;
 
-public class BalanceDataAdapterIT {
+import com.hexagonaldemo.paymentapi.AbstractIT;
+import com.hexagonaldemo.paymentapi.IT;
+
+@IT
+public class BalanceDataAdapterIT extends AbstractIT {
 }

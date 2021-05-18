@@ -1,6 +1,7 @@
 package com.hexagonaldemo.paymentapi.integration;
 
 import com.hexagonaldemo.paymentapi.AbstractIT;
+import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentCreateRequest;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@IT
 class PaymentControllerIT extends AbstractIT {
 
     private final ParameterizedTypeReference<Response<PaymentResponse>> paymentResponseType = new ParameterizedTypeReference<>() {
