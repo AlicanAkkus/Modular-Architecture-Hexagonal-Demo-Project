@@ -88,12 +88,6 @@ class PaymentRollbackTest {
                 .amount(new BigDecimal(currentBalanceAmount))
                 .build();
 
-        Balance balanceAfterRollback = Balance.builder()
-                .id(1L)
-                .accountId(accountId)
-                .amount(new BigDecimal(balanceAmountAfterRollback))
-                .build();
-
         Payment existingPaymentToRollback = Payment.builder()
                 .id(1L)
                 .accountId(accountId)

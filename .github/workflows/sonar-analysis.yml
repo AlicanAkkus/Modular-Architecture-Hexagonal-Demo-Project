@@ -73,4 +73,4 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew clean jacocoTestReport sonarqube -PskipInfraSetup -Dorg.gradle.daemon=false --info
+        run: ./gradlew clean build jacocoTestReport sonarqube -PskipInfraSetup -Dorg.gradle.daemon=false --info
