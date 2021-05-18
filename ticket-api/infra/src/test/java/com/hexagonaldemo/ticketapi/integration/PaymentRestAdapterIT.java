@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import java.math.BigDecimal;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.http.Fault.EMPTY_RESPONSE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 

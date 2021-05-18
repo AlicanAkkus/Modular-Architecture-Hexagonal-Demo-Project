@@ -6,7 +6,7 @@ import com.hexagonaldemo.ticketapi.adapters.ticket.jpa.repository.TicketJpaRepos
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiDataNotFoundException;
 import com.hexagonaldemo.ticketapi.common.model.Status;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
-import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +38,8 @@ public class TicketDataAdapter implements TicketPort {
     }
 
     @Override
-    public List<Ticket> retrieve(RetrieveTicket retrieveTicket) {
-        return ticketJpaRepository.findAllByAccountId(retrieveTicket.getAccountId()).stream()
+    public List<Ticket> retrieve(TicketRetrieve ticketRetrieve) {
+        return ticketJpaRepository.findAllByAccountId(ticketRetrieve.getAccountId()).stream()
                 .map(TicketEntity::toModel)
                 .collect(Collectors.toList());
     }

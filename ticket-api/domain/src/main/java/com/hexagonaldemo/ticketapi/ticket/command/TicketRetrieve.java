@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class RetrieveTicket implements Command {
+public class TicketRetrieve implements Command {
 
     private Long accountId;
 }

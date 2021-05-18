@@ -42,11 +42,9 @@ class AccountLockRedisAdapterIT extends AbstractIT {
     }
 
     @Test
-    void should_make_account_busy_multiple_times() {
+    void should_make_account_busy_multiple_times_on_same_thread() {
         assertDoesNotThrow(() -> accountFacade.makeBusy(accountId));
-        assertThatExceptionOfType(PaymentApiBusinessException.class)
-                .isThrownBy(() -> accountFacade.makeBusy(null))
-                .withMessage("paymentapi.account.lockFailed");
+        assertDoesNotThrow(() -> accountFacade.makeBusy(accountId));
     }
 
     @Test
@@ -73,10 +71,13 @@ class AccountLockRedisAdapterIT extends AbstractIT {
         LockTask task = new LockTask(accountId, 500L, accountFacade);
         Thread thread = new Thread(task);
         thread.start();
-        thread.join();
 
         //when
-        assertDoesNotThrow(() -> accountFacade.makeBusy(accountId));
+        assertThatExceptionOfType(PaymentApiBusinessException.class)
+                .isThrownBy(() -> accountFacade.makeBusy(accountId))
+                .withMessage("paymentapi.account.lockFailed");
+
+        thread.join();
     }
 
     @Test
@@ -85,10 +86,11 @@ class AccountLockRedisAdapterIT extends AbstractIT {
         LockTask task = new LockTask(accountId, 0L, accountFacade);
         Thread thread = new Thread(task);
         thread.start();
-        thread.join();
 
         //when
         assertDoesNotThrow(() -> accountFacade.makeFree(accountId));
+
+        thread.join();
     }
 
     private static class LockTask implements Runnable {

@@ -2,7 +2,7 @@ package com.hexagonaldemo.paymentapi.adapters;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
-import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 
@@ -13,6 +13,7 @@ import java.util.List;
 public class TicketFakeDataAdapter implements TicketPort {
 
     private static final Long CREATE_FAIL_ACCOUNT_ID = 6662L;
+    private static final Long NO_TICKET_ACCOUNT_ID = 6663L;
     private static final List<Long> FAILING_IDS = List.of(CREATE_FAIL_ACCOUNT_ID);
 
     @Override
@@ -34,14 +35,15 @@ public class TicketFakeDataAdapter implements TicketPort {
     }
 
     @Override
-    public List<Ticket> retrieve(RetrieveTicket retrieveTicket) {
+    public List<Ticket> retrieve(TicketRetrieve ticketRetrieve) {
+        if (ticketRetrieve.getAccountId().equals(NO_TICKET_ACCOUNT_ID)) return List.of();
         return List.of(Ticket.builder()
                         .id(2L)
                         .count(1)
                         .meetupId(1001L)
                         .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
                         .price(BigDecimal.valueOf(100.00))
-                        .accountId(retrieveTicket.getAccountId())
+                        .accountId(ticketRetrieve.getAccountId())
                         .build(),
                 Ticket.builder()
                         .id(2L)
@@ -49,7 +51,7 @@ public class TicketFakeDataAdapter implements TicketPort {
                         .meetupId(1002L)
                         .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
                         .price(BigDecimal.valueOf(110.00))
-                        .accountId(retrieveTicket.getAccountId())
+                        .accountId(ticketRetrieve.getAccountId())
                         .build(),
                 Ticket.builder()
                         .id(3L)
@@ -57,7 +59,7 @@ public class TicketFakeDataAdapter implements TicketPort {
                         .meetupId(1003L)
                         .reserveDate(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
                         .price(BigDecimal.valueOf(120.00))
-                        .accountId(retrieveTicket.getAccountId())
+                        .accountId(ticketRetrieve.getAccountId())
                         .build());
     }
 }

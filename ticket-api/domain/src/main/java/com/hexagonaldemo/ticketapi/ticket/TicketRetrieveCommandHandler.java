@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.ticket;
 
 import com.hexagonaldemo.ticketapi.common.commandhandler.CommandHandler;
-import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +15,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "commandhandler.enabled", havingValue = "true")
-public class TicketRetrieveCommandHandler implements CommandHandler<List<Ticket>, RetrieveTicket> {
+public class TicketRetrieveCommandHandler implements CommandHandler<List<Ticket>, TicketRetrieve> {
 
     private final TicketPort ticketPort;
 
-    public List<Ticket> handle(RetrieveTicket retrieveTicket) {
-        return ticketPort.retrieve(retrieveTicket);
+    public List<Ticket> handle(TicketRetrieve ticketRetrieve) {
+        return ticketPort.retrieve(ticketRetrieve);
     }
 }

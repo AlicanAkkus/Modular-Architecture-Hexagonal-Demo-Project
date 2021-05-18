@@ -5,7 +5,7 @@ import com.hexagonaldemo.ticketapi.common.commandhandler.CommandHandler;
 import com.hexagonaldemo.ticketapi.common.rest.BaseController;
 import com.hexagonaldemo.ticketapi.common.rest.DataResponse;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.ticket.command.RetrieveTicket;
+import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/tickets")
 public class TicketController extends BaseController {
 
-    private final CommandHandler<List<Ticket>, RetrieveTicket> retrieveTicketCommandHandler;
+    private final CommandHandler<List<Ticket>, TicketRetrieve> retrieveTicketCommandHandler;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -32,7 +32,7 @@ public class TicketController extends BaseController {
         return retrieveTickets.stream().map(TicketResponse::from).collect(Collectors.toList());
     }
 
-    private RetrieveTicket toCommand(Long accountId) {
-        return RetrieveTicket.builder().accountId(accountId).build();
+    private TicketRetrieve toCommand(Long accountId) {
+        return TicketRetrieve.builder().accountId(accountId).build();
     }
 }

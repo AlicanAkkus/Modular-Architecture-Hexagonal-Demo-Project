@@ -124,6 +124,48 @@ class PaymentRollbackTest {
     }
 
     @Test
+    void should_not_allow_rollback_when_payment_is_not_available() {
+        // given
+        long accountId = 1L;
+        double price = 10.00;
+        double currentBalanceAmount = 10.00;
+
+        Balance currentBalance = Balance.builder()
+                .id(1L)
+                .accountId(accountId)
+                .amount(new BigDecimal(currentBalanceAmount))
+                .build();
+
+        Payment someExistingPaymentToRollback = Payment.builder()
+                .id(1L)
+                .accountId(accountId)
+                .accountId(accountId)
+                .price(new BigDecimal(price))
+                .referenceCode("ref1")
+                .state(PaymentState.ROLLBACKED)
+                .build();
+
+        // and
+        BalanceFakeAdapter balancePort = new BalanceFakeAdapter(currentBalance, currentBalance);
+        PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(null); // payment not found
+
+        BalanceCompensateCommandHandler balanceCompensateCommandHandler = new BalanceCompensateCommandHandler(balancePort);
+        PaymentRollbackCommandHandler paymentRollbackCommandHandler = new PaymentRollbackCommandHandler(balanceCompensateCommandHandler,
+                new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
+
+        //when
+        PaymentRollback paymentRollback = PaymentRollback.builder()
+                .id(1L)
+                .accountId(someExistingPaymentToRollback.getAccountId())
+                .price(someExistingPaymentToRollback.getPrice())
+                .build();
+
+        assertThatExceptionOfType(PaymentApiBusinessException.class)
+                .isThrownBy(() -> paymentRollbackCommandHandler.handle(paymentRollback))
+                .withMessage("paymentapi.payment.notRollbackable");
+    }
+
+    @Test
     void should_not_allow_rollback_when_rollback_is_failed() {
         // given
         long accountId = 6661L;
