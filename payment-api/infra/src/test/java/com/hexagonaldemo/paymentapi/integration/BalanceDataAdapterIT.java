@@ -8,19 +8,19 @@ import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceTrans
 import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
-import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
 
 @IT
 @Sql(scripts = "classpath:sql/balances.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class BalanceDataAdapterIT extends AbstractIT {
+class BalanceDataAdapterIT extends AbstractIT {
 
     @Autowired
     BalanceDataAdapter balanceDataAdapter;

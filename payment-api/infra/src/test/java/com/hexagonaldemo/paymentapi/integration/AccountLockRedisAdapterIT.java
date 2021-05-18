@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @IT
-public class AccountLockRedisAdapterIT extends AbstractIT {
+class AccountLockRedisAdapterIT extends AbstractIT {
 
     @Autowired
     AccountFacade accountFacade;

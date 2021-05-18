@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.*;
 @IT
 @Sql(scripts = "classpath:sql/payments.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class PaymentDataAdapterIT  extends AbstractIT {
+class PaymentDataAdapterIT  extends AbstractIT {
 
     @Autowired
     PaymentDataAdapter paymentDataAdapter;
@@ -41,7 +41,6 @@ public class PaymentDataAdapterIT  extends AbstractIT {
 
     @Test
     void should_not_retrieve_payment_when_payment_not_found() {
-        // given
         // when
         assertThatExceptionOfType(PaymentApiBusinessException.class)
                 .isThrownBy(() -> paymentDataAdapter.retrieve(666L))
@@ -62,7 +61,7 @@ public class PaymentDataAdapterIT  extends AbstractIT {
 
         // then
         assertThat(payment).isNotNull()
-                .returns(2L, from(Payment::getId))
+                .returns(3L, from(Payment::getId))
                 .returns(1002L, from(Payment::getAccountId))
                 .returns(BigDecimal.valueOf(99.9), from(Payment::getPrice))
                 .returns(PaymentState.SUCCESS, from(Payment::getState));

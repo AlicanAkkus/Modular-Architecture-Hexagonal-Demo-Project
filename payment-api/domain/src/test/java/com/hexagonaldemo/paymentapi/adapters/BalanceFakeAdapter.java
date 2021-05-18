@@ -6,6 +6,8 @@ import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 
 public class BalanceFakeAdapter implements BalancePort {
 
+    private static final Long FAILED_BALANCE_UPDATE_ACCOUNT_ID = 6661L;
+
     private final Balance retrievedBalance;
     private final Balance updatedBalance;
 
@@ -21,6 +23,8 @@ public class BalanceFakeAdapter implements BalancePort {
 
     @Override
     public Balance update(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
+        if (balance.getAccountId().equals(FAILED_BALANCE_UPDATE_ACCOUNT_ID)) throw new RuntimeException("error");
+
         updatedBalance.setAmount(updatedBalance.getAmount().add(balanceTransactionCreate.getAmount()));
         return updatedBalance;
     }

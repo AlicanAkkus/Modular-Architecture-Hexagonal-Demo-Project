@@ -8,6 +8,8 @@ import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
 
 public class PaymentFakeAdapter implements PaymentPort {
 
+    private static final Long DISABLED_PAYMENT_ROLLBACK_ACCOUNT_ID = 6661L;
+
     private final Payment payment;
 
     public PaymentFakeAdapter(Payment payment) {
@@ -26,6 +28,7 @@ public class PaymentFakeAdapter implements PaymentPort {
 
     @Override
     public void rollback(PaymentRollback paymentRollback) {
+        if (paymentRollback.getAccountId().equals(DISABLED_PAYMENT_ROLLBACK_ACCOUNT_ID)) return;
         payment.setState(PaymentState.ROLLBACKED);
     }
 }
