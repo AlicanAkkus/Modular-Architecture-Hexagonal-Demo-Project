@@ -1,4 +1,4 @@
-package functional.steps
+package steps
 
 import groovy.util.logging.Slf4j
 import io.cucumber.java.Scenario
@@ -15,6 +15,9 @@ class InitializationSteps extends AbstractSteps {
         log.info("============================================")
 
         stats.initialize()
+        client.deleteAllBalances()
+        client.deleteAllTickets()
+        client.deleteAllMeetups()
     }
 
     @After

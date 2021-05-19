@@ -11,4 +11,6 @@ public interface TicketPort {
     Ticket create(CreateTicket reserveTicket);
 
     List<Ticket> retrieve(TicketRetrieve ticketRetrieve);
+
+    void deleteAll();
 }

@@ -9,6 +9,11 @@
       "baseUri": "http://localhost:8090"
     }
   },
+  "meetup": {
+    "local": {
+      "baseUri": "http://localhost:8094"
+    }
+  },
   "ticket": {
     "local": {
       "baseUri": "http://localhost:8094"

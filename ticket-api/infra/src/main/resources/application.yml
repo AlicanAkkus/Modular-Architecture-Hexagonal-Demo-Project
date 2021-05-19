@@ -68,6 +68,8 @@ kafka:
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+acceptance-test:
+  enabled: true
 commandhandler:
   enabled: true
 adapters:
@@ -76,6 +78,6 @@ adapters:
     retryAttempts: 3
     retryDelay: 1
     baseUrl: http://localhost:8090
-    paymentPath: /payments
+    paymentPath: /api/v1/payments
   account:
     enabled: true

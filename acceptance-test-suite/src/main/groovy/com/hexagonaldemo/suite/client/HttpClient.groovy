@@ -40,7 +40,11 @@ class HttpClient {
             def httpBuilder = createHttpBuilder(name, args)
             return httpBuilder."${method.toLowerCase()}"() ?: [:]
         } catch (Exception e) {
-            if (exceptionBodyExists(e)) log.error("[${e.fromServer.statusCode}] [${e}] Http error occurred during $method request: {}", getErrorBody(e))
+            if (exceptionBodyExists(e)) {
+                def error = getErrorBody(e)
+                log.error("[${e.fromServer.statusCode}] [${e}] Http error occurred during $method request: {}", error)
+                return e.body
+            }
             throw e
         }
     }

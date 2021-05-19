@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @ConditionalOnProperty(name = "commandhandler.enabled", havingValue = "false", matchIfMissing = true)
-public class FakeReserveTicketCommandHandler implements CommandHandler<Ticket, TicketReserve> {
+public class FakeTicketReserveCommandHandler implements CommandHandler<Ticket, TicketReserve> {
 
     private static final Long PAYMENT_FAIL_ACCOUNT_ID = 6661L;
     private static final Long TICKET_CREATE_FAIL_ACCOUNT_ID = 6662L;

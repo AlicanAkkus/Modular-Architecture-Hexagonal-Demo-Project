@@ -24,11 +24,6 @@ run_sql() {
 }
 
 bootup() {
-    rm payment-api.log 2> /dev/null
-    rm ticket-api.log 2> /dev/null
-
-    echo " :> Temp files are deleted"
-
     ./gradlew :payment-api:bootRun -PskipInfraSetup >payment-api.log  &
 
     echo " :> Payment api boot is triggered"
@@ -74,10 +69,10 @@ local-setup() {
 #####################################
 
 case "${1}" in
-    "bootup")
+    "start")
         complete
         bootup;;
-    "complete")
+    "stop")
         complete;;
     "local")
         complete

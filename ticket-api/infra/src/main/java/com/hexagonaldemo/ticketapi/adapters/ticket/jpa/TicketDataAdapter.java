@@ -44,6 +44,11 @@ public class TicketDataAdapter implements TicketPort {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteAll() {
+        ticketJpaRepository.deleteAll();
+    }
+
     private BigDecimal calculateTotalPrice(CreateTicket createTicket) {
         var eventEntity = meetupJpaRepository.findById(createTicket.getMeetupId())
                 .orElseThrow(() -> new TicketApiDataNotFoundException("ticketapi.meetup.notFound"));

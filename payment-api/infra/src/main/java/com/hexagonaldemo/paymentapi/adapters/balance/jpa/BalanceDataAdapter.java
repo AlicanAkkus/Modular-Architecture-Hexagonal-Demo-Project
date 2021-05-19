@@ -36,6 +36,11 @@ public class BalanceDataAdapter implements BalancePort {
         return updateBalance(balance.withAmount(balance.getAmount().add(balanceTransactionCreate.getAmountAsNumeric())));
     }
 
+    @Override
+    public void deleteAll() {
+        balanceJpaRepository.deleteAll();
+    }
+
     private void createBalanceTransaction(Balance balance, BalanceTransactionCreate balanceTransactionCreate) {
         var balanceTransactionEntity = new BalanceTransactionEntity();
         balanceTransactionEntity.setBalanceId(balance.getId());

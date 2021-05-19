@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @ConditionalOnProperty(name = "commandhandler.enabled", havingValue = "false", matchIfMissing = true)
-public class FakeRetrieveTicketCommandHandler implements CommandHandler<List<Ticket>, TicketRetrieve> {
+public class FakeTicketRetrieveCommandHandler implements CommandHandler<List<Ticket>, TicketRetrieve> {
 
     private static final Long NO_TICKETS_ACCOUNT_ID = 6661L;
     private static final List<Long> FAILING_IDS = List.of(

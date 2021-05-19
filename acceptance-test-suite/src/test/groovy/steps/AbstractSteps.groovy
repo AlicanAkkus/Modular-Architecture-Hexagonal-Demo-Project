@@ -1,4 +1,4 @@
-package functional.steps
+package steps
 
 import com.hexagonaldemo.suite.behavior.BehaviorClient
 import com.hexagonaldemo.suite.client.BasicStats

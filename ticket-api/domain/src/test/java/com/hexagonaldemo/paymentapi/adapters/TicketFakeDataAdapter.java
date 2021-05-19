@@ -62,4 +62,9 @@ public class TicketFakeDataAdapter implements TicketPort {
                         .accountId(ticketRetrieve.getAccountId())
                         .build());
     }
+
+    @Override
+    public void deleteAll() {
+
+    }
 }

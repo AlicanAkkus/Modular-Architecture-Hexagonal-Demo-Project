@@ -1,4 +1,5 @@
 apply plugin: 'groovy'
+apply plugin: 'java'
 
 project.ext.type = 'groovy'
 
@@ -25,4 +26,20 @@ dependencies {
 	testImplementation "io.cucumber:cucumber-java8:${version_cucumber}"
 	testImplementation "io.cucumber:cucumber-groovy:${version_cucumber_groovy}"
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${version_springBoot}"
+}
+
+configurations {
+	cucumberRuntime {
+		extendsFrom runtimeOnly
+	}
+}
+
+task cucumber(dependsOn: testClasses) {
+	doLast {
+		javaexec {
+			main = "io.cucumber.core.cli.Main"
+			classpath = configurations.testRuntimeClasspath + sourceSets.main.output + sourceSets.test.output
+			args = ['--plugin', 'pretty', '--glue', 'steps', 'src/test/resources']
+		}
+	}
 }

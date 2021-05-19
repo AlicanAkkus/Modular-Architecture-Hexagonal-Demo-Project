@@ -8,4 +8,6 @@ public interface BalancePort {
     Balance retrieve(Long accountId);
 
     Balance update(Balance balance, BalanceTransactionCreate balanceTransactionCreate);
+
+    void deleteAll();
 }
