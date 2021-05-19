@@ -1,4 +1,4 @@
-name: Sonar Analysis
+name: Acceptance Test
 
 on:
   push:
@@ -65,4 +65,5 @@ jobs:
 
       - name: Acceptance test
         run: |
+          ./run-acceptance-tests.sh start
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
