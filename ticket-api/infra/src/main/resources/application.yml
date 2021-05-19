@@ -68,6 +68,8 @@ kafka:
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+commandhandler:
+  enabled: true
 adapters:
   payment:
     enabled: true

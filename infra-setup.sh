@@ -8,6 +8,12 @@ TEST_DB_DATA='hexagonaldemo_test_db_data'
 TEST_DB_NAME='hexagonaldemo_test_db'
 TEST_DB_IMAGE='mysql'
 TEST_DB_PASSWORD='password'
+TEST_DB_PORT=4306
+
+if [ -n "$DB_PORT" ]; then
+    echo "Database port is set as $DB_PORT"
+    TEST_DB_PORT=$DB_PORT
+fi
 
 TEST_REDIS_SERVER_NAME='hexagonaldemo_test_redis'
 TEST_REDIS_IMAGE='bitnami/redis:latest'
@@ -80,7 +86,7 @@ up_db() {
         echo ">> starting: db up"
         create_volume $TEST_DB_DATA
         create_network $TEST_NETWORK
-        docker run --rm --network ${TEST_NETWORK} --name ${TEST_DB_NAME} --mount source=${TEST_DB_DATA},target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=${TEST_DB_PASSWORD} -p 4306:3306 -d ${TEST_DB_IMAGE}
+        docker run --rm --network ${TEST_NETWORK} --name ${TEST_DB_NAME} --mount source=${TEST_DB_DATA},target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=${TEST_DB_PASSWORD} -p ${TEST_DB_PORT}:3306 -d ${TEST_DB_IMAGE}
         isDBUp
     else
         echo ">> db is already up"
@@ -88,7 +94,7 @@ up_db() {
 }
 
 down_db() {
-    if [[ ! $(isDown 4306) ]]; then
+    if [[ ! $(isDown "${TEST_DB_PORT}") ]]; then
         echo ">> down db"
         docker rm -v -f ${TEST_DB_NAME}
         docker volume rm ${TEST_DB_DATA}

@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class PaymentRollbackFakeDataAdapter implements PaymentRollbackEventPort {
+public class PaymentRollbackFakeEventAdapter implements PaymentRollbackEventPort {
 
     private List<PaymentRollbackEvent> events = new ArrayList<>();
 

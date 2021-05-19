@@ -9,7 +9,7 @@ import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentRollbackEventPort;
 import com.hexagonaldemo.ticketapi.reservation.command.TicketReserve;
-import com.hexagonaldemo.ticketapi.reservation.port.ReservationEventPort;
+import com.hexagonaldemo.ticketapi.reservation.port.TicketReservedEventPort;
 import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
@@ -31,7 +31,7 @@ public class TicketReserveCommandHandler implements CommandHandler<Ticket, Ticke
     private final TicketPort ticketPort;
     private final PaymentPort paymentPort;
     private final AccountPort accountPort;
-    private final ReservationEventPort reservationNotificationPort;
+    private final TicketReservedEventPort reservationNotificationPort;
     private final PaymentRollbackEventPort paymentRollbackNotificationPort;
 
     /**

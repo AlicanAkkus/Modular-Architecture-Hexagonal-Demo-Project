@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
-import com.hexagonaldemo.ticketapi.reservation.port.ReservationEventPort;
+import com.hexagonaldemo.ticketapi.reservation.port.TicketReservedEventPort;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class ReservationEventFakeDataAdapter implements ReservationEventPort {
+public class TicketReservedFakeEventAdapter implements TicketReservedEventPort {
 
     private List<TicketReservedEvent> events = new ArrayList<>();
 

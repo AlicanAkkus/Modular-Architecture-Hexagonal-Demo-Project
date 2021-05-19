@@ -17,7 +17,7 @@ create table if not exists payment
     account_id     bigint         not null
 );
 
-create table balance
+create table if not exists balance
 (
     id         bigint auto_increment primary key,
     created_at datetime       not null,
@@ -27,7 +27,7 @@ create table balance
     amount     decimal(19, 2) not null
 );
 
-create table balance_transaction
+create table if not exists balance_transaction
 (
     id         bigint auto_increment primary key,
     created_at datetime       not null,
@@ -56,13 +56,13 @@ create table if not exists meetup
 
 create table if not exists ticket
 (
-    id          bigint auto_increment primary key,
-    created_at  datetime       not null,
-    updated_at  datetime       null,
-    status      int default 0  not null comment '-1: deleted, 0:passive, 1:active',
-    price       decimal(30, 8) not null comment 'price in try',
-    count       int            not null,
-    payment_date datetime       not null,
-    account_id  bigint         not null,
-    event_id    bigint         not null
+    id           bigint auto_increment primary key,
+    created_at   datetime       not null,
+    updated_at   datetime       null,
+    status       int default 0  not null comment '-1: deleted, 0:passive, 1:active',
+    price        decimal(30, 8) not null comment 'price in try',
+    count        int            not null,
+    reserve_date datetime       not null,
+    account_id   bigint         not null,
+    meetup_id    bigint         not null
 );

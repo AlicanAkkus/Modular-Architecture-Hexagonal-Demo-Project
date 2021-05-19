@@ -68,3 +68,10 @@ server:
 redis:
   accountLockDuration: 10000
   password: redisPassword
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ADAPTERS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+commandhandler:
+  enabled: true

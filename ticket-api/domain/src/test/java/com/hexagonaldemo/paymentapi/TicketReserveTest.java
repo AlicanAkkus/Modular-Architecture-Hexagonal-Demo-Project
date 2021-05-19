@@ -18,8 +18,8 @@ import static org.assertj.core.api.Assertions.*;
 class TicketReserveTest {
 
     TicketReserveCommandHandler ticketReserveCommandHandler;
-    PaymentRollbackFakeDataAdapter paymentRollbackNotificationPort = new PaymentRollbackFakeDataAdapter();
-    ReservationEventFakeDataAdapter reservationNotificationPort = new ReservationEventFakeDataAdapter();
+    PaymentRollbackFakeEventAdapter paymentRollbackNotificationPort = new PaymentRollbackFakeEventAdapter();
+    TicketReservedFakeEventAdapter reservationNotificationPort = new TicketReservedFakeEventAdapter();
 
     @BeforeEach
     void setUp() {

@@ -5,7 +5,7 @@ import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface ReservationEventPort extends EventPublisher<TicketReservedEvent> {
+public interface TicketReservedEventPort extends EventPublisher<TicketReservedEvent> {
 
     void publish(TicketReservedEvent ticketReservedEvent);
 }

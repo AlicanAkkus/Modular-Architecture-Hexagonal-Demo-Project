@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+
+project.ext.type = 'groovy'
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = compileGroovy.destinationDir
+		testOutputDir = compileTestGroovy.destinationDir
+		downloadJavadoc = false
+		downloadSources = true
+	}
+}
+
+dependencies {
+	implementation "org.codehaus.groovy:groovy-all:${version_groovy}"
+	implementation "org.springframework:spring-core:${version_spring}"
+	implementation "org.springframework:spring-web:${version_spring}"
+	implementation "io.github.http-builder-ng:http-builder-ng-apache:${version_httpbuilder}"
+	implementation "org.apache.commons:commons-lang3:${version_commonsLang3}"
+
+	testImplementation "net.sourceforge.htmlunit:htmlunit:${version_htmlunit}"
+	testImplementation "io.cucumber:cucumber-java:${version_cucumber}"
+	testImplementation "io.cucumber:cucumber-junit:${version_cucumber}"
+	testImplementation "io.cucumber:cucumber-java8:${version_cucumber}"
+	testImplementation "io.cucumber:cucumber-groovy:${version_cucumber_groovy}"
+	testImplementation "org.springframework.boot:spring-boot-starter-test:${version_springBoot}"
+}

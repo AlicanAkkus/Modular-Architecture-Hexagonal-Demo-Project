@@ -45,6 +45,11 @@ ext {
     version_lettuce = '6.0.1.RELEASE'
     version_kafka = '2.6.0'
     version_groovy = '3.0.8'
+    version_cucumber = '6.10.4'
+    version_cucumber_groovy = '6.1.2'
+    version_htmlunit = '2.50.0'
+    version_httpbuilder = '1.0.4'
+    version_commonsLang3 = '3.12.0'
 }
 
 dependencies {

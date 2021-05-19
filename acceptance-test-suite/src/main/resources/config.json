@@ -1,0 +1,18 @@
+{
+  "payment": {
+    "local": {
+      "baseUri": "http://localhost:8090"
+    }
+  },
+  "balance": {
+    "local": {
+      "baseUri": "http://localhost:8090"
+    }
+  },
+  "ticket": {
+    "local": {
+      "baseUri": "http://localhost:8094"
+    }
+  }
+}
+

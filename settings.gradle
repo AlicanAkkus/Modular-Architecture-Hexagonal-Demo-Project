@@ -8,4 +8,5 @@ include ':payment-api'
 include ':payment-api:domain'
 include ':payment-api:infra'
 
+include ':acceptance-test-suite'
 
