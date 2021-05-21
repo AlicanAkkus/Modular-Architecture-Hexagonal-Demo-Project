@@ -53,6 +53,15 @@ You can use any programming language for implementing Hexagonal Architecture. He
 * Kafka
 * Dockerized Integration Tests
 * Consumer Driven Contract Testing
+* Groovy 3
+* Cucumber
+
+It's so easy to reach 100% code coverage if you design by tests wisely. There are the types of tests written:
+* Unit tests
+* Integration tests
+* Conract tests
+* External Verifier Contract tests
+* Acceptance tests
 
 ### Usage
 

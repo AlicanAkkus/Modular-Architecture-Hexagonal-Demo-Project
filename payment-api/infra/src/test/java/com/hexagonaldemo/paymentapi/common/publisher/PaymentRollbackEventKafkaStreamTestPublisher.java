@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.common.consumer;
+package com.hexagonaldemo.paymentapi.common.publisher;
 
 import com.hexagonaldemo.paymentapi.common.config.AbstractTestPublisher;
 import com.hexagonaldemo.paymentapi.common.config.KafkaEventTestStreams;

@@ -44,7 +44,7 @@ spring:
     stream:
       kafka:
         binder:
-          auto-create-topics: false
+          auto-create-topics: true
           brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
         bindings:
           paymentRollbackInput:

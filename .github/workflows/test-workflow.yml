@@ -1,10 +1,11 @@
-name: Build Ticket API Image
+name: test workflow
 
 on:
   push:
     paths:
       - ticket-api/**
-      - .github/workflows/ticket-api*.yml
+      - ticket-api/Dockerfile
+      - .github/workflows/test-workflow.yml
     branches:
       - main
 
@@ -12,41 +13,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
-    services:
-
-      mysql:
-        image: mysql
-        env:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
-        ports:
-          - 4306:3306
-
-      redis:
-        image: redis
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 6379:6379
-
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        env:
-          ZOOKEEPER_CLIENT_PORT: 2181
-          ZOOKEEPER_TICK_TIME: 2000
-
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        ports:
-          - 29092:29092
-        env:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
     steps:
       - name: Checkout
@@ -65,13 +31,7 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false
-
-      - name: Upload Jar File
-        uses: actions/upload-artifact@v1
-        with:
-          name: ticket-api-jar
-          path: ticket-api/build/libs
+          ./gradlew :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false -x test
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1

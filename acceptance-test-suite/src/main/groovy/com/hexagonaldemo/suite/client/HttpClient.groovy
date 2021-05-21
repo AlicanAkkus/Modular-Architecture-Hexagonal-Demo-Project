@@ -15,7 +15,7 @@ class HttpClient {
     private static String profile
 
     HttpClient(Stats stats, configData) {
-        profile = System.getProperty("profile") ?: "local"
+        profile = System.getenv("PROFILE") ?: "local"
         this.stats = stats
         this.configData = configData
     }

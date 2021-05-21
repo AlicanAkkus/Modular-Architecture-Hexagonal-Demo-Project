@@ -35,9 +35,6 @@ spring:
     throw-exception-if-no-handler-found: true
   resources:
     add-mappings: false
-  redis:
-    host: localhost
-    port: 6379
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SPRING CLOUD
@@ -47,7 +44,7 @@ spring:
     stream:
       kafka:
         binder:
-          auto-create-topics: false
+          auto-create-topics: true
           brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
         bindings:
           paymentRollbackInput:
@@ -77,3 +74,7 @@ acceptance-test:
   enabled: true
 commandhandler:
   enabled: true
+adapters:
+  account:
+    lock:
+      enabled: true

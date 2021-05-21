@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+
+# Print the commands as it is executed. Useful for debugging
+set -x
+
 is_api_up() {
     echo " :> $1 monitoring started"
     api_name=$1
@@ -24,11 +28,13 @@ run_sql() {
 }
 
 bootup() {
-    ./gradlew :payment-api:bootRun -PskipInfraSetup >payment-api.log  &
+    echo " :> Bootup starts"
+
+    ./gradlew :payment-api:bootRun -PskipInfraSetup --stacktrace >payment-api.log  &
 
     echo " :> Payment api boot is triggered"
 
-    ./gradlew :ticket-api:bootRun -PskipInfraSetup >ticket-api.log &
+    ./gradlew :ticket-api:bootRun -PskipInfraSetup --stacktrace >ticket-api.log &
 
     echo " :> Ticket api boot is triggered"
 
@@ -69,6 +75,8 @@ local-setup() {
 #####################################
 
 case "${1}" in
+    "ci")
+        bootup;;
     "start")
         complete
         bootup;;

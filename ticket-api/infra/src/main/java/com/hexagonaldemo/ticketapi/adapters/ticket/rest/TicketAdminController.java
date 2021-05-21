@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true") // todo administration.enabled
 @RequestMapping("/api/v1/tickets")
 public class TicketAdminController extends BaseController {
 

@@ -5,6 +5,9 @@ on:
     paths:
       - ticket-api/**
       - payment-api/**
+      - acceptance-test-suite/**
+      - .github/workflows/acceptance-test.yml
+      - run-acceptance-tests.sh
     branches:
       - main
 
@@ -18,12 +21,16 @@ jobs:
       mysql:
         image: mysql
         env:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
+          MYSQL_ROOT_PASSWORD: password
         ports:
           - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
       redis:
         image: redis
+        env:
+          REDIS_PASSWORD: redisPassword
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -41,16 +48,36 @@ jobs:
       kafka:
         image: confluentinc/cp-kafka:latest
         ports:
-          - 29092:29092
+          - 9092:9092
         env:
           KAFKA_BROKER_ID: 1
           KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
           KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+          KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+          KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
+
+      paymentapi:
+        image: lemiorhan/hexagonaldemo-paymentapi:latest
+        ports:
+          - 8090:8090
+
+      ticketapi:
+        image: lemiorhan/hexagonaldemo-ticketapi:latest
+        ports:
+          - 8094:8094
+        env:
+          PAYMENT_API_BASE_URL: 172.17.0.1
 
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Mysql initialize
+        run: |
+          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/0_initialize.sql
+          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/1_schema.sql
+          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/2_data.sql
 
       - name: Set Up Java 11
         uses: actions/setup-java@v1
@@ -65,5 +92,5 @@ jobs:
 
       - name: Acceptance test
         run: |
-          ./run-acceptance-tests.sh start
+          export PROFILE=ci-server
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false

@@ -4,7 +4,7 @@ import com.hexagonaldemo.paymentapi.AbstractIT;
 import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.common.EventAssertion;
 import com.hexagonaldemo.paymentapi.common.commandhandler.FakePaymentRollbackCommandHandler;
-import com.hexagonaldemo.paymentapi.common.consumer.PaymentRollbackEventKafkaStreamTestPublisher;
+import com.hexagonaldemo.paymentapi.common.publisher.PaymentRollbackEventKafkaStreamTestPublisher;
 import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.event.PaymentRollbackEvent;
 import lombok.extern.slf4j.Slf4j;
