@@ -67,29 +67,16 @@ jobs:
           mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/1_schema.sql
           mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/2_data.sql
 
-      - name: Create docker network
-        run: docker network create container-network
-
-      - name: Run payment api image
+      - name: Create API's And Run Tests
         run: |
+          docker network create container-network
+          echo "Container network created"
           docker run --network="container-network" -d --name paymentapi -p 8090:8090 lemiorhan/hexagonaldemo-paymentapi:latest
-
-      - name: Run ticket api image
-        run: |
+          echo "Payment api has started"
           docker run --network="container-network" -d --name ticketapi -p 8094:8094 lemiorhan/hexagonaldemo-ticketapi:latest
-
-      - name: Set Up Java 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Cache gradle dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-
-      - name: Acceptance test
-        run: |
-          export PROFILE=ci-server
+          echo "Ticket api has started"
+          sleep 3000
+          echo "Running acceptance test has started"
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
+          echo "Running acceptance test has finished"
+
