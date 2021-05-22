@@ -65,6 +65,7 @@ server:
 redis:
   accountLockDuration: 10000
   password: redisPassword
+  hostname: ${REDIS_HOST:localhost}
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ADAPTERS

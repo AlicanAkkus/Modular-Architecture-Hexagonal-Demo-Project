@@ -24,10 +24,11 @@ public class RedisClientConfiguration {
     public static final String ACCOUNT_LOCK = "account-lock";
     private Long accountLockDuration = 10000L;
     private String password;
+    private String hostname;
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
-        var clientConfiguration = new RedisStandaloneConfiguration();
+        var clientConfiguration = new RedisStandaloneConfiguration(hostname);
         clientConfiguration.setPassword(password);
         return new LettuceConnectionFactory(clientConfiguration);
     }
