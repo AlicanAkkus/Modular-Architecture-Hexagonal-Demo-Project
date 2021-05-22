@@ -1,46 +1,46 @@
 {
   "payment": {
     "local": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     },
     "ci": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     },
     "ci-server": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     }
   },
   "balance": {
     "local": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     },
     "ci": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     },
     "ci-server": {
-      "baseUri": "http://localhost:8090"
+      "baseUri": "http://0.0.0.0:8090"
     }
   },
   "meetup": {
     "local": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     },
     "ci": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     },
     "ci-server": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     }
   },
   "ticket": {
     "local": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     },
     "ci": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     },
     "ci-server": {
-      "baseUri": "http://localhost:8094"
+      "baseUri": "http://0.0.0.0:8094"
     }
   }
 }
