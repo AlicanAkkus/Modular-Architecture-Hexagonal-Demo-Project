@@ -7,7 +7,7 @@
       "baseUri": "http://paymentapi:8090"
     },
     "ci-server": {
-      "baseUri": "http://172.17.0.1:8090"
+      "baseUri": "http://paymentapi:8090"
     }
   },
   "balance": {
@@ -18,7 +18,7 @@
       "baseUri": "http://paymentapi:8090"
     },
     "ci-server": {
-      "baseUri": "http://172.17.0.1:8090"
+      "baseUri": "http://paymentapi:8090"
     }
   },
   "meetup": {
@@ -29,7 +29,7 @@
       "baseUri": "http://ticketapi:8094"
     },
     "ci-server": {
-      "baseUri": "http://172.17.0.1:8094"
+      "baseUri": "http://ticketapi:8094"
     }
   },
   "ticket": {
@@ -40,7 +40,7 @@
       "baseUri": "http://ticketapi:8094"
     },
     "ci-server": {
-      "baseUri": "http://172.17.0.1:8094"
+      "baseUri": "http://ticketapi:8094"
     }
   }
 }
