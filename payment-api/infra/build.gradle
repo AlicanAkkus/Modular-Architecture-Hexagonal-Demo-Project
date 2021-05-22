@@ -43,13 +43,15 @@ dependencies {
 tasks.processContractTestResources.dependsOn rootProject.tasks.findByPath('payment-api:infra:generateContractTests')
 
 contracts {
-    basePackageForTests = 'com.hexagonaldemo.paymentapi.contract'
+    generatedTestJavaSourcesDir = project.file("src/test/java/")
+    basePackageForTests = 'com.hexagonaldemo.paymentapi.contract.generated'
     nameSuffixForTests = 'ContractTest'
     testFramework = TestFramework.JUNIT5
     testMode = TestMode.EXPLICIT
 
     baseClassMappings {
         baseClassMapping("payment", "com.hexagonaldemo.paymentapi.contract.BasePaymentContractTest")
+        baseClassMapping("balance", "com.hexagonaldemo.paymentapi.contract.BaseBalanceCompensateTest")
         baseClassMapping("balance", "com.hexagonaldemo.paymentapi.contract.BaseBalanceContractTest")
     }
 }

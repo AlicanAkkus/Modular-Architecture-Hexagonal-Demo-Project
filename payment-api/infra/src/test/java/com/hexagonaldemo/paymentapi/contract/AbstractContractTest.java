@@ -1,10 +1,13 @@
 package com.hexagonaldemo.paymentapi.contract;
 
 import com.hexagonaldemo.paymentapi.TestApplication;
+import com.hexagonaldemo.paymentapi.account.AccountFacade;
+import com.hexagonaldemo.paymentapi.balance.BalanceAdminCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceCompensateCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveCommandHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
 import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
+import com.hexagonaldemo.paymentapi.payment.PaymentRollbackCommandHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,6 +39,15 @@ public abstract class AbstractContractTest {
 
     @MockBean
     protected PaymentCreateCommandHandler paymentCreateCommandHandler;
+
+    @MockBean
+    protected BalanceAdminCommandHandler balanceAdminCommandHandler;
+
+    @MockBean
+    protected PaymentRollbackCommandHandler paymentRollbackCommandHandler;
+
+    @MockBean
+    protected AccountFacade accountFacade;
 
     @BeforeEach
     public void doBeforeEach() {

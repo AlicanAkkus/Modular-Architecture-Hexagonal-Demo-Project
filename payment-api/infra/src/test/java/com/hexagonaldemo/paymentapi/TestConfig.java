@@ -22,9 +22,10 @@ import org.springframework.context.annotation.Profile;
 })
 @ComponentScan(
         excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*DataAdapter.*"),
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Adapter.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Redis.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*JpaRepository.*"),
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Fake.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*PaymentApiApplication.*")
         }
 )

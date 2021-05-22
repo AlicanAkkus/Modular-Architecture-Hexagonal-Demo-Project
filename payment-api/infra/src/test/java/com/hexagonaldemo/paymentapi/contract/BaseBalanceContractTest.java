@@ -16,8 +16,16 @@ public class BaseBalanceContractTest extends AbstractContractTest {
                 .id(1L)
                 .accountId(1L)
                 .amount(BigDecimal.TEN)
-                .createdAt(LocalDateTime.of(2020,3,13,12,11,10))
-                .updatedAt(LocalDateTime.of(2020,3,14,13,12,11))
+                .createdAt(LocalDateTime.of(2020, 3, 13, 12, 11, 10))
+                .updatedAt(LocalDateTime.of(2020, 3, 14, 13, 12, 11))
+                .build());
+
+        when(balanceTransactionCreateCommandHandler.handle(any())).thenReturn(Balance.builder()
+                .id(1L)
+                .accountId(1L)
+                .amount(BigDecimal.TEN)
+                .createdAt(LocalDateTime.of(2020, 3, 13, 12, 11, 10))
+                .updatedAt(LocalDateTime.of(2020, 3, 14, 13, 12, 11))
                 .build());
     }
 }

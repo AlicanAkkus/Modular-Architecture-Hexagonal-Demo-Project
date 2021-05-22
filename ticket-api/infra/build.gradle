@@ -44,7 +44,8 @@ tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment-api:infra:
 tasks.processContractTestResources.dependsOn rootProject.tasks.findByPath('ticket-api:infra:generateContractTests')
 
 contracts {
-    basePackageForTests = 'com.hexagonaldemo.ticketapi.contract'
+    generatedTestJavaSourcesDir = project.file("src/test/java/")
+    basePackageForTests = 'com.hexagonaldemo.ticketapi.contract.generated'
     nameSuffixForTests = 'ContractTest'
     testFramework = TestFramework.JUNIT5
     testMode = TestMode.EXPLICIT

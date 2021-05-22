@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Profile;
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Service.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Adapter.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Converter.*"),
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Fake.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*TicketApiApplication.*")
         }
 )
