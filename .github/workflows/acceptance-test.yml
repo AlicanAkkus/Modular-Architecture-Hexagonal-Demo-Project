@@ -16,66 +16,17 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    services:
-
-      mysql:
-        image: mysql
-        env:
-          MYSQL_ROOT_PASSWORD: password
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
-
-      redis:
-        image: redis
-        env:
-          REDIS_PASSWORD: redisPassword
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 6379:6379
-
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        env:
-          ZOOKEEPER_CLIENT_PORT: 2181
-          ZOOKEEPER_TICK_TIME: 2000
-
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        ports:
-          - 9092:9092
-        env:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-          KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-          KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
-
     steps:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Mysql initialize
-        run: |
-          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/0_initialize.sql
-          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/1_schema.sql
-          mysql -h 127.0.0.1 --port 3306 -u root -ppassword mysql < docs/ddl/2_data.sql
-
       - name: Create API's And Run Tests
         run: |
-          export PAYMENT_API_BASE_URL=paymentapi
-          docker run -d --name paymentapi -p 127.0.0.1:8090:8090 lemiorhan/hexagonaldemo-paymentapi:latest
-          echo "Payment api has started"
-          docker run -d --name ticketapi -p 127.0.0.1:8094:8094 --link paymentapi lemiorhan/hexagonaldemo-ticketapi:latest
-          echo "Ticket api has started"
-          sleep 3
+          docker volume create hexagonaldemo_mysql_data
+          echo "volume created"
+          docker network create hexagonaldemo_network
+          echo "network created"
+          docker-compose up -d
           echo "Running acceptance test has started"
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
           echo "Running acceptance test has finished"
-
