@@ -11,6 +11,8 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=code_smells)](https://sonarcloud.io/dashboard?id=hex)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hex&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hex)
 
+---
+
 ## Table of Contents
 * [Motivation](#Motivation)
 * [What is the Hexagonal Architecture](#What-is-the-Hexagonal-Architecture)
@@ -27,6 +29,11 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 ## Wiki
 * [How to build and run tests](../../wiki/How-to-build-and-run-tests)
 * [How to run acceptance tests at local](../../wiki/How-to-run-acceptance-tests-at-local)
+
+## Reports
+* [Sonar Report](https://sonarcloud.io/dashboard?id=hex)
+
+---
 
 ### Motivation
 
@@ -45,6 +52,7 @@ We recommend Hexagonal Architecture for those who want to write clean, maintaina
 ### Technologies Used
 
 You can use any programming language for implementing Hexagonal Architecture. Here is the list of technologies we used for the demo application;
+
 * Spring Boot 2
 * Java 11
 * Gradle 7
@@ -53,16 +61,15 @@ You can use any programming language for implementing Hexagonal Architecture. He
 * Mysql  
 * Redis  
 * Kafka
-* Dockerized Integration Tests
-* Consumer Driven Contract Testing
 * Groovy 3
-* Cucumber
+* Cucumber 
 
 It's so easy to reach 100% code coverage if you design by tests wisely. There are the types of tests written:
+
 * Unit tests
-* Integration tests
-* Contract tests
-* External Verifier Contract tests
+* Dockerized integration tests
+* Consumer driven contract tests
+* External verifier contract tests
 * Acceptance tests
 
 ### What You Will Learn
