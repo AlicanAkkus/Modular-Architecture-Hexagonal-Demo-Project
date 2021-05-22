@@ -72,9 +72,9 @@ jobs:
           export PAYMENT_API_BASE_URL=paymentapi
           docker network create container-network
           echo "Container network created"
-          docker run --network="host" -d --name paymentapi -p 8090:8090 lemiorhan/hexagonaldemo-paymentapi:latest
+          docker run --network="container-network" -d --name paymentapi -p 8090:8090 lemiorhan/hexagonaldemo-paymentapi:latest
           echo "Payment api has started"
-          docker run --network="host" -d --name ticketapi -p 8094:8094 --link paymentapi lemiorhan/hexagonaldemo-ticketapi:latest
+          docker run --network="container-network" -d --name ticketapi -p 8094:8094 --link paymentapi lemiorhan/hexagonaldemo-ticketapi:latest
           echo "Ticket api has started"
           sleep 3
           echo "Running acceptance test has started"
