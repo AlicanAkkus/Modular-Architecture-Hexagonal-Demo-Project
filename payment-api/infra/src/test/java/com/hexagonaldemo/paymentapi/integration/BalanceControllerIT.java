@@ -3,6 +3,8 @@ package com.hexagonaldemo.paymentapi.integration;
 import com.hexagonaldemo.paymentapi.AbstractIT;
 import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceResponse;
+import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceTransactionCreateRequest;
+import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -60,5 +62,38 @@ class BalanceControllerIT extends AbstractIT {
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getErrors()).isNotNull();
         assertThat(response.getBody().getErrors().getErrorCode()).isEqualTo("11");
+    }
+
+    @Test
+    void should_deposit_withdraw_balance() {
+        updateBalance(1L, BalanceTransactionType.DEPOSIT, 50.0, 50.0);
+        updateBalance(1L, BalanceTransactionType.DEPOSIT, 25.0, 75.0);
+        updateBalance(1L, BalanceTransactionType.WITHDRAW, 10.0, 65.0);
+        updateBalance(1L, BalanceTransactionType.COMPENSATE, 100.0, 165.0);
+    }
+
+    private void updateBalance(Long accountId, BalanceTransactionType balanceTransactionType, double amount, double expectedAmount) {
+        // given
+        BalanceTransactionCreateRequest balanceTransactionCreateRequest = BalanceTransactionCreateRequest.builder()
+                .accountId(accountId)
+                .type(balanceTransactionType)
+                .amount(BigDecimal.valueOf(amount))
+                .build();
+
+        //when
+        ResponseEntity<Response<BalanceResponse>> response1 = testRestTemplate.exchange(
+                "/api/v1/balances",
+                HttpMethod.POST, new HttpEntity<>(balanceTransactionCreateRequest, null), balanceResponseType);
+
+        //then
+        assertThat(response1).isNotNull();
+        assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response1.getBody()).isNotNull();
+
+        assertThat(response1.getBody().getData()).isNotNull();
+        BalanceResponse balanceResponse1 = response1.getBody().getData();
+        assertThat(balanceResponse1)
+                .extracting("accountId", "amount")
+                .contains(accountId, BigDecimal.valueOf(expectedAmount));
     }
 }

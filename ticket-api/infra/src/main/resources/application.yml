@@ -68,7 +68,7 @@ kafka:
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-acceptance-test:
+administration:
   enabled: true
 commandhandler:
   enabled: true

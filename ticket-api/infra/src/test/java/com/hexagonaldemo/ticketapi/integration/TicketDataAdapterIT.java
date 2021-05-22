@@ -97,4 +97,14 @@ class TicketDataAdapterIT extends AbstractIT {
         // then
         assertThat(tickets).isEmpty();
     }
+
+    @Test
+    void should_delete_all_tickets() {
+        // when
+        ticketAdapter.deleteAll();
+
+        // then
+        var ticketEntities = ticketJpaRepository.findAll();
+        assertThat(ticketEntities).isEmpty();
+    }
 }

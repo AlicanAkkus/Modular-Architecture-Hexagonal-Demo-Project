@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "administration.enabled", havingValue = "true")
 @RequestMapping("/api/v1/meetups")
 public class MeetupAdminController extends BaseController {
 

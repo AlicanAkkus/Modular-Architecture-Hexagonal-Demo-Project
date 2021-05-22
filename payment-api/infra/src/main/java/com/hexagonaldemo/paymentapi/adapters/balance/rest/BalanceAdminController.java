@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "administration.enabled", havingValue = "true")
 @RequestMapping("/api/v1/balances")
 public class BalanceAdminController extends BaseController {
 

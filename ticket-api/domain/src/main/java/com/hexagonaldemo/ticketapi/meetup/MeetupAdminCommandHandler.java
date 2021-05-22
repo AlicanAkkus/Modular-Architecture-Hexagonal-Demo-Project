@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service("meetupAdminCommandHandler")
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "administration.enabled", havingValue = "true")
 public class MeetupAdminCommandHandler implements VoidEmptyCommandHandler {
 
     private final MeetupPort meetupPort;

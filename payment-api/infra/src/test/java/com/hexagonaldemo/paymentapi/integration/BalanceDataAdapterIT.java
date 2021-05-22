@@ -79,4 +79,13 @@ class BalanceDataAdapterIT extends AbstractIT {
                 .returns(BigDecimal.valueOf(88.81), from(Balance::getAmount));
     }
 
+    @Test
+    void should_delete_all_balances() {
+        // when
+        balanceDataAdapter.deleteAll();
+
+        // then
+        var balanceEntities = balanceJpaRepository.findAll();
+        assertThat(balanceEntities).isEmpty();
+    }
 }

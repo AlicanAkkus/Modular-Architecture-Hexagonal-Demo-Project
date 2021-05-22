@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service("balanceAdminCommandHandler")
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "administration.enabled", havingValue = "true")
 public class BalanceAdminCommandHandler implements VoidEmptyCommandHandler {
 
     private final BalancePort balancePort;

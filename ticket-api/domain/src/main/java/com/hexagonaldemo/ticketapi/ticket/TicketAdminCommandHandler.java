@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service("retrieveAdminCommandHandler")
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "acceptance-test.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "administration.enabled", havingValue = "true")
 public class TicketAdminCommandHandler implements VoidEmptyCommandHandler {
 
     private final TicketPort ticketPort;
