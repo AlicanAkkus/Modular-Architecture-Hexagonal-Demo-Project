@@ -37,6 +37,36 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+  paymentapi:
+    image: lemiorhan/hexagonaldemo-paymentapi:latest
+    ports:
+      - 8090:8090
+    depends_on:
+      - mysql
+      - kafka
+      - zookeeper
+    environment:
+      - DB_HOST=mysql
+      - KAFKA_BROKER_HOST=kafka
+      - REDIS_HOST=redis
+    restart: on-failure
+
+  ticketapi:
+    image: lemiorhan/hexagonaldemo-ticketapi:latest
+    ports:
+      - 8094:8094
+    depends_on:
+      - mysql
+      - kafka
+      - zookeeper
+      - paymentapi
+    environment:
+      - DB_HOST=mysql
+      - KAFKA_BROKER_HOST=kafka
+      - PAYMENT_API_BASE_URL=paymentapi
+      - REDIS_HOST=redis
+    restart: on-failure
+
 volumes:
   mysql_data:
     external:

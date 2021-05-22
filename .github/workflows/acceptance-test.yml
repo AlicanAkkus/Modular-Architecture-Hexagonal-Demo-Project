@@ -26,7 +26,7 @@ jobs:
           echo "volume created"
           docker network create hexagonaldemo_network
           echo "network created"
-          docker-compose up -d
+          docker-compose -f docker-compose-ci.yml up -d
           echo "Running acceptance test has started"
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
           echo "Running acceptance test has finished"
