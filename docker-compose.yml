@@ -4,7 +4,6 @@ services:
 
   mysql:
     image: mysql
-    container_name: hexagonaldemo_mysql
     volumes:
       - ./docs/ddl:/docker-entrypoint-initdb.d
     environment:
@@ -31,18 +30,17 @@ services:
       - zookeeper
     ports:
       - 29092:29092
+      - 9092:9092
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
 volumes:
   mysql_data:
-    external:
-      name: hexagonaldemo_mysql_data
+    name: hexagonaldemo_mysql_data
 
 networks:
   default:
-    external:
-      name: hexagonaldemo_network
+    name: hexagonaldemo_network
