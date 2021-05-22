@@ -24,10 +24,14 @@ jobs:
         run: |
           docker volume create hexagonaldemo_mysql_data
           echo "volume created"
+
           docker network create hexagonaldemo_network
           echo "network created"
+
           docker-compose -f docker-compose-ci.yml up -d
           sleep 10
           echo "Running acceptance test has started"
+
+          export PROFILE=ci
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
           echo "Running acceptance test has finished"

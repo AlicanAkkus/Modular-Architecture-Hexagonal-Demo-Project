@@ -5,9 +5,6 @@
     },
     "ci": {
       "baseUri": "http://127.0.0.1:8090"
-    },
-    "ci-server": {
-      "baseUri": "http://127.0.0.1:8090"
     }
   },
   "balance": {
@@ -15,9 +12,6 @@
       "baseUri": "http://127.0.0.1:8090"
     },
     "ci": {
-      "baseUri": "http://127.0.0.1:8090"
-    },
-    "ci-server": {
       "baseUri": "http://127.0.0.1:8090"
     }
   },
@@ -27,9 +21,6 @@
     },
     "ci": {
       "baseUri": "http://127.0.0.1:8094"
-    },
-    "ci-server": {
-      "baseUri": "http://127.0.0.1:8094"
     }
   },
   "ticket": {
@@ -37,9 +28,6 @@
       "baseUri": "http://127.0.0.1:8094"
     },
     "ci": {
-      "baseUri": "http://127.0.0.1:8094"
-    },
-    "ci-server": {
       "baseUri": "http://127.0.0.1:8094"
     }
   }
