@@ -75,7 +75,7 @@ jobs:
           echo "Payment api has started"
           docker run --network="container-network" -d --name ticketapi -p 8094:8094 lemiorhan/hexagonaldemo-ticketapi:latest
           echo "Ticket api has started"
-          sleep 3000
+          sleep 3
           echo "Running acceptance test has started"
           ./gradlew clean :acceptance-test-suite:cucumber -PskipInfraSetup -Dorg.gradle.daemon=false
           echo "Running acceptance test has finished"
