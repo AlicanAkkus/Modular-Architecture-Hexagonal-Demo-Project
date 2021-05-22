@@ -15,7 +15,6 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 * [Motivation](#Motivation)
 * [What is the Hexagonal Architecture](#What-is-the-Hexagonal-Architecture)
 * [Technologies Used](#Technologies-Used)
-* [Usage](#Usage)
 * [What You Will Learn](#What-You-Will-Learn)  
 * [Useful Links From Authors](#Useful-Links-From-Authors)
 * [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
@@ -62,30 +61,9 @@ You can use any programming language for implementing Hexagonal Architecture. He
 It's so easy to reach 100% code coverage if you design by tests wisely. There are the types of tests written:
 * Unit tests
 * Integration tests
-* Conract tests
+* Contract tests
 * External Verifier Contract tests
 * Acceptance tests
-
-### Usage
-
-After cloning the project on your local, you can use the following gradle commands to build and run tests.
-```
-# This command builds all modules, boot ups db and redis, runs contract tests and other tests, closes down db and redis 
-./gradlew clean build
-
-# If your local infra is already up, then this command only builds all modules and runs contract tests and other tests
-./gradlew clean build -PskipInfraSetup
-```
-
-You can boot up all apis and infra with the following commands.
-
-```
-# This command boot ups db, redis and all apis
-./run.sh up-all
-
-# This command stops db, redis and kills all apis
-./run.sh down-all
-```
 
 ### What You Will Learn
 
@@ -125,8 +103,8 @@ Please feel free to open tickets to suggest new features and improvement points.
 Please take a lot at [code of conduct](CODE_OF_CONDUCT.md) before opening issues or creating pull requests.
 
 ### Authors
-* **Lemi Orhan Ergin**, Software Crafter at [Craftgate](https://craftgate.io) - [Github](https://github.com/lemiorhan), [Twitter](https://twitter.com/lemiorhan), [Linkedin](https://www.linkedin.com/in/lemiorhan/)
-* **Alican Akkuş**, Software Crafter at [Craftgate](https://craftgate.io) - [Github](https://github.com/AlicanAkkus), [Twitter](https://twitter.com/alican_akkus), [Linkedin](https://www.linkedin.com/in/aakkus/)
+* **Lemi Orhan Ergin**, Software Crafter at [Craftgate](https://craftgate.io) -> [Github](https://github.com/lemiorhan), [Twitter](https://twitter.com/lemiorhan), [Linkedin](https://www.linkedin.com/in/lemiorhan/)
+* **Alican Akkuş**, Software Crafter at [Craftgate](https://craftgate.io) -> [Github](https://github.com/AlicanAkkus), [Twitter](https://twitter.com/alican_akkus), [Linkedin](https://www.linkedin.com/in/aakkus/)
 
 ### License
 
