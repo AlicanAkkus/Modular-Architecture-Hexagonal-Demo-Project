@@ -20,11 +20,14 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 * [Useful Links From Authors](#Useful-Links-From-Authors)
 * [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
 * [History](#History)
-* [Roadmap](#Roadmap)
 * [Contributing](#Contributing)
 * [Code of Conduct](#Code-of-Conduct)
 * [Authors](#Authors)
 * [License](#License)
+
+## Wiki
+* [How to build and run tests](../../wiki/How-to-build-and-run-tests)
+* [How to run acceptance tests at local](../../wiki/How-to-run-acceptance-tests-at-local)
 
 ### Motivation
 
