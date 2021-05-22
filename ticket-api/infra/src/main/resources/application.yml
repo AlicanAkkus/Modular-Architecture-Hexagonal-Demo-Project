@@ -77,7 +77,7 @@ adapters:
     enabled: true
     retryAttempts: 3
     retryDelay: 1
-    baseUrl: http://paymentapi:8090
+    baseUrl: http://${PAYMENT_API_HOST:localhost}:8090
     paymentPath: /api/v1/payments
   account:
     enabled: true

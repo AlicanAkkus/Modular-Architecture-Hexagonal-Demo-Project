@@ -63,7 +63,7 @@ services:
     environment:
       - DB_HOST=mysql
       - KAFKA_BROKER_HOST=kafka
-      - PAYMENT_API_BASE_URL=paymentapi
+      - PAYMENT_API_HOST=paymentapi
       - REDIS_HOST=redis
     restart: on-failure
 
