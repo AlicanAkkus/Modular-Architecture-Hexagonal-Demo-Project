@@ -1,5 +1,6 @@
 package com.hexagonaldemo.ticketapi.contract;
 
+import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 
 import java.math.BigDecimal;
@@ -13,6 +14,21 @@ public class BaseTicketContract extends AbstractContractTest {
     @Override
     void setUp() {
         when(ticketReserveCommandHandler.handle(any())).thenReturn(buildTicket());
+    }
+
+    protected void emitTicketReservedEvent() {
+        TicketReservedEvent ticketReservedEvent = TicketReservedEvent.builder()
+                .id(300L)
+                .accountId(232L)
+                .meetupId(342L)
+                .reserveDate(LocalDateTime.of(2021, 5, 29, 15, 15, 0))
+                .price(BigDecimal.valueOf(60))
+                .count(2)
+                .paymentId(3221L)
+                .eventCreatedAt(LocalDateTime.of(2021, 5, 29, 15, 15, 2))
+                .build();
+
+        ticketReservedEventPort.publish(ticketReservedEvent);
     }
 
     private Ticket buildTicket() {

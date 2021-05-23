@@ -32,6 +32,7 @@ dependencies {
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-stub-runner'
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-verifier'
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock'
+    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-stream-test-support'
 
     testImplementation files("${project.rootDir}/payment-api/infra/build/libs/infra-stubs.jar")
 }

@@ -31,7 +31,7 @@ public class TicketReserveCommandHandler implements CommandHandler<Ticket, Ticke
     private final TicketPort ticketPort;
     private final PaymentPort paymentPort;
     private final AccountPort accountPort;
-    private final TicketReservedEventPort reservationNotificationPort;
+    private final TicketReservedEventPort ticketReservedEventPort;
     private final PaymentRollbackEventPort paymentRollbackNotificationPort;
 
     /**
@@ -49,7 +49,7 @@ public class TicketReserveCommandHandler implements CommandHandler<Ticket, Ticke
             var createdTicket = ticketPort.create(buildCreateTicket(ticketReserve));
             log.debug("Ticket price reserved by account {}", account.getId());
 
-            reservationNotificationPort.publish(TicketReservedEvent.from(createdTicket, payment));
+            ticketReservedEventPort.publish(TicketReservedEvent.from(createdTicket, payment));
             log.debug("Ticket create event is sent for ticket {}", createdTicket);
 
             return createdTicket;

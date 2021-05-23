@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "kafka.enabled", havingValue = "true")
-public class TicketReservedEventAdapter implements TicketReservedEventPort {
+public class KafkaEventStream implements TicketReservedEventPort {
 
     private final ReservationEventKafkaStream reservationEventKafkaStream;
 

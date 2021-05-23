@@ -2,7 +2,7 @@ package com.hexagonaldemo.ticketapi.integration;
 
 import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
-import com.hexagonaldemo.ticketapi.adapters.reservation.event.TicketReservedEventAdapter;
+import com.hexagonaldemo.ticketapi.adapters.reservation.event.KafkaEventStream;
 import com.hexagonaldemo.ticketapi.common.event.consumer.ReservationEventKafkaStreamTestConsumer;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
 @IT
-class TicketReservedEventAdapterIT extends AbstractIT {
+class KafkaEventStreamIT extends AbstractIT {
 
     @Autowired
-    TicketReservedEventAdapter reservationNotificationAdapter;
+    KafkaEventStream reservationNotificationAdapter;
 
     @Autowired
     ReservationEventKafkaStreamTestConsumer reservationEventKafkaStreamTestConsumer;
