@@ -42,9 +42,11 @@ tasks.generateContractTests.dependsOn rootProject.tasks.findByPath('payment-api:
 tasks.test.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
 tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('payment-api:infra:verifierStubsJar')
 tasks.processContractTestResources.dependsOn rootProject.tasks.findByPath('ticket-api:infra:generateContractTests')
+tasks.compileTestJava.dependsOn rootProject.tasks.findByPath('ticket-api:infra:generateContractTests')
 
 contracts {
-    generatedTestJavaSourcesDir = project.file("src/test/java/")
+    generatedTestJavaSourcesDir = project.file("${project.buildDir}/generated-test-sources/contractTest/java")
+    generatedTestResourcesDir = project.file("${project.buildDir}/generated-test-resources/contracts")
     basePackageForTests = 'com.hexagonaldemo.ticketapi.contract.generated'
     nameSuffixForTests = 'ContractTest'
     testFramework = TestFramework.JUNIT5
