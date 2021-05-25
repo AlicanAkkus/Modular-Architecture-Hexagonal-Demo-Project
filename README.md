@@ -35,8 +35,7 @@ This project is a sample implementation for Hexagonal Architecture (aka Ports An
 
 ---
 
-### Hexagonal Architecture Flow Diagram 
-click to enlarge
+### Hexagonal Architecture Flow Diagram (click to enlarge)
 [![Hexagonal Architecture Flow Diagram](docs/images/hexagonal-flow-diagram_sm.jpg)](docs/images/hexagonal-flow-diagram.jpg)
 
 
