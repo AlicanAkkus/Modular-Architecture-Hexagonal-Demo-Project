@@ -49,9 +49,9 @@ spring:
           auto-create-topics: false
           brokers: ${KAFKA_BROKER_HOST:localhost}:${KAFKA_BROKER_PORT:9092}
       bindings:
-        ticketReservedOutout:
+        ticketReservedOutput:
           destination: ticketReserved.test.topic
-        paymentRollbackOutout:
+        paymentRollbackOutput:
           destination: paymentRollback.test.topic
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
