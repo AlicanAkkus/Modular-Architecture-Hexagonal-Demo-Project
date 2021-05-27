@@ -1,5 +1,10 @@
 Feature: Ticket Features
 
+  Scenario: Initialize before starting the tests
+    Given initialize test suite
+
+#################################
+
   Scenario: Customer has not sufficient balance to buy ticket
 
     Given customer John initiated a balance with 0 TL
@@ -26,3 +31,8 @@ Feature: Ticket Features
     When customer John tries to buy 3 tickets from Java Day Istanbul
     Then customer John can buy tickets
     And customer John has a balance with 50 TL
+
+#################################
+
+  Scenario: Finish the test suite and do analysis
+    Given complete test suite

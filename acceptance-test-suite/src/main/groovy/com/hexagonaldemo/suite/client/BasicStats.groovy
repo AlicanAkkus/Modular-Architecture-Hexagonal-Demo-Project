@@ -12,7 +12,7 @@ class BasicStats implements Stats {
     private static AtomicInteger httpCallCount = new AtomicInteger(0)
     private static ConcurrentHashMap httpCalls = [:]
 
-    def initialize() {
+    def static initialize() {
         httpCalls = [:]
     }
 
@@ -20,7 +20,7 @@ class BasicStats implements Stats {
         httpCallCount.incrementAndGet()
     }
 
-    def printExecutionTimes() {
+    def static printExecutionTimes() {
         log.info("[HTTP CALLS EXECUTION TIMES] Stats for total ${httpCallCount.get()} calls is listed as follows:")
 
         log.info("-" * 128)
@@ -41,23 +41,15 @@ class BasicStats implements Stats {
         nameMap.total = nameMap.total + execTime
     }
 
-    private List<String> printExecutionTime() {
-        return httpCalls.toSorted { Map.Entry a, Map.Entry b -> -(avg(a.value) <=> avg(b.value)) }.collect { key, value ->
+    private static List<String> printExecutionTime() {
+        return httpCalls.toSorted { a, b -> -(a.value.total / a.value.count) <=> (b.value.total / b.value.count) }.collect { key, value ->
             String.format("| %52s | %-15s | %-15s | %-15s | %-15s |",
                     key,
                     "${formatDouble(value.max)} ms",
                     "${formatDouble(value.min)} ms",
-                    "${formatDouble(avg(value))} ms",
+                    "${formatDouble(value.total / value.count)} ms",
                     "$value.count")
         }
-    }
-
-    Map getExecutionTimes() {
-        return httpCalls.toSorted { Map.Entry a, Map.Entry b -> -(avg(a.value) <=> avg(b.value)) }
-    }
-
-    private double avg(value) {
-        return value.total / value.count
     }
 
     static String formatDouble(double execTime) {

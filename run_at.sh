@@ -47,12 +47,20 @@ is_api_up() {
 }
 
 start_apis() {
+
     echo " :> Api bootup is triggered"
-    ./gradlew clean :payment-api:build -x test :payment-api:bootRun -PskipInfraSetup --stacktrace >payment-api.log  &
+
+    ./gradlew clean :payment-api:build -x test -PskipInfraSetup >payment-api.log
+    echo " :> Payment api is build"
+
+    ./gradlew clean :ticket-api:build -x test -PskipInfraSetup >ticket-api.log
+    echo " :> Ticket api is build"
+
+    ./gradlew :payment-api:bootRun -PskipInfraSetup --stacktrace >payment-api.log  &
     sleep 3
     echo " :> Payment api boot is triggered"
 
-    ./gradlew clean :ticket-api:build -x test :ticket-api:bootRun -PskipInfraSetup --stacktrace >ticket-api.log &
+    ./gradlew :ticket-api:bootRun -PskipInfraSetup --stacktrace >ticket-api.log &
     sleep 3
     echo " :> Ticket api boot is triggered"
 
@@ -77,7 +85,7 @@ stop_apis() {
         # shellcheck disable=SC2046
         # shellcheck disable=SC2116
         # shellcheck disable=SC2069
-        kill -9 $(echo "$pid_list") >/dev/null 2>&1
+        kill -9 $(echo "$pid_list") 2>/dev/null
 
         echo " :> Api instances are killed"
 
