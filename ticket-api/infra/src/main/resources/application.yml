@@ -81,3 +81,10 @@ adapters:
     paymentPath: /api/v1/payments
   account:
     enabled: true
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LOGGING
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logging:
+  level:
+    com.hexagonaldemo.ticketapi: DEBUG

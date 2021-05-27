@@ -60,8 +60,7 @@ public class RestExceptionHandler extends BaseController {
 
     @ExceptionHandler(PaymentApiBusinessException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public Response<ErrorResponse> handleAuthServerBusinessException(PaymentApiBusinessException ex, Locale locale) {
-        log.warn("Business exception occurred", ex);
+    public Response<ErrorResponse> handlePaymentApiBusinessException(PaymentApiBusinessException ex, Locale locale) {
         return createErrorResponseFromMessageSource(ex.getKey(), locale, ex.getArgs());
     }
 

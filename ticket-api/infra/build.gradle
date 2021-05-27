@@ -8,8 +8,10 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+
     implementation group: 'org.springframework.retry', name: 'spring-retry'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-stream-kafka'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth'
 
     implementation group: 'javax.xml.bind', name: 'jaxb-api'
     implementation group: 'com.sun.xml.bind', name: 'jaxb-impl'

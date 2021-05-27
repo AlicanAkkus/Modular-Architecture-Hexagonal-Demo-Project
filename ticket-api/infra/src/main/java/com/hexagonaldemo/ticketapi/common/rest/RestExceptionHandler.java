@@ -1,6 +1,7 @@
 package com.hexagonaldemo.ticketapi.common.rest;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
+import com.hexagonaldemo.ticketapi.common.exception.TicketApiDataNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -60,8 +61,13 @@ public class RestExceptionHandler extends BaseController {
 
     @ExceptionHandler(TicketApiBusinessException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public Response<ErrorResponse> handleAuthServerBusinessException(TicketApiBusinessException ex, Locale locale) {
-        log.warn("Business exception occurred", ex);
+    public Response<ErrorResponse> handleTicketApiBusinessException(TicketApiBusinessException ex, Locale locale) {
+        return createErrorResponseFromMessageSource(ex.getKey(), locale, ex.getArgs());
+    }
+
+    @ExceptionHandler(TicketApiDataNotFoundException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public Response<ErrorResponse> handleTicketApiDataNotFoundException(TicketApiDataNotFoundException ex, Locale locale) {
         return createErrorResponseFromMessageSource(ex.getKey(), locale, ex.getArgs());
     }
 

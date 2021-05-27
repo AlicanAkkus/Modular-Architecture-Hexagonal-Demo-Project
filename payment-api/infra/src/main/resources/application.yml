@@ -79,3 +79,11 @@ adapters:
   account:
     lock:
       enabled: true
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# LOGGING
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+logging:
+  level:
+    com.hexagonaldemo.paymentapi: DEBUG
