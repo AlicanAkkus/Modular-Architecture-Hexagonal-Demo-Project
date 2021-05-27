@@ -1,6 +1,6 @@
 # Modular Architecture - Hexagonal Demo Project
 
-This project is a sample production-ready implementation for deomstrating the power of Hexagonal Architecture (aka Ports And Adapters Pattern) written in Java.
+This project is a sample production-ready implementation for demonstrating the power of Hexagonal Architecture (aka Ports And Adapters Pattern) written in Java.
 
 ![Build Ticket API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Ticket%20API%20Image/badge.svg)
 ![Build Payment API](https://github.com/AlicanAkkus/Modular-Architecture-Hexagonal-Demo-Project/workflows/Build%20Payment%20API%20Image/badge.svg)
