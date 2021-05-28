@@ -31,9 +31,8 @@ public class PaymentCreateCommandHandler implements CommandHandler<Payment, Paym
     @Override
     @Transactional
     public Payment handle(PaymentCreate paymentCreate) {
+        accountFacade.makeBusy(paymentCreate.getAccountId());
         try {
-            accountFacade.makeBusy(paymentCreate.getAccountId());
-
             var balanceTransactionCreate = buildBalanceTransactionCreate(paymentCreate);
             var balance = balanceRetrieveCommandHandler.handle(BalanceRetrieve.from(paymentCreate.getAccountId()));
             balanceValidator.validate(balance, balanceTransactionCreate);

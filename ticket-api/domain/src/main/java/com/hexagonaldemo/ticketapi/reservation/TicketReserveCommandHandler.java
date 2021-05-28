@@ -45,7 +45,6 @@ public class TicketReserveCommandHandler implements CommandHandler<Ticket, Ticke
         log.debug("Ticket price payed by account {} as {}", account.getId(), payment.getPrice());
 
         try {
-
             var createdTicket = ticketPort.create(buildCreateTicket(ticketReserve));
             log.debug("Ticket price reserved by account {}", account.getId());
 
@@ -53,10 +52,8 @@ public class TicketReserveCommandHandler implements CommandHandler<Ticket, Ticke
             log.debug("Ticket create event is sent for ticket {}", createdTicket);
 
             return createdTicket;
-
         } catch (Exception e) {
-
-            log.warn("Ticket cannot be created due to errors, payment will rollback.", e);
+            log.error("Ticket cannot be created due to errors, payment will rollback.", e);
             paymentRollbackNotificationPort.publish(PaymentRollbackEvent.from(payment));
 
             throw new TicketApiBusinessException("ticketapi.ticket.cannotBeCreated");
