@@ -1,13 +1,10 @@
 package com.hexagonaldemo.ticketapi.unit;
 
-import com.hexagonaldemo.ticketapi.AbstractIT;
-import com.hexagonaldemo.ticketapi.IT;
 import com.hexagonaldemo.ticketapi.adapters.payment.rest.PaymentNoopAdapter;
-import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 

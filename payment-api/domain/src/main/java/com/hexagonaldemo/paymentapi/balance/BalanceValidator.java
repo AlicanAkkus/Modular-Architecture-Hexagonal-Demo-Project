@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.balance;
 
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import org.springframework.stereotype.Component;

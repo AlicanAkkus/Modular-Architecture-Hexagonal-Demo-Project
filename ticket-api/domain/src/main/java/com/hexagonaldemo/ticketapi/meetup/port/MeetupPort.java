@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.meetup.port;
 
-import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
+import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
 
 public interface MeetupPort {

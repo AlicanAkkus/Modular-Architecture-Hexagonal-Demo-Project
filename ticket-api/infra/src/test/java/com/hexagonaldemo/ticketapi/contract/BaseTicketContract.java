@@ -12,7 +12,7 @@ public class BaseTicketContract extends AbstractContractTest {
 
     @Override
     void setUp() {
-        when(ticketReserveCommandHandler.handle(any())).thenReturn(buildTicket());
+        when(ticketReserveUseCaseHandler.handle(any())).thenReturn(buildTicket());
     }
 
     private Ticket buildTicket() {

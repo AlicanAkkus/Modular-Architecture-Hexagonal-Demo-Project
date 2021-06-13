@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.ticket.port;
 
-import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
-import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
+import com.hexagonaldemo.ticketapi.ticket.usecase.CreateTicket;
+import com.hexagonaldemo.ticketapi.ticket.usecase.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.adapters.payment.rest;
 
-import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

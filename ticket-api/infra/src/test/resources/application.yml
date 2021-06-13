@@ -70,7 +70,7 @@ spring:
 # TESTS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-commandhandler:
+usecase:
   enabled: false
 stubrunner:
   ids:

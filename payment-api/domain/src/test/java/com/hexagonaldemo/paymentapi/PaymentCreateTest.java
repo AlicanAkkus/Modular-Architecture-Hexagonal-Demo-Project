@@ -4,13 +4,13 @@ import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.adapters.BalanceFakeAdapter;
 import com.hexagonaldemo.paymentapi.adapters.PaymentFakeAdapter;
-import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveCommandHandler;
-import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveUseCaseHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateUseCaseHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
-import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.paymentapi.payment.PaymentCreateUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import org.junit.jupiter.api.Test;
@@ -58,9 +58,9 @@ class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler = new BalanceTransactionCreateCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment));
-        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceTransactionCreateCommandHandler,
-                new BalanceRetrieveCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment)),
+        BalanceTransactionCreateUseCaseHandler balanceTransactionCreateUseCase = new BalanceTransactionCreateUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment));
+        PaymentCreateUseCaseHandler paymentCreateUseCase = new PaymentCreateUseCaseHandler(balanceTransactionCreateUseCase,
+                new BalanceRetrieveUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment)),
                 new AccountFacade(retrieveFakeAccountLockPort()),
                 new PaymentFakeAdapter(expectedPayment),
                 new BalanceValidator());
@@ -72,7 +72,7 @@ class PaymentCreateTest {
                 .referenceCode("ref1")
                 .build();
 
-        Payment payment = paymentCreateCommandHandler.handle(paymentCreate);
+        Payment payment = paymentCreateUseCase.handle(paymentCreate);
 
         //then
         assertThat(payment).isNotNull().isEqualTo(Payment.builder()
@@ -102,9 +102,9 @@ class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler = new BalanceTransactionCreateCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment));
-        PaymentCreateCommandHandler paymentCreateCommandHandler = new PaymentCreateCommandHandler(balanceTransactionCreateCommandHandler,
-                new BalanceRetrieveCommandHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment)),
+        BalanceTransactionCreateUseCaseHandler balanceTransactionCreateUseCase = new BalanceTransactionCreateUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment));
+        PaymentCreateUseCaseHandler paymentCreateUseCase = new PaymentCreateUseCaseHandler(balanceTransactionCreateUseCase,
+                new BalanceRetrieveUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment)),
                 new AccountFacade(retrieveFakeAccountLockPort()),
                 new PaymentFakeAdapter(expectedPayment),
                 new BalanceValidator());
@@ -116,7 +116,7 @@ class PaymentCreateTest {
                 .referenceCode("ref1")
                 .build();
 
-        Throwable throwable = catchThrowable(() -> paymentCreateCommandHandler.handle(paymentCreate));
+        Throwable throwable = catchThrowable(() -> paymentCreateUseCase.handle(paymentCreate));
 
         //then
         assertThat(throwable).isNotNull().isInstanceOf(PaymentApiBusinessException.class);

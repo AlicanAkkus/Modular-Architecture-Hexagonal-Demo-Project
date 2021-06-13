@@ -2,12 +2,12 @@ package com.hexagonaldemo.paymentapi.contract;
 
 import com.hexagonaldemo.paymentapi.TestApplication;
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
-import com.hexagonaldemo.paymentapi.balance.BalanceAdminCommandHandler;
-import com.hexagonaldemo.paymentapi.balance.BalanceCompensateCommandHandler;
-import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveCommandHandler;
-import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateCommandHandler;
-import com.hexagonaldemo.paymentapi.payment.PaymentCreateCommandHandler;
-import com.hexagonaldemo.paymentapi.payment.PaymentRollbackCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceAdminUseCaseHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceCompensateUseCaseHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveUseCaseHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.PaymentCreateUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.PaymentRollbackUseCaseHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,22 +29,22 @@ public abstract class AbstractContractTest {
     private Integer port;
 
     @MockBean
-    protected BalanceTransactionCreateCommandHandler balanceTransactionCreateCommandHandler;
+    protected BalanceTransactionCreateUseCaseHandler balanceTransactionCreateUseCaseHandler;
 
     @MockBean
-    protected BalanceRetrieveCommandHandler balanceRetrieveCommandHandler;
+    protected BalanceRetrieveUseCaseHandler balanceRetrieveUseCaseHandler;
 
     @MockBean
-    protected BalanceCompensateCommandHandler balanceCompensateCommandHandler;
+    protected BalanceCompensateUseCaseHandler balanceCompensateUseCaseHandler;
 
     @MockBean
-    protected PaymentCreateCommandHandler paymentCreateCommandHandler;
+    protected PaymentCreateUseCaseHandler paymentCreateUseCaseHandler;
 
     @MockBean
-    protected BalanceAdminCommandHandler balanceAdminCommandHandler;
+    protected BalanceAdminUseCaseHandler balanceAdminUseCaseHandler;
 
     @MockBean
-    protected PaymentRollbackCommandHandler paymentRollbackCommandHandler;
+    protected PaymentRollbackUseCaseHandler paymentRollbackUseCaseHandler;
 
     @MockBean
     protected AccountFacade accountFacade;

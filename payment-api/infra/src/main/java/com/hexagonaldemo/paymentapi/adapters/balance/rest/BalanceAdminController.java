@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.balance.rest;
 
-import com.hexagonaldemo.paymentapi.common.commandhandler.VoidEmptyCommandHandler;
+import com.hexagonaldemo.paymentapi.common.usecase.VoidEmptyUseCaseHandler;
 import com.hexagonaldemo.paymentapi.common.rest.BaseController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/balances")
 public class BalanceAdminController extends BaseController {
 
-    @Qualifier("balanceAdminCommandHandler")
-    private final VoidEmptyCommandHandler balanceAdminCommandHandler;
+    @Qualifier("balanceAdminUseCaseHandler")
+    private final VoidEmptyUseCaseHandler balanceAdminUseCaseHandler;
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteBalances() {
-        balanceAdminCommandHandler.handle();
+        balanceAdminUseCaseHandler.handle();
         log.info("All balances are deleted");
     }
 }

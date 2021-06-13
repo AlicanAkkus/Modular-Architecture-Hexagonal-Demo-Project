@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.adapters.meetup.rest.dto;
 
-import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
+import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class MeetupCreateRequest {
     @NotNull
     private LocalDateTime eventDate;
 
-    public MeetupCreate toCommand() {
+    public MeetupCreate toUseCase() {
         return MeetupCreate.builder()
                 .name(name)
                 .website(website)

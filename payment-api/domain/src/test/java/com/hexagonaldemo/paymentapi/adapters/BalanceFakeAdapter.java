@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 

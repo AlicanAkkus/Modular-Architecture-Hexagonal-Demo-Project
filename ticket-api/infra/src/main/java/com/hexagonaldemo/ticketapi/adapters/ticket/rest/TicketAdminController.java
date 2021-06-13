@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.adapters.ticket.rest;
 
-import com.hexagonaldemo.ticketapi.common.commandhandler.VoidEmptyCommandHandler;
+import com.hexagonaldemo.ticketapi.common.usecase.VoidEmptyUseCaseHandler;
 import com.hexagonaldemo.ticketapi.common.rest.BaseController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/tickets")
 public class TicketAdminController extends BaseController {
 
-    @Qualifier("retrieveAdminCommandHandler")
-    private final VoidEmptyCommandHandler retrieveAdminCommandHandler;
+    @Qualifier("retrieveAdminUseCaseHandler")
+    private final VoidEmptyUseCaseHandler retrieveAdminUseCaseHandler;
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllTickets() {
-        retrieveAdminCommandHandler.handle();
+        retrieveAdminUseCaseHandler.handle();
     }
 }

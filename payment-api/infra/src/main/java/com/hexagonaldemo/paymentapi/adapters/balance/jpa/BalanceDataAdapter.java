@@ -4,7 +4,7 @@ import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceEntity;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.entity.BalanceTransactionEntity;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceJpaRepository;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceTransactionJpaRepository;
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;

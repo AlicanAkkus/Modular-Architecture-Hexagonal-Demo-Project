@@ -12,7 +12,7 @@ public class BaseBalanceContractTest extends AbstractContractTest {
 
     @Override
     void setUp() {
-        when(balanceRetrieveCommandHandler.handle(any())).thenReturn(Balance.builder()
+        when(balanceRetrieveUseCaseHandler.handle(any())).thenReturn(Balance.builder()
                 .id(1L)
                 .accountId(1L)
                 .amount(BigDecimal.TEN)
@@ -20,7 +20,7 @@ public class BaseBalanceContractTest extends AbstractContractTest {
                 .updatedAt(LocalDateTime.of(2020, 3, 14, 13, 12, 11))
                 .build());
 
-        when(balanceTransactionCreateCommandHandler.handle(any())).thenReturn(Balance.builder()
+        when(balanceTransactionCreateUseCaseHandler.handle(any())).thenReturn(Balance.builder()
                 .id(1L)
                 .accountId(1L)
                 .amount(BigDecimal.TEN)

@@ -7,6 +7,6 @@ public class BaseBalanceCompensateTest extends AbstractContractTest {
 
     @Override
     void setUp() {
-        doNothing().when(balanceCompensateCommandHandler).handle(any());
+        doNothing().when(balanceCompensateUseCaseHandler).handle(any());
     }
 }

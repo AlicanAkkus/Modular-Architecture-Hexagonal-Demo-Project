@@ -1,7 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters.payment.event;
 
-import com.hexagonaldemo.paymentapi.common.commandhandler.VoidCommandHandler;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
+import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.event.PaymentRollbackEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PaymentRollbackEventKafkaConsumer {
 
-    private final VoidCommandHandler<PaymentRollback> paymentRollbackVoidCommandHandler;
+    private final VoidUseCaseHandler<PaymentRollback> paymentRollbackVoidUseCaseHandler;
 
     @StreamListener(PaymentEventKafkaStream.PAYMENT_ROLLBACK_INPUT)
     public void consume(@Payload PaymentRollbackEvent event) {
         log.info("Payment roll back event received: {}", event);
         try {
-            paymentRollbackVoidCommandHandler.handle(event.toModel());
+            paymentRollbackVoidUseCaseHandler.handle(event.toModel());
         } catch (Exception e) {
             log.warn("Payment {} is not rollbacked", event.getId(), e);
         }

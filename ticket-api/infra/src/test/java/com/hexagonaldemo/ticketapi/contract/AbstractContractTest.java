@@ -1,9 +1,9 @@
 package com.hexagonaldemo.ticketapi.contract;
 
 import com.hexagonaldemo.ticketapi.TestApplication;
-import com.hexagonaldemo.ticketapi.meetup.MeetupCreateCommandHandler;
-import com.hexagonaldemo.ticketapi.reservation.TicketReserveCommandHandler;
-import com.hexagonaldemo.ticketapi.ticket.TicketRetrieveCommandHandler;
+import com.hexagonaldemo.ticketapi.meetup.MeetupCreateUseCaseHandler;
+import com.hexagonaldemo.ticketapi.reservation.TicketReserveUseCaseHandler;
+import com.hexagonaldemo.ticketapi.ticket.TicketRetrieveUseCaseHandler;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -25,13 +25,13 @@ public abstract class AbstractContractTest {
     private Integer port;
 
     @MockBean
-    protected TicketReserveCommandHandler ticketReserveCommandHandler;
+    protected TicketReserveUseCaseHandler ticketReserveUseCaseHandler;
 
     @MockBean
-    protected MeetupCreateCommandHandler meetupCreateCommandHandler;
+    protected MeetupCreateUseCaseHandler meetupCreateUseCase;
 
     @MockBean
-    protected TicketRetrieveCommandHandler ticketRetrieveCommandHandler;
+    protected TicketRetrieveUseCaseHandler ticketRetrieveUseCase;
 
     @BeforeEach
     public void doBeforeEach() {

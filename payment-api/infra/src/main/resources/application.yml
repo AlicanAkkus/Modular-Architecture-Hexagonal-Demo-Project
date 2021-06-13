@@ -73,7 +73,7 @@ redis:
 
 administration:
   enabled: true
-commandhandler:
+usecase:
   enabled: true
 adapters:
   account:

@@ -1,7 +1,7 @@
 package com.hexagonaldemo.paymentapi.payment.event;
 
 import com.hexagonaldemo.paymentapi.common.model.Event;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import lombok.*;
 
 import java.time.LocalDateTime;

@@ -1,7 +1,7 @@
 package com.hexagonaldemo.ticketapi.external;
 
 import com.hexagonaldemo.ticketapi.adapters.payment.rest.PaymentRestAdapter;
-import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
-import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import lombok.extern.slf4j.Slf4j;

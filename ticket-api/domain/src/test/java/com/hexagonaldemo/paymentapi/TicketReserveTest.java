@@ -3,8 +3,8 @@ package com.hexagonaldemo.paymentapi;
 import com.hexagonaldemo.paymentapi.adapters.*;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.util.CurrentTimeFactory;
-import com.hexagonaldemo.ticketapi.reservation.TicketReserveCommandHandler;
-import com.hexagonaldemo.ticketapi.reservation.command.TicketReserve;
+import com.hexagonaldemo.ticketapi.reservation.TicketReserveUseCaseHandler;
+import com.hexagonaldemo.ticketapi.reservation.usecase.TicketReserve;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,13 +17,13 @@ import static org.assertj.core.api.Assertions.*;
 
 class TicketReserveTest {
 
-    TicketReserveCommandHandler ticketReserveCommandHandler;
+    TicketReserveUseCaseHandler ticketReserveUseCaseHandler;
     PaymentRollbackFakeEventAdapter paymentRollbackNotificationPort = new PaymentRollbackFakeEventAdapter();
     TicketReservedFakeEventAdapter reservationNotificationPort = new TicketReservedFakeEventAdapter();
 
     @BeforeEach
     void setUp() {
-        ticketReserveCommandHandler = new TicketReserveCommandHandler(
+        ticketReserveUseCaseHandler = new TicketReserveUseCaseHandler(
                 new MeetupFakeDataAdapter(),
                 new TicketFakeDataAdapter(),
                 new PaymentFakeDataAdapter(),
@@ -49,7 +49,7 @@ class TicketReserveTest {
                 .build();
 
         // when
-        Ticket ticket = ticketReserveCommandHandler.handle(ticketReserve);
+        Ticket ticket = ticketReserveUseCaseHandler.handle(ticketReserve);
 
         // then
         assertThat(ticket).isNotNull()
@@ -85,7 +85,7 @@ class TicketReserveTest {
 
         // when
         assertThatExceptionOfType(TicketApiBusinessException.class)
-                .isThrownBy(() -> ticketReserveCommandHandler.handle(ticketReserve))
+                .isThrownBy(() -> ticketReserveUseCaseHandler.handle(ticketReserve))
                 .withMessage("ticketapi.payment.client.error");
     }
 
@@ -101,7 +101,7 @@ class TicketReserveTest {
 
         // when
         assertThatExceptionOfType(TicketApiBusinessException.class)
-                .isThrownBy(() -> ticketReserveCommandHandler.handle(ticketReserve))
+                .isThrownBy(() -> ticketReserveUseCaseHandler.handle(ticketReserve))
                 .withMessage("ticketapi.ticket.cannotBeCreated");
     }
 }

@@ -17,7 +17,7 @@ sonarqube {
             subProject.tasks.jacocoTestReport.reports.xml.destination
         }
         property "sonar.scm.disabled", "true"
-        property "sonar.coverage.exclusions","**/model/**,**/dto/**,**/entity/**,**/command/**,**/event/**," +
+        property "sonar.coverage.exclusions","**/model/**,**/dto/**,**/entity/**,**/usecase/**,**/event/**," +
                 "**/*Configuration*,**/configuration/**,**/*Application*,**/*Properties*,**/*Fake*," +
                 "**/*Exception*,**/common/**,**/*Port*,**/*ContractTest*,**/acceptance-test-suite/**,**/*Admin*"
 

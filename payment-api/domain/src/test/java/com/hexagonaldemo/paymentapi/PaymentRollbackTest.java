@@ -4,11 +4,11 @@ import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.adapters.BalanceFakeAdapter;
 import com.hexagonaldemo.paymentapi.adapters.PaymentFakeAdapter;
-import com.hexagonaldemo.paymentapi.balance.BalanceCompensateCommandHandler;
+import com.hexagonaldemo.paymentapi.balance.BalanceCompensateUseCaseHandler;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
-import com.hexagonaldemo.paymentapi.payment.PaymentRollbackCommandHandler;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
+import com.hexagonaldemo.paymentapi.payment.PaymentRollbackUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import org.junit.jupiter.api.Test;
@@ -53,8 +53,8 @@ class PaymentRollbackTest {
         BalanceFakeAdapter balancePort = new BalanceFakeAdapter(currentBalance, currentBalance);
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
-        BalanceCompensateCommandHandler balanceCompensateCommandHandler = new BalanceCompensateCommandHandler(balancePort);
-        PaymentRollbackCommandHandler paymentRollbackCommandHandler = new PaymentRollbackCommandHandler(balanceCompensateCommandHandler,
+        BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
                 new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
 
         //when
@@ -64,7 +64,7 @@ class PaymentRollbackTest {
                 .price(existingPaymentToRollback.getPrice())
                 .build();
 
-        paymentRollbackCommandHandler.handle(paymentRollback);
+        paymentRollbackUseCase.handle(paymentRollback);
 
         //then
         assertThat(balancePort.retrieve(paymentRollback.getAccountId())).isNotNull()
@@ -101,8 +101,8 @@ class PaymentRollbackTest {
         BalanceFakeAdapter balancePort = new BalanceFakeAdapter(currentBalance, currentBalance);
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
-        BalanceCompensateCommandHandler balanceCompensateCommandHandler = new BalanceCompensateCommandHandler(balancePort);
-        PaymentRollbackCommandHandler paymentRollbackCommandHandler = new PaymentRollbackCommandHandler(balanceCompensateCommandHandler,
+        BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
                 new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
 
         //when
@@ -113,7 +113,7 @@ class PaymentRollbackTest {
                 .build();
 
         assertThatExceptionOfType(PaymentApiBusinessException.class)
-                .isThrownBy(() -> paymentRollbackCommandHandler.handle(paymentRollback))
+                .isThrownBy(() -> paymentRollbackUseCase.handle(paymentRollback))
                 .withMessage("paymentapi.payment.notRollbackable");
     }
 
@@ -143,8 +143,8 @@ class PaymentRollbackTest {
         BalanceFakeAdapter balancePort = new BalanceFakeAdapter(currentBalance, currentBalance);
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(null); // payment not found
 
-        BalanceCompensateCommandHandler balanceCompensateCommandHandler = new BalanceCompensateCommandHandler(balancePort);
-        PaymentRollbackCommandHandler paymentRollbackCommandHandler = new PaymentRollbackCommandHandler(balanceCompensateCommandHandler,
+        BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
                 new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
 
         //when
@@ -155,7 +155,7 @@ class PaymentRollbackTest {
                 .build();
 
         assertThatExceptionOfType(PaymentApiBusinessException.class)
-                .isThrownBy(() -> paymentRollbackCommandHandler.handle(paymentRollback))
+                .isThrownBy(() -> paymentRollbackUseCase.handle(paymentRollback))
                 .withMessage("paymentapi.payment.notRollbackable");
     }
 
@@ -191,8 +191,8 @@ class PaymentRollbackTest {
         BalanceFakeAdapter balancePort = new BalanceFakeAdapter(currentBalance, currentBalance);
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
-        BalanceCompensateCommandHandler balanceCompensateCommandHandler = new BalanceCompensateCommandHandler(balancePort);
-        PaymentRollbackCommandHandler paymentRollbackCommandHandler = new PaymentRollbackCommandHandler(balanceCompensateCommandHandler,
+        BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
                 new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
 
         //when
@@ -202,7 +202,7 @@ class PaymentRollbackTest {
                 .price(existingPaymentToRollback.getPrice())
                 .build();
 
-        paymentRollbackCommandHandler.handle(paymentRollback);
+        paymentRollbackUseCase.handle(paymentRollback);
 
         //then
         assertThat(balancePort.retrieve(paymentRollback.getAccountId())).isNotNull()

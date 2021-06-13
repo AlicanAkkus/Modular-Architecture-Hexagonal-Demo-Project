@@ -73,7 +73,7 @@ redis:
 # ADAPTERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-commandhandler:
+usecase:
   enabled: false
 
 adapters:

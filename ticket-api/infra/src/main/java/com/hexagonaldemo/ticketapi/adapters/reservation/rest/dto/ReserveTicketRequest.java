@@ -1,6 +1,6 @@
 package com.hexagonaldemo.ticketapi.adapters.reservation.rest.dto;
 
-import com.hexagonaldemo.ticketapi.reservation.command.TicketReserve;
+import com.hexagonaldemo.ticketapi.reservation.usecase.TicketReserve;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

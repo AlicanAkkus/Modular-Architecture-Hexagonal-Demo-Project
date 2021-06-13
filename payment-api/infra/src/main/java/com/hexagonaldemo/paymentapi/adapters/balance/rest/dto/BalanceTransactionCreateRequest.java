@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.balance.rest.dto;
 
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +25,7 @@ public class BalanceTransactionCreateRequest {
     @NotNull
     private BalanceTransactionType type;
 
-    public BalanceTransactionCreate toCommand() {
+    public BalanceTransactionCreate toUseCase() {
         return BalanceTransactionCreate.builder()
                 .accountId(accountId)
                 .amount(amount)

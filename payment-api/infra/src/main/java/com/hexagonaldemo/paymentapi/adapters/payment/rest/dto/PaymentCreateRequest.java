@@ -1,6 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.payment.rest.dto;
 
-import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

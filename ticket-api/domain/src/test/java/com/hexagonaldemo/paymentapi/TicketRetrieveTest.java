@@ -1,8 +1,8 @@
 package com.hexagonaldemo.paymentapi;
 
 import com.hexagonaldemo.paymentapi.adapters.TicketFakeDataAdapter;
-import com.hexagonaldemo.ticketapi.ticket.TicketRetrieveCommandHandler;
-import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
+import com.hexagonaldemo.ticketapi.ticket.TicketRetrieveUseCaseHandler;
+import com.hexagonaldemo.ticketapi.ticket.usecase.TicketRetrieve;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class TicketRetrieveTest {
 
-    TicketRetrieveCommandHandler ticketRetrieveCommandHandler;
+    TicketRetrieveUseCaseHandler ticketRetrieveUseCase;
 
     @BeforeEach
     void setUp() {
-        ticketRetrieveCommandHandler = new TicketRetrieveCommandHandler(new TicketFakeDataAdapter());
+        ticketRetrieveUseCase = new TicketRetrieveUseCaseHandler(new TicketFakeDataAdapter());
     }
 
     @Test
@@ -25,7 +25,7 @@ class TicketRetrieveTest {
                 .build();
 
         // when
-        var tickets = ticketRetrieveCommandHandler.handle(ticketRetrieve);
+        var tickets = ticketRetrieveUseCase.handle(ticketRetrieve);
 
         // then
         assertThat(tickets).isNotNull().hasSize(3);
@@ -39,7 +39,7 @@ class TicketRetrieveTest {
                 .build();
 
         // when
-        var tickets = ticketRetrieveCommandHandler.handle(ticketRetrieve);
+        var tickets = ticketRetrieveUseCase.handle(ticketRetrieve);
 
         // then
         assertThat(tickets).isEmpty();

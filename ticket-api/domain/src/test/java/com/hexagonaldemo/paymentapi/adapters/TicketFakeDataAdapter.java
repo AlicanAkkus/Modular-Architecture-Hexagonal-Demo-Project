@@ -1,8 +1,8 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
-import com.hexagonaldemo.ticketapi.ticket.command.CreateTicket;
-import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
+import com.hexagonaldemo.ticketapi.ticket.usecase.CreateTicket;
+import com.hexagonaldemo.ticketapi.ticket.usecase.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
 

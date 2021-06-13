@@ -5,7 +5,7 @@ import com.hexagonaldemo.ticketapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.ticketapi.adapters.payment.rest.properties.PaymentApiProperties;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.model.Payment;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import lombok.RequiredArgsConstructor;

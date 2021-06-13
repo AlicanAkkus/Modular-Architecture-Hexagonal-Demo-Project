@@ -4,7 +4,7 @@ import com.hexagonaldemo.ticketapi.adapters.meetup.jpa.entity.MeetupEntity;
 import com.hexagonaldemo.ticketapi.adapters.meetup.jpa.repository.MeetupJpaRepository;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiDataNotFoundException;
 import com.hexagonaldemo.ticketapi.common.model.Status;
-import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
+import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
 import com.hexagonaldemo.ticketapi.meetup.port.MeetupPort;
 import lombok.RequiredArgsConstructor;

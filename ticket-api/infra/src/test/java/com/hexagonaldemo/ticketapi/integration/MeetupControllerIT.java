@@ -4,7 +4,7 @@ import com.hexagonaldemo.ticketapi.AbstractIT;
 import com.hexagonaldemo.ticketapi.IT;
 import com.hexagonaldemo.ticketapi.adapters.meetup.rest.dto.MeetupResponse;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
+import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

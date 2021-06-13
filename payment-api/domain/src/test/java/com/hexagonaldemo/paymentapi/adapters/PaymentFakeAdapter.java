@@ -1,7 +1,7 @@
 package com.hexagonaldemo.paymentapi.adapters;
 
-import com.hexagonaldemo.paymentapi.payment.command.PaymentCreate;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;

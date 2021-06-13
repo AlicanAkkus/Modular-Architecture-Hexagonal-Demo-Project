@@ -1,11 +1,11 @@
 package com.hexagonaldemo.ticketapi.adapters.ticket.rest;
 
 import com.hexagonaldemo.ticketapi.adapters.ticket.rest.dto.TicketResponse;
-import com.hexagonaldemo.ticketapi.common.commandhandler.CommandHandler;
+import com.hexagonaldemo.ticketapi.common.usecase.UseCaseHandler;
 import com.hexagonaldemo.ticketapi.common.rest.BaseController;
 import com.hexagonaldemo.ticketapi.common.rest.DataResponse;
 import com.hexagonaldemo.ticketapi.common.rest.Response;
-import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
+import com.hexagonaldemo.ticketapi.ticket.usecase.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/tickets")
 public class TicketController extends BaseController {
 
-    private final CommandHandler<List<Ticket>, TicketRetrieve> retrieveTicketCommandHandler;
+    private final UseCaseHandler<List<Ticket>, TicketRetrieve> retrieveTicketUseCaseHandler;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Response<DataResponse<TicketResponse>> retrieveTicket(@RequestParam Long accountId) {
-        List<Ticket> retrieveTickets = retrieveTicketCommandHandler.handle(toCommand(accountId));
+        List<Ticket> retrieveTickets = retrieveTicketUseCaseHandler.handle(toUseCase(accountId));
         return respond(toResponse(retrieveTickets));
     }
 
@@ -32,7 +32,7 @@ public class TicketController extends BaseController {
         return retrieveTickets.stream().map(TicketResponse::from).collect(Collectors.toList());
     }
 
-    private TicketRetrieve toCommand(Long accountId) {
+    private TicketRetrieve toUseCase(Long accountId) {
         return TicketRetrieve.builder().accountId(accountId).build();
     }
 }

@@ -3,9 +3,9 @@ package com.hexagonaldemo.paymentapi.integration;
 import com.hexagonaldemo.paymentapi.AbstractIT;
 import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.common.EventAssertion;
-import com.hexagonaldemo.paymentapi.common.commandhandler.FakePaymentRollbackCommandHandler;
+import com.hexagonaldemo.paymentapi.common.usecase.FakePaymentRollbackUseCaseHandler;
 import com.hexagonaldemo.paymentapi.common.publisher.PaymentRollbackEventKafkaStreamTestPublisher;
-import com.hexagonaldemo.paymentapi.payment.command.PaymentRollback;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.event.PaymentRollbackEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
     PaymentRollbackEventKafkaStreamTestPublisher paymentRollbackEventKafkaStreamTestPublisher;
 
     @Autowired
-    FakePaymentRollbackCommandHandler paymentRollbackCommandHandler;
+    FakePaymentRollbackUseCaseHandler paymentRollbackUseCaseHandler;
 
     EventAssertion<PaymentRollbackEvent, PaymentRollback> eventAssertion = new EventAssertion<>();
 
@@ -40,7 +40,7 @@ class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
         eventAssertion.assertEventProcessed(
                 5,
                 paymentRollbackEvent,
-                () -> paymentRollbackCommandHandler.getProcessedPaymentRollback());
+                () -> paymentRollbackUseCaseHandler.getProcessedPaymentRollback());
     }
 
 }

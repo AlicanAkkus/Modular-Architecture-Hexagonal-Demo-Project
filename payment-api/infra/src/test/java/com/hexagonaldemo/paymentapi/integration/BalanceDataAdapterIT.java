@@ -5,7 +5,7 @@ import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.BalanceDataAdapter;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceJpaRepository;
 import com.hexagonaldemo.paymentapi.adapters.balance.jpa.repository.BalanceTransactionJpaRepository;
-import com.hexagonaldemo.paymentapi.balance.command.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package com.hexagonaldemo.paymentapi;
 
 import com.hexagonaldemo.paymentapi.adapters.MeetupFakeDataAdapter;
-import com.hexagonaldemo.ticketapi.meetup.MeetupCreateCommandHandler;
-import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
+import com.hexagonaldemo.ticketapi.meetup.MeetupCreateUseCaseHandler;
+import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MeetupCreateTest {
 
-    MeetupCreateCommandHandler meetupCreateCommandHandler;
+    MeetupCreateUseCaseHandler meetupCreateUseCaseHandler;
 
     @BeforeEach
     void setUp() {
-        meetupCreateCommandHandler = new MeetupCreateCommandHandler(new MeetupFakeDataAdapter());
+        meetupCreateUseCaseHandler = new MeetupCreateUseCaseHandler(new MeetupFakeDataAdapter());
     }
 
     @Test
@@ -32,7 +32,7 @@ class MeetupCreateTest {
                 .build();
 
         // when
-        var meetup = meetupCreateCommandHandler.handle(meetupCreate);
+        var meetup = meetupCreateUseCaseHandler.handle(meetupCreate);
 
         // then
         assertThat(meetup).isNotNull()
