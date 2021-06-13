@@ -4,11 +4,13 @@ import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakeMeetupCreateUseCaseHandler implements UseCaseHandler<Meetup, MeetupCreate> {
 

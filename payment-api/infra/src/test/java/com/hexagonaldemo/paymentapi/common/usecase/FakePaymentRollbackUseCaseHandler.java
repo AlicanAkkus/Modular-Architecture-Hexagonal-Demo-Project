@@ -4,10 +4,12 @@ import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException
 import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import lombok.Getter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Getter
 @Service
+@Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakePaymentRollbackUseCaseHandler implements VoidUseCaseHandler<PaymentRollback> {
 

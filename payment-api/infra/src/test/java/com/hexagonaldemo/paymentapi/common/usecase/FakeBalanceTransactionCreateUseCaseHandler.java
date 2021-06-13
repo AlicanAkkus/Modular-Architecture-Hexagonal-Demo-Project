@@ -4,6 +4,7 @@ import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakeBalanceTransactionCreateUseCaseHandler implements UseCaseHandler<Balance, BalanceTransactionCreate> {
 

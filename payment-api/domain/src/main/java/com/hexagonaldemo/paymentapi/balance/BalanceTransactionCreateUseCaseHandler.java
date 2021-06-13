@@ -1,16 +1,14 @@
 package com.hexagonaldemo.paymentapi.balance;
 
-import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import com.hexagonaldemo.paymentapi.common.usecase.UseCaseHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "usecase.enabled", havingValue = "true")
 public class BalanceTransactionCreateUseCaseHandler implements UseCaseHandler<Balance, BalanceTransactionCreate> {
 
     private final BalancePort balancePort;

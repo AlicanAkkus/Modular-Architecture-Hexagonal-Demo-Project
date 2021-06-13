@@ -1,5 +1,6 @@
 package com.hexagonaldemo.paymentapi;
 
+import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import org.springframework.boot.actuate.autoconfigure.metrics.orm.jpa.HibernateMetricsAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
@@ -27,6 +28,9 @@ import org.springframework.context.annotation.Profile;
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*JpaRepository.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Fake.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*PaymentApiApplication.*")
+        },
+        includeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {DomainComponent.class})
         }
 )
 public class TestConfig {

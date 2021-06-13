@@ -1,30 +1,28 @@
 package com.hexagonaldemo.ticketapi.reservation;
 
 import com.hexagonaldemo.ticketapi.account.port.AccountPort;
-import com.hexagonaldemo.ticketapi.common.usecase.UseCaseHandler;
+import com.hexagonaldemo.ticketapi.common.DomainComponent;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
+import com.hexagonaldemo.ticketapi.common.usecase.UseCaseHandler;
 import com.hexagonaldemo.ticketapi.meetup.port.MeetupPort;
-import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.payment.event.PaymentRollbackEvent;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentPort;
 import com.hexagonaldemo.ticketapi.payment.port.PaymentRollbackEventPort;
-import com.hexagonaldemo.ticketapi.reservation.usecase.TicketReserve;
+import com.hexagonaldemo.ticketapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.ticketapi.reservation.port.TicketReservedEventPort;
-import com.hexagonaldemo.ticketapi.ticket.usecase.CreateTicket;
+import com.hexagonaldemo.ticketapi.reservation.usecase.TicketReserve;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import com.hexagonaldemo.ticketapi.ticket.port.TicketPort;
+import com.hexagonaldemo.ticketapi.ticket.usecase.CreateTicket;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Slf4j
-@Service
+@DomainComponent
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "usecase.enabled", havingValue = "true")
 public class TicketReserveUseCaseHandler implements UseCaseHandler<Ticket, TicketReserve> {
 
     private final MeetupPort meetupPort;

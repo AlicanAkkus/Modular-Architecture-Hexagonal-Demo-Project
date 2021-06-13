@@ -5,6 +5,7 @@ import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakePaymentCreateUseCaseHandler implements UseCaseHandler<Payment, PaymentCreate> {
 

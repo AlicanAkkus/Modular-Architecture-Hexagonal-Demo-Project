@@ -3,6 +3,7 @@ package com.hexagonaldemo.ticketapi.common.usecase;
 import com.hexagonaldemo.ticketapi.ticket.usecase.TicketRetrieve;
 import com.hexagonaldemo.ticketapi.ticket.model.Ticket;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakeTicketRetrieveUseCaseHandler implements UseCaseHandler<List<Ticket>, TicketRetrieve> {
 

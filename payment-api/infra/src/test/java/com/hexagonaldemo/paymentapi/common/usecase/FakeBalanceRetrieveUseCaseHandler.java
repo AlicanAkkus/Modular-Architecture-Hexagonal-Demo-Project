@@ -5,12 +5,14 @@ import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Primary
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
 public class FakeBalanceRetrieveUseCaseHandler implements UseCaseHandler<Balance, BalanceRetrieve> {

@@ -1,10 +1,10 @@
 package com.hexagonaldemo.paymentapi.account;
 
 import com.hexagonaldemo.paymentapi.account.port.LockPort;
+import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
+@DomainComponent
 @RequiredArgsConstructor
 public class AccountFacade {
 

@@ -2,23 +2,20 @@ package com.hexagonaldemo.paymentapi.payment;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.balance.usecase.BalanceCompensate;
-import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
+import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
-import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
+import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
 @Slf4j
-@Service
+@DomainComponent
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "usecase.enabled", havingValue = "true")
 public class PaymentRollbackUseCaseHandler implements VoidUseCaseHandler<PaymentRollback> {
 
     private final VoidUseCaseHandler<BalanceCompensate> balanceCompensateUseCaseHandler;
@@ -26,7 +23,6 @@ public class PaymentRollbackUseCaseHandler implements VoidUseCaseHandler<Payment
     private final PaymentPort paymentPort;
 
     @Override
-    @Transactional
     public void handle(PaymentRollback useCase) {
         var payment = paymentPort.retrieve(useCase.getId());
         validatePaymentRollbackIsAllowed(payment);

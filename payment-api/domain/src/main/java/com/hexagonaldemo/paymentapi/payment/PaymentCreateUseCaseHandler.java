@@ -2,24 +2,21 @@ package com.hexagonaldemo.paymentapi.payment;
 
 import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
-import com.hexagonaldemo.paymentapi.balance.usecase.BalanceRetrieve;
-import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceRetrieve;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
+import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import com.hexagonaldemo.paymentapi.common.usecase.UseCaseHandler;
-import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@Service
+@DomainComponent
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "usecase.enabled", havingValue = "true")
 public class PaymentCreateUseCaseHandler implements UseCaseHandler<Payment, PaymentCreate> {
 
     private final UseCaseHandler<Balance, BalanceTransactionCreate> balanceTransactionCreateUseCaseHandler;
@@ -29,7 +26,6 @@ public class PaymentCreateUseCaseHandler implements UseCaseHandler<Payment, Paym
     private final BalanceValidator balanceValidator;
 
     @Override
-    @Transactional
     public Payment handle(PaymentCreate useCase) {
         accountFacade.makeBusy(useCase.getAccountId());
         try {

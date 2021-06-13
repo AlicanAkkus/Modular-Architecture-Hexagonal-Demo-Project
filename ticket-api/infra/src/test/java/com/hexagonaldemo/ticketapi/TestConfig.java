@@ -1,5 +1,6 @@
 package com.hexagonaldemo.ticketapi;
 
+import com.hexagonaldemo.ticketapi.common.DomainComponent;
 import org.springframework.boot.actuate.autoconfigure.metrics.orm.jpa.HibernateMetricsAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -26,6 +27,9 @@ import org.springframework.context.annotation.Profile;
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Converter.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Fake.*"),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*TicketApiApplication.*")
+        },
+        includeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {DomainComponent.class})
         }
 )
 public class TestConfig {
