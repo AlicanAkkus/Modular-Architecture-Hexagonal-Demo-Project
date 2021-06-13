@@ -111,7 +111,7 @@ up_kafka() {
         echo ">> starting: up kafka"
         # shellcheck disable=SC2086
         create_volume $TEST_KAFKA_DATA
-        docker run --network ${TEST_NETWORK} --name ${TEST_KAFKA_NAME} -v ${TEST_KAFKA_DATA} -m 512m -p 9092:9092 -d ${TEST_KAFKA_ENVS} confluentinc/cp-kafka
+        docker run --network ${TEST_NETWORK} --name ${TEST_KAFKA_NAME} -v ${PWD}:/${TEST_KAFKA_DATA} -m 512m -p 9092:9092 -d ${TEST_KAFKA_ENVS} confluentinc/cp-kafka
     else
         echo ">> kafka is already up"
     fi

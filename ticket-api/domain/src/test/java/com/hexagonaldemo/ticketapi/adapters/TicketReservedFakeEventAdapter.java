@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters;
+package com.hexagonaldemo.ticketapi.adapters;
 
 import com.hexagonaldemo.ticketapi.reservation.port.TicketReservedEventPort;
 import com.hexagonaldemo.ticketapi.ticket.event.TicketReservedEvent;

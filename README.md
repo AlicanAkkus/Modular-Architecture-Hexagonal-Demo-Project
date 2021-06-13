@@ -17,9 +17,9 @@ This project is a sample production-ready implementation for demonstrating the p
 * [Motivation](#Motivation)
 * [What is the Hexagonal Architecture](#What-is-the-Hexagonal-Architecture)
 * [Technologies Used](#Technologies-Used)
-* [What You Will Learn](#What-You-Will-Learn)  
+* [What You Will Learn](#What-You-Will-Learn)
 * [Useful Links From Authors](#Useful-Links-From-Authors)
-* [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)  
+* [Useful Links about Hexagonal Architecture](#Useful-Links-about-Hexagonal-Architecture)
 * [History](#History)
 * [Contributing](#Contributing)
 * [Code of Conduct](#Code-of-Conduct)
@@ -48,10 +48,10 @@ We want to write clean, maintainable, well-defined boundary context, well-tested
 The hexagonal architecture was invented by Alistair Cockburn in an attempt to avoid known structural pitfalls in object-oriented software design, such as undesired dependencies between layers and contamination of user interface code with business logic, and published in 2005.
 
 > A timeless goal of software engineering has been to separate code that changes frequently from code that is stable.
-> 
+>
 > ~ James Coplien / Lean Architecture
 
-We recommend Hexagonal Architecture for those who want to write clean, maintainable, well-defined boundary context, well-tested domain and decoupling business logic from technical code.
+We recommend Hexagonal Architecture for those who want to write clean, maintainable, well-defined boundary context, well-tested domain, and decoupling business logic from technical code.
 
 ### Technologies Used
 
@@ -60,35 +60,35 @@ You can use any programming language for implementing Hexagonal Architecture. He
 * Spring Boot 2
 * Java 11
 * Gradle 7
-* Mono Repo  
+* Mono Repo
 * Docker
-* Mysql  
-* Redis  
+* Mysql
+* Redis
 * Kafka
 * Groovy 3
-* Cucumber 
-* GitHub Actions 
+* Cucumber
+* GitHub Actions
 
 It's so easy to reach `100% code coverage` if you design by tests wisely via TDD. There are the types of tests written:
 
 * Unit tests
 * Dockerized integration tests
-* Consumer driven contract tests
+* Consumer-driven contract tests
 * External verifier contract tests
 * Acceptance tests
 
 ### What You Will Learn
 
 * Implementing two microservices with spring boot
-* Designing the apis with hexagonal architecture
+* Designing the APIs with hexagonal architecture
 * Packaging by functions and screaming architecture
-* How Ports and adapters separate business from integration points  
-* Writing behaviour focused unit tests at domain module
-* Writing integration tests isolated from business at infra module
-* Using gradle to configure microservices and modules
-* Using mono-repo to handle all apis in single git repository
-* Implementing consumer driven contract tests
-* Creating different testing styles for validating data adapters, event consumers/publishers, controllers 
+* How Ports and adapters separate business from integration points
+* Writing behavior focused unit tests at domain module
+* Writing integration tests isolated from the business at infra module
+* Using Gradle to configure microservices and modules
+* Using mono-repo to handle all APIs in a single git repository
+* Implementing consumer-driven contract tests
+* Creating different testing styles for validating data adapters, event consumers/publishers, controllers
 
 ### Useful Links From Authors
 
@@ -106,13 +106,13 @@ It's so easy to reach `100% code coverage` if you design by tests wisely via TDD
 
 ### History
 
-This repository is a side project developed while preparing the conference talk "Growing Hexagonal Microservices With TDD" at Java Day Istanbul 2020. As the authors of this repository, we've been using hexagonal architecture in all microservices (i.e. more than 50+ microservices) running in production since 2017. We believe modularity is the key for building maintainable and high quality software. That's why we shared our demo project with the community to attract their interest on the topic.
+This repository is a side project developed while preparing the conference talk "Growing Hexagonal Microservices With TDD" at Java Day Istanbul 2020. As the authors of this repository, we've been using hexagonal architecture in all microservices (i.e. more than 50+ microservices) running in production since 2017. We believe modularity is the key to building maintainable and high-quality software. That's why we shared our demo project with the community to attract their interest in the topic.
 
 ### Contributing
-Please feel free to open tickets to suggest new features and improvement points. Please [feel free to contribute](CONTRIBUTING.md). 
+Please feel free to open tickets to suggest new features and improvement points. Please [feel free to contribute](CONTRIBUTING.md).
 
 ### Code of Conduct
-Please take a lot at [code of conduct](CODE_OF_CONDUCT.md) before opening issues or creating pull requests.
+Please take a look at [code of conduct](CODE_OF_CONDUCT.md) before opening issues or creating pull requests.
 
 ### Authors
 * **Lemi Orhan Ergin**, Software Crafter at [Craftgate](https://craftgate.io) -> [Github](https://github.com/lemiorhan), [Twitter](https://twitter.com/lemiorhan), [Linkedin](https://www.linkedin.com/in/lemiorhan/)

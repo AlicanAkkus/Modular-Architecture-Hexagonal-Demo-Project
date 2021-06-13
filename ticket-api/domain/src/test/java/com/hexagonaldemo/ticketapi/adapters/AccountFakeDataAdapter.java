@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters;
+package com.hexagonaldemo.ticketapi.adapters;
 
 import com.hexagonaldemo.ticketapi.account.model.Account;
 import com.hexagonaldemo.ticketapi.account.port.AccountPort;
