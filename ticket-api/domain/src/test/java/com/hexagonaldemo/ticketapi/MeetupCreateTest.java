@@ -1,6 +1,6 @@
-package com.hexagonaldemo.paymentapi;
+package com.hexagonaldemo.ticketapi;
 
-import com.hexagonaldemo.paymentapi.adapters.MeetupFakeDataAdapter;
+import com.hexagonaldemo.ticketapi.adapters.MeetupFakeDataAdapter;
 import com.hexagonaldemo.ticketapi.meetup.MeetupCreateUseCaseHandler;
 import com.hexagonaldemo.ticketapi.meetup.usecase.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
