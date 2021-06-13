@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/tickets")
 public class TicketAdminController extends BaseController {
 
-    @Qualifier("retrieveAdminUseCaseHandler")
-    private final VoidEmptyUseCaseHandler retrieveAdminUseCaseHandler;
+    @Qualifier("ticketAdminUseCaseHandler")
+    private final VoidEmptyUseCaseHandler ticketAdminUseCaseHandler;
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllTickets() {
-        retrieveAdminUseCaseHandler.handle();
+        ticketAdminUseCaseHandler.handle();
     }
 }
