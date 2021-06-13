@@ -1,6 +1,6 @@
-package com.hexagonaldemo.paymentapi;
+package com.hexagonaldemo.ticketapi;
 
-import com.hexagonaldemo.paymentapi.adapters.TicketFakeDataAdapter;
+import com.hexagonaldemo.ticketapi.adapters.TicketFakeDataAdapter;
 import com.hexagonaldemo.ticketapi.ticket.TicketRetrieveCommandHandler;
 import com.hexagonaldemo.ticketapi.ticket.command.TicketRetrieve;
 import org.junit.jupiter.api.BeforeEach;

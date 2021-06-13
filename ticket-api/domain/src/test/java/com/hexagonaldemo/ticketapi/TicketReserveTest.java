@@ -1,6 +1,6 @@
-package com.hexagonaldemo.paymentapi;
+package com.hexagonaldemo.ticketapi;
 
-import com.hexagonaldemo.paymentapi.adapters.*;
+import com.hexagonaldemo.ticketapi.adapters.*;
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.common.util.CurrentTimeFactory;
 import com.hexagonaldemo.ticketapi.reservation.TicketReserveCommandHandler;

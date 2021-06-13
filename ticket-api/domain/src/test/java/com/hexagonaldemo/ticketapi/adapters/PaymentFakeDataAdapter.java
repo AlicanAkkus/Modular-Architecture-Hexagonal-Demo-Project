@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters;
+package com.hexagonaldemo.ticketapi.adapters;
 
 import com.hexagonaldemo.ticketapi.common.exception.TicketApiBusinessException;
 import com.hexagonaldemo.ticketapi.payment.command.PaymentCreate;

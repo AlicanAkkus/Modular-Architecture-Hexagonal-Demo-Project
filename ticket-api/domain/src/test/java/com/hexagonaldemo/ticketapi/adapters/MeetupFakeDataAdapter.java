@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.adapters;
+package com.hexagonaldemo.ticketapi.adapters;
 
 import com.hexagonaldemo.ticketapi.meetup.command.MeetupCreate;
 import com.hexagonaldemo.ticketapi.meetup.model.Meetup;
