@@ -23,6 +23,7 @@ TEST_REDIS_PORT=6379
 TEST_KAFKA_NAME='hexagonaldemo_test_kafka'
 TEST_KAFKA_ENVS='--env KAFKA_BROKER_ID=1 --env KAFKA_ZOOKEEPER_CONNECT='hexagonaldemo_test_zookeeper:2181' --env KAFKA_ADVERTISED_LISTENERS='PLAINTEXT://localhost:9092' --env KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 --env KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0 --env KAFKA_AUTO_CREATE_TOPICS_ENABLE=true'
 TEST_KAFKA_DATA='hexagonaldemo_test_kafka_data'
+KAFKA_DATA_PATH='var/lib/kafka/data'
 
 TEST_ZOOKEEPER_NAME='hexagonaldemo_test_zookeeper'
 TEST_ZOOKEEPER_ENVS='--env ZOOKEEPER_CLIENT_PORT=2181 --env ZOOKEEPER_TICK_TIME=2000'
@@ -111,7 +112,7 @@ up_kafka() {
         echo ">> starting: up kafka"
         # shellcheck disable=SC2086
         create_volume $TEST_KAFKA_DATA
-        docker run --network ${TEST_NETWORK} --name ${TEST_KAFKA_NAME} -v ${PWD}:/${TEST_KAFKA_DATA} -m 512m -p 9092:9092 -d ${TEST_KAFKA_ENVS} confluentinc/cp-kafka
+        docker run --network ${TEST_NETWORK} --name ${TEST_KAFKA_NAME} -v ${TEST_KAFKA_DATA}:/${KAFKA_DATA_PATH} -m 512m -p 9092:9092 -d ${TEST_KAFKA_ENVS} confluentinc/cp-kafka
     else
         echo ">> kafka is already up"
     fi
