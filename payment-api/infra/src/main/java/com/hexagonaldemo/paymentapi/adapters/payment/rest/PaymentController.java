@@ -18,12 +18,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/payments")
 public class PaymentController extends BaseController {
 
-    private final UseCaseHandler<Payment, PaymentCreate> paymentCreateUseCaseHandler;
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Response<PaymentResponse> pay(@RequestBody @Valid PaymentCreateRequest paymentCreateRequest) {
-        var payment = paymentCreateUseCaseHandler.handle(paymentCreateRequest.toModel());
+        var payment = publish(Payment.class, paymentCreateRequest.toModel());
         return respond(PaymentResponse.fromModel(payment));
     }
 }

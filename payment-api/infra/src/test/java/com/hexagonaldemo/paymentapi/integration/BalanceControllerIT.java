@@ -6,6 +6,8 @@ import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceResponse;
 import com.hexagonaldemo.paymentapi.adapters.balance.rest.dto.BalanceTransactionCreateRequest;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
+import com.hexagonaldemo.paymentapi.common.usecase.FakeBalanceRetrieveUseCaseHandler;
+import com.hexagonaldemo.paymentapi.common.usecase.FakeBalanceTransactionCreateUseCaseHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -27,6 +29,9 @@ class BalanceControllerIT extends AbstractIT {
     void should_retrieve_balance_by_accountId() {
         // given
         Long accountId = 1L;
+
+        // and
+        var balanceRetrieveUseCaseHandler = new FakeBalanceRetrieveUseCaseHandler();
 
         //when
         ResponseEntity<Response<BalanceResponse>> response = testRestTemplate.exchange(
@@ -51,6 +56,9 @@ class BalanceControllerIT extends AbstractIT {
         // given
         Long accountId = 6661L;
 
+        // and
+        var balanceRetrieveUseCaseHandler = new FakeBalanceRetrieveUseCaseHandler();
+
         //when
         ResponseEntity<Response<BalanceResponse>> response = testRestTemplate.exchange(
                 "/api/v1/balances?accountId=" + accountId,
@@ -66,6 +74,10 @@ class BalanceControllerIT extends AbstractIT {
 
     @Test
     void should_deposit_withdraw_balance() {
+        // given
+        var balanceTransactionCreateUseCaseHandler = new FakeBalanceTransactionCreateUseCaseHandler();
+
+        // when
         updateBalance(1L, BalanceTransactionType.DEPOSIT, 50.0, 50.0);
         updateBalance(1L, BalanceTransactionType.DEPOSIT, 25.0, 75.0);
         updateBalance(1L, BalanceTransactionType.WITHDRAW, 10.0, 65.0);

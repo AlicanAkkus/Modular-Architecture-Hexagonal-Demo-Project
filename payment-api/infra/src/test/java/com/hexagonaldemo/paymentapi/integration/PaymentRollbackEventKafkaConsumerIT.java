@@ -8,6 +8,7 @@ import com.hexagonaldemo.paymentapi.common.publisher.PaymentRollbackEventKafkaSt
 import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import com.hexagonaldemo.paymentapi.payment.event.PaymentRollbackEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +21,6 @@ class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
     @Autowired
     PaymentRollbackEventKafkaStreamTestPublisher paymentRollbackEventKafkaStreamTestPublisher;
 
-    @Autowired
     FakePaymentRollbackUseCaseHandler paymentRollbackUseCaseHandler;
 
     EventAssertion<PaymentRollbackEvent, PaymentRollback> eventAssertion = new EventAssertion<>();
@@ -32,6 +32,9 @@ class PaymentRollbackEventKafkaConsumerIT extends AbstractIT {
                 .id(1L)
                 .eventCreatedAt(LocalDateTime.of(2021, 1, 1, 19, 0, 0))
                 .build();
+
+        //and
+        paymentRollbackUseCaseHandler = new FakePaymentRollbackUseCaseHandler();
 
         //when
         paymentRollbackEventKafkaStreamTestPublisher.publish(paymentRollbackEvent);

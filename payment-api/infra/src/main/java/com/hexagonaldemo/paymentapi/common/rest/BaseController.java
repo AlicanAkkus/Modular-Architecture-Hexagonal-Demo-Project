@@ -1,8 +1,10 @@
 package com.hexagonaldemo.paymentapi.common.rest;
 
+import com.hexagonaldemo.paymentapi.common.usecase.BeanAwareUseCasePublisher;
+
 import java.util.List;
 
-public class BaseController {
+public class BaseController extends BeanAwareUseCasePublisher {
 
     public <T> Response<DataResponse<T>> respond(List<T> items) {
         return ResponseBuilder.build(items);

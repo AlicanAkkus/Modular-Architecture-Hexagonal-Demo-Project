@@ -2,7 +2,7 @@ package com.hexagonaldemo.paymentapi.common.usecase;
 
 import com.hexagonaldemo.paymentapi.common.model.UseCase;
 
-public interface UseCaseHandler<E, T extends UseCase> {
+public interface UseCaseHandler<R, T extends UseCase> {
 
-    E handle(T useCase);
+    R handle(T useCase);
 }

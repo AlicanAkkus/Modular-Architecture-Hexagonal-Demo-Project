@@ -13,14 +13,17 @@ import java.util.List;
 
 @Service
 @Primary
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
-public class FakeBalanceRetrieveUseCaseHandler implements UseCaseHandler<Balance, BalanceRetrieve> {
+public class FakeBalanceRetrieveUseCaseHandler extends ObservableUseCasePublisher implements UseCaseHandler<Balance, BalanceRetrieve> {
 
     private static final Long BALANCE_NOT_FOUND_ACCOUNT_ID = 6661L;
     private static final List<Long> FAILING_IDS = List.of(
             BALANCE_NOT_FOUND_ACCOUNT_ID
     );
+
+    public FakeBalanceRetrieveUseCaseHandler() {
+        register(BalanceRetrieve.class, this);
+    }
 
     @Override
     public Balance handle(BalanceRetrieve useCase) {

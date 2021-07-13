@@ -1,18 +1,17 @@
 package com.hexagonaldemo.paymentapi;
 
-import com.hexagonaldemo.paymentapi.account.AccountFacade;
 import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.adapters.BalanceFakeAdapter;
 import com.hexagonaldemo.paymentapi.adapters.PaymentFakeAdapter;
 import com.hexagonaldemo.paymentapi.balance.BalanceRetrieveUseCaseHandler;
 import com.hexagonaldemo.paymentapi.balance.BalanceTransactionCreateUseCaseHandler;
-import com.hexagonaldemo.paymentapi.balance.BalanceValidator;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
+import com.hexagonaldemo.paymentapi.balance.service.BalanceValidator;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
 import com.hexagonaldemo.paymentapi.payment.PaymentCreateUseCaseHandler;
-import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.model.PaymentState;
+import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -58,10 +57,11 @@ class PaymentCreateTest {
                 .build();
 
         // and
-        BalanceTransactionCreateUseCaseHandler balanceTransactionCreateUseCase = new BalanceTransactionCreateUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment));
-        PaymentCreateUseCaseHandler paymentCreateUseCase = new PaymentCreateUseCaseHandler(balanceTransactionCreateUseCase,
-                new BalanceRetrieveUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment)),
-                new AccountFacade(retrieveFakeAccountLockPort()),
+        BalanceFakeAdapter balanceAdapter = new BalanceFakeAdapter(balanceBeforePayment, balanceAfterPayment);
+        var balanceTransactionCreateUseCaseHandler = new BalanceTransactionCreateUseCaseHandler(balanceAdapter);
+        var balanceRetrieveUseCaseHandler = new BalanceRetrieveUseCaseHandler(balanceAdapter);
+        PaymentCreateUseCaseHandler paymentCreateUseCaseHandler = new PaymentCreateUseCaseHandler(
+                retrieveFakeAccountLockPort(),
                 new PaymentFakeAdapter(expectedPayment),
                 new BalanceValidator());
 
@@ -72,7 +72,7 @@ class PaymentCreateTest {
                 .referenceCode("ref1")
                 .build();
 
-        Payment payment = paymentCreateUseCase.handle(paymentCreate);
+        Payment payment = paymentCreateUseCaseHandler.handle(paymentCreate);
 
         //then
         assertThat(payment).isNotNull().isEqualTo(Payment.builder()
@@ -103,9 +103,8 @@ class PaymentCreateTest {
 
         // and
         BalanceTransactionCreateUseCaseHandler balanceTransactionCreateUseCase = new BalanceTransactionCreateUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment));
-        PaymentCreateUseCaseHandler paymentCreateUseCase = new PaymentCreateUseCaseHandler(balanceTransactionCreateUseCase,
-                new BalanceRetrieveUseCaseHandler(new BalanceFakeAdapter(balanceBeforePayment, balanceBeforePayment)),
-                new AccountFacade(retrieveFakeAccountLockPort()),
+        PaymentCreateUseCaseHandler paymentCreateUseCase = new PaymentCreateUseCaseHandler(
+                retrieveFakeAccountLockPort(),
                 new PaymentFakeAdapter(expectedPayment),
                 new BalanceValidator());
 

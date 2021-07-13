@@ -54,8 +54,7 @@ class PaymentRollbackTest {
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
         BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
-        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
-                new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(retrieveFakeAccountLockPort(), paymentPort);
 
         //when
         PaymentRollback paymentRollback = PaymentRollback.builder()
@@ -102,8 +101,7 @@ class PaymentRollbackTest {
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
         BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
-        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
-                new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(retrieveFakeAccountLockPort(), paymentPort);
 
         //when
         PaymentRollback paymentRollback = PaymentRollback.builder()
@@ -144,8 +142,7 @@ class PaymentRollbackTest {
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(null); // payment not found
 
         BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
-        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
-                new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(retrieveFakeAccountLockPort(), paymentPort);
 
         //when
         PaymentRollback paymentRollback = PaymentRollback.builder()
@@ -192,8 +189,7 @@ class PaymentRollbackTest {
         PaymentFakeAdapter paymentPort = new PaymentFakeAdapter(existingPaymentToRollback);
 
         BalanceCompensateUseCaseHandler balanceCompensateUseCase = new BalanceCompensateUseCaseHandler(balancePort);
-        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(balanceCompensateUseCase,
-                new AccountFacade(retrieveFakeAccountLockPort()), paymentPort);
+        PaymentRollbackUseCaseHandler paymentRollbackUseCase = new PaymentRollbackUseCaseHandler(retrieveFakeAccountLockPort(), paymentPort);
 
         //when
         PaymentRollback paymentRollback = PaymentRollback.builder()

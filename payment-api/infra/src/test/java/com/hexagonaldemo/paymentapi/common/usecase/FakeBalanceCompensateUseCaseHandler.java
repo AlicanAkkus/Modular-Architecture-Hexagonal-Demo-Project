@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Primary
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
-public class FakeBalanceCompensateUseCaseHandler implements VoidUseCaseHandler<BalanceCompensate> {
+public class FakeBalanceCompensateUseCaseHandler extends ObservableUseCasePublisher implements VoidUseCaseHandler<BalanceCompensate> {
 
     private static final Long FAILED_COMPENSATE_ACCOUNT_ID = 6661L;
+
+    public FakeBalanceCompensateUseCaseHandler() {
+        register(BalanceCompensate.class, this);
+    }
 
     @Override
     public void handle(BalanceCompensate useCase) {

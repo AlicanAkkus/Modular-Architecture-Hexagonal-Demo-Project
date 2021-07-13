@@ -1,8 +1,8 @@
 package com.hexagonaldemo.paymentapi.common.usecase;
 
-import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;
 import com.hexagonaldemo.paymentapi.balance.model.BalanceTransactionType;
+import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,13 @@ import java.util.Map;
 @Service
 @Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
-public class FakeBalanceTransactionCreateUseCaseHandler implements UseCaseHandler<Balance, BalanceTransactionCreate> {
+public class FakeBalanceTransactionCreateUseCaseHandler extends ObservableUseCasePublisher implements UseCaseHandler<Balance, BalanceTransactionCreate> {
 
     private Map<Long, Balance> balanceMap = new HashMap<>();
+
+    public FakeBalanceTransactionCreateUseCaseHandler() {
+        register(BalanceTransactionCreate.class, this);
+    }
 
     @Override
     public Balance handle(BalanceTransactionCreate useCase) {

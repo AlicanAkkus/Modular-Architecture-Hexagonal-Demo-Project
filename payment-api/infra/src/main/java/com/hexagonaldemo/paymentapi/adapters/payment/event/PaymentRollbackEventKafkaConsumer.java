@@ -1,5 +1,6 @@
 package com.hexagonaldemo.paymentapi.adapters.payment.event;
 
+import com.hexagonaldemo.paymentapi.common.usecase.BeanAwareUseCasePublisher;
 import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
 import com.hexagonaldemo.paymentapi.payment.event.PaymentRollbackEvent;
 import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
@@ -12,15 +13,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PaymentRollbackEventKafkaConsumer {
-
-    private final VoidUseCaseHandler<PaymentRollback> paymentRollbackVoidUseCaseHandler;
+public class PaymentRollbackEventKafkaConsumer extends BeanAwareUseCasePublisher {
 
     @StreamListener(PaymentEventKafkaStream.PAYMENT_ROLLBACK_INPUT)
     public void consume(@Payload PaymentRollbackEvent event) {
         log.info("Payment roll back event received: {}", event);
         try {
-            paymentRollbackVoidUseCaseHandler.handle(event.toModel());
+            publish(event.toModel());
         } catch (Exception e) {
             log.warn("Payment {} is not rollbacked", event.getId(), e);
         }

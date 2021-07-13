@@ -11,11 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 @Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
-public class FakePaymentRollbackUseCaseHandler implements VoidUseCaseHandler<PaymentRollback> {
+public class FakePaymentRollbackUseCaseHandler extends ObservableUseCasePublisher implements VoidUseCaseHandler<PaymentRollback> {
 
     private static final Long FAILED_ROLLBACK_PAYMENT_ID = 6661L;
 
     private PaymentRollback processedPaymentRollback;
+
+    public FakePaymentRollbackUseCaseHandler() {
+        register(PaymentRollback.class, this);
+    }
 
     @Override
     public void handle(PaymentRollback useCase) {

@@ -1,4 +1,4 @@
-package com.hexagonaldemo.paymentapi.balance;
+package com.hexagonaldemo.paymentapi.balance.service;
 
 import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.balance.model.Balance;

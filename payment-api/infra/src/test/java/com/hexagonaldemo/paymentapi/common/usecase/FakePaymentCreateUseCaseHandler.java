@@ -15,12 +15,16 @@ import java.util.List;
 @Service
 @Primary
 @ConditionalOnProperty(name = "usecase.enabled", havingValue = "false", matchIfMissing = true)
-public class FakePaymentCreateUseCaseHandler implements UseCaseHandler<Payment, PaymentCreate> {
+public class FakePaymentCreateUseCaseHandler extends ObservableUseCasePublisher implements UseCaseHandler<Payment, PaymentCreate> {
 
     private static final Long PAYMENT_FAIL_ACCOUNT_ID = 6661L;
     private static final List<Long> FAILING_IDS = List.of(
             PAYMENT_FAIL_ACCOUNT_ID
     );
+
+    public FakePaymentCreateUseCaseHandler() {
+        register(PaymentCreate.class, this);
+    }
 
     @Override
     public Payment handle(PaymentCreate useCase) {

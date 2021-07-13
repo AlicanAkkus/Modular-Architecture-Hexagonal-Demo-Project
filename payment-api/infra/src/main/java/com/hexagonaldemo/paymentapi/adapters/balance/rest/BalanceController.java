@@ -21,13 +21,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/balances")
 public class BalanceController extends BaseController {
 
-    private final UseCaseHandler<Balance, BalanceRetrieve> balanceRetrieveUseCaseHandler;
-    private final UseCaseHandler<Balance, BalanceTransactionCreate> balanceTransactionCreateUseCaseHandler;
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Response<BalanceResponse> retrieve(@RequestParam("accountId") Long accountId) {
-        var balance = balanceRetrieveUseCaseHandler.handle(BalanceRetrieve.from(accountId));
+        var balance = publish(Balance.class, BalanceRetrieve.from(accountId));
         log.info("Balance is retrieved for account {} as {}", accountId, balance);
         return respond(BalanceResponse.fromModel(balance));
     }
@@ -35,7 +32,7 @@ public class BalanceController extends BaseController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public Response<BalanceResponse> addBalanceTransaction(@Valid @RequestBody BalanceTransactionCreateRequest balanceTransactionCreateRequest) {
-        var balance = balanceTransactionCreateUseCaseHandler.handle(balanceTransactionCreateRequest.toUseCase());
+        var balance = publish(Balance.class, balanceTransactionCreateRequest.toUseCase());
         log.info("Balance transaction is created as {} and balance became {}", balanceTransactionCreateRequest, balance);
         return respond(BalanceResponse.fromModel(balance));
     }

@@ -5,14 +5,18 @@ import com.hexagonaldemo.paymentapi.balance.port.BalancePort;
 import com.hexagonaldemo.paymentapi.balance.usecase.BalanceCompensate;
 import com.hexagonaldemo.paymentapi.balance.usecase.BalanceTransactionCreate;
 import com.hexagonaldemo.paymentapi.common.DomainComponent;
+import com.hexagonaldemo.paymentapi.common.usecase.ObservableUseCasePublisher;
 import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
-import lombok.RequiredArgsConstructor;
 
 @DomainComponent
-@RequiredArgsConstructor
-public class BalanceCompensateUseCaseHandler implements VoidUseCaseHandler<BalanceCompensate> {
+public class BalanceCompensateUseCaseHandler extends ObservableUseCasePublisher implements VoidUseCaseHandler<BalanceCompensate> {
 
     private final BalancePort balancePort;
+
+    public BalanceCompensateUseCaseHandler(BalancePort balancePort) {
+        this.balancePort = balancePort;
+        register(BalanceCompensate.class, this);
+    }
 
     @Override
     public void handle(BalanceCompensate useCase) {

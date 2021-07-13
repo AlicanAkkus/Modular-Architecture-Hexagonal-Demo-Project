@@ -5,6 +5,8 @@ import com.hexagonaldemo.paymentapi.IT;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentCreateRequest;
 import com.hexagonaldemo.paymentapi.adapters.payment.rest.dto.PaymentResponse;
 import com.hexagonaldemo.paymentapi.common.rest.Response;
+import com.hexagonaldemo.paymentapi.common.usecase.FakePaymentCreateUseCaseHandler;
+import com.hexagonaldemo.paymentapi.payment.PaymentCreateUseCaseHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -41,6 +43,9 @@ class PaymentControllerIT extends AbstractIT {
                 .price(new BigDecimal(price))
                 .referenceCode("ref1")
                 .build();
+
+        // and
+        var paymentCreateUseCaseHandler = new FakePaymentCreateUseCaseHandler();
 
         //when
         ResponseEntity<Response<PaymentResponse>> response = testRestTemplate.exchange(

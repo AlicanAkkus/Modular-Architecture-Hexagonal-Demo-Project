@@ -1,9 +1,10 @@
 package com.hexagonaldemo.paymentapi.payment;
 
-import com.hexagonaldemo.paymentapi.account.AccountFacade;
+import com.hexagonaldemo.paymentapi.account.port.LockPort;
 import com.hexagonaldemo.paymentapi.balance.usecase.BalanceCompensate;
 import com.hexagonaldemo.paymentapi.common.DomainComponent;
 import com.hexagonaldemo.paymentapi.common.exception.PaymentApiBusinessException;
+import com.hexagonaldemo.paymentapi.common.usecase.ObservableUseCasePublisher;
 import com.hexagonaldemo.paymentapi.common.usecase.VoidUseCaseHandler;
 import com.hexagonaldemo.paymentapi.payment.model.Payment;
 import com.hexagonaldemo.paymentapi.payment.port.PaymentPort;
@@ -16,28 +17,32 @@ import java.util.Objects;
 
 @Slf4j
 @DomainComponent
-@RequiredArgsConstructor
-public class PaymentRollbackUseCaseHandler implements VoidUseCaseHandler<PaymentRollback> {
+public class PaymentRollbackUseCaseHandler extends ObservableUseCasePublisher implements VoidUseCaseHandler<PaymentRollback> {
 
-    private final VoidUseCaseHandler<BalanceCompensate> balanceCompensateUseCaseHandler;
-    private final AccountFacade accountFacade;
+    private final LockPort lockPort;
     private final PaymentPort paymentPort;
+
+    public PaymentRollbackUseCaseHandler(LockPort lockPort, PaymentPort paymentPort) {
+        this.lockPort = lockPort;
+        this.paymentPort = paymentPort;
+        register(PaymentRollback.class, this);
+    }
 
     @Override
     @Transactional
     public void handle(PaymentRollback useCase) {
         var payment = paymentPort.retrieve(useCase.getId());
         validatePaymentRollbackIsAllowed(payment);
-        accountFacade.makeBusy(payment.getAccountId());
+        lockPort.lock(payment.getAccountId());
 
         try {
             paymentPort.rollback(useCase);
-            balanceCompensateUseCaseHandler.handle(BalanceCompensate.from(payment));
+            publish(BalanceCompensate.from(payment));
             log.info("Payment {} is rollbacked successfully", useCase.getId());
         } catch (Exception e) {
             log.info("Payment {} cannot be rollbacked due to errors", useCase.getId(), e);
         } finally {
-            accountFacade.makeFree(payment.getAccountId());
+            lockPort.unlock(payment.getAccountId());
         }
     }
 
