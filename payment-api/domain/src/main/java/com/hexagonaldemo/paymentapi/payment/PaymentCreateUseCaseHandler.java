@@ -14,6 +14,8 @@ import com.hexagonaldemo.paymentapi.payment.usecase.PaymentCreate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.transaction.Transactional;
+
 @Slf4j
 @DomainComponent
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class PaymentCreateUseCaseHandler implements UseCaseHandler<Payment, Paym
     private final BalanceValidator balanceValidator;
 
     @Override
+    @Transactional
     public Payment handle(PaymentCreate useCase) {
         accountFacade.makeBusy(useCase.getAccountId());
         try {

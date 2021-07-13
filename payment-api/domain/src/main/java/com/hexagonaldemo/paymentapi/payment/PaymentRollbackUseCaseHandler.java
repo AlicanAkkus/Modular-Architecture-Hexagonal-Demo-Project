@@ -11,6 +11,7 @@ import com.hexagonaldemo.paymentapi.payment.usecase.PaymentRollback;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Slf4j
@@ -23,6 +24,7 @@ public class PaymentRollbackUseCaseHandler implements VoidUseCaseHandler<Payment
     private final PaymentPort paymentPort;
 
     @Override
+    @Transactional
     public void handle(PaymentRollback useCase) {
         var payment = paymentPort.retrieve(useCase.getId());
         validatePaymentRollbackIsAllowed(payment);
