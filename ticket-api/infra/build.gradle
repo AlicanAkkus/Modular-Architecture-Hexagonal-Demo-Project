@@ -30,6 +30,7 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
     testCompileOnly("org.projectlombok:lombok")
 
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-runner',  version: rootProject.version_junit5_suite
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-stub-runner'
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-verifier'
