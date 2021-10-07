@@ -16,3 +16,7 @@ bootRun {
         args project.args.split(',')
     }
 }
+
+build {
+    dependsOn 'domain:build', 'infra:build'
+}

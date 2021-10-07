@@ -63,9 +63,12 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
 
-      - name: Build
-        run: |
-          ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false
+      - name: Build with Thundra
+        uses: thundra-io/thundra-gradle-test-action@v1
+        with:
+          apikey: 2a0ad462-59bb-4c4d-9d43-ab3705aad4c8
+          project_id: 68b8e211-fbee-4cc5-9794-34912c05452c
+          command: ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false --rerun-tasks
 
       - name: Upload Jar File
         uses: actions/upload-artifact@v1
