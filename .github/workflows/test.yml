@@ -12,8 +12,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Set up MySQL
-        run: |
-          sudo /etc/init.d/mysql start
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: rootpassword
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
