@@ -3,8 +3,7 @@ name: testing
 on:
   push:
     paths:
-      - ticket-api/**
-      - .github/workflows/ticket-api*.yml
+      - .github/workflows/test.yml
     branches:
       - main
 
