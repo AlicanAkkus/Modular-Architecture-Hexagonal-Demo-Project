@@ -12,16 +12,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    env:
-      DB_DATABASE: test_db
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_HOST: localhost
-
     steps:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE wordpress_test;' -uroot -proot
-          mysql -e 'SHOW DATABASES;' -uroot -proot
 
