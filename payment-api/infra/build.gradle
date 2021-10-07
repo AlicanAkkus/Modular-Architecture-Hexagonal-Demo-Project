@@ -24,6 +24,8 @@ dependencies {
     implementation group: 'io.springfox', name: 'springfox-swagger2'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui'
 
+    implementation 'io.thundra.agent:thundra-gradle-test-plugin:0.0.5'
+
     testImplementation group: 'io.rest-assured', name: 'rest-assured-all'
 
     implementation group: 'org.springframework.data', name: 'spring-data-redis'
