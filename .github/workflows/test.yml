@@ -10,16 +10,13 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     services:
+
       mysql:
-        image: mysql:5.7
+        image: mysql
         env:
-          MYSQL_DATABASE: test_db
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_ROOT_PASSWORD: my-secret-pw
         ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 4306:3306
