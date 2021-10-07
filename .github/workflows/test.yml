@@ -20,3 +20,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: my-secret-pw
         ports:
           - 4306:3306
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v1
