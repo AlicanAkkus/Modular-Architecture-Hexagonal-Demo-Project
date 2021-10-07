@@ -1,0 +1,28 @@
+name: Build Ticket API Image
+
+on:
+  push:
+    paths:
+      - ticket-api/**
+      - .github/workflows/ticket-api*.yml
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+
+    env:
+      DB_DATABASE: test_db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_HOST: localhost
+
+    steps:
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE wordpress_test;' -uroot -proot
+          mysql -e 'SHOW DATABASES;' -uroot -proot
+
