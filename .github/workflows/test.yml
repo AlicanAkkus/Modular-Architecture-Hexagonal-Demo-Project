@@ -1,4 +1,4 @@
-name: Build Ticket API Image
+name: testing
 
 on:
   push:
