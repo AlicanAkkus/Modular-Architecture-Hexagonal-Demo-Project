@@ -64,8 +64,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
 
       - name: Build
-        run: |
-          ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false --rerun-tasks
+        run: ./gradlew verifierStubsJar :ticket-api:build :ticket-api:bootJar -PskipInfraSetup -Dorg.gradle.daemon=false --rerun-tasks
 
       - name: Upload Jar File
         uses: actions/upload-artifact@v1
