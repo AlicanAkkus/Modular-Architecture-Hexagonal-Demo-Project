@@ -17,7 +17,7 @@ jobs:
       mysql:
         image: mysql
         env:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
+          MYSQL_ROOT_PASSWORD: password
         ports:
           - 4306:3306
 
