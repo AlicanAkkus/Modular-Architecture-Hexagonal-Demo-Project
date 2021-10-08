@@ -27,4 +27,4 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Init Database
-        run:  mysql -uroot -h127.0.0.1 -P 4306 -proot -e 'CREATE DATABASE IF NOT EXISTS db1;'
+        run:  mysql -uroot -h127.0.0.1 --port 4306 -proot -e 'CREATE DATABASE IF NOT EXISTS db1;'
