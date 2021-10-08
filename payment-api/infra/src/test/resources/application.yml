@@ -14,7 +14,7 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:4306}/payment?createDatabaseIfNotExist=true&enabledTLSProtocols=TLSv1.2
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:4306}/payment?createDatabaseIfNotExist=true
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
