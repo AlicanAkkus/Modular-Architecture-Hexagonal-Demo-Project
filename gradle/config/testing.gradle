@@ -1,4 +1,8 @@
 test {
+    jvmArgs '-javaagent:/Users/lemiorhan/Code/github/Modular-Architecture-Hexagonal-Demo-Project/lib/thundra-agent-bootstrap-2.7.50.jar'
+    environment 'THUNDRA_APIKEY', '2a0ad462-59bb-4c4d-9d43-ab3705aad4c8'
+    environment 'THUNDRA_AGENT_TEST_PROJECT_ID', '68b8e211-fbee-4cc5-9794-34912c05452c'
+
     maxParallelForks = 1
     failFast true
     useJUnitPlatform {

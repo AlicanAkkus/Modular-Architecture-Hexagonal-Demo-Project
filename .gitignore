@@ -94,3 +94,4 @@ lib/glowroot/agent**
 lib/newrelic/logs/
 *.pyc
 *.db
+lib/
