@@ -33,6 +33,14 @@ public class BeanAwareUseCasePublisher implements UseCasePublisher {
         }
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public <R> R publish(Class<R> returnClass) {
+        var useCaseHandler = (NoUseCaseHandler<R>) UseCaseHandlerRegistry.INSTANCE.detectNoUseCaseHandlerFrom(returnClass);
+        validateNoParamUseCaseHandlerDetection(useCaseHandler);
+        return useCaseHandler.handle();
+    }
+
     private <R, T extends UseCase> void validateUseCaseHandlerDetection(T useCase, UseCaseHandler<R, T> useCaseHandler) {
         if (Objects.isNull(useCaseHandler)) {
             log.error("Use case handler cannot be detected for the use case: {}, handlers: {}", useCase, UseCaseHandlerRegistry.INSTANCE.getRegistryForUseCaseHandlers());
@@ -47,4 +55,10 @@ public class BeanAwareUseCasePublisher implements UseCasePublisher {
         }
     }
 
+    private <R> void validateNoParamUseCaseHandlerDetection(NoUseCaseHandler<R> useCaseHandler) {
+        if (Objects.isNull(useCaseHandler)) {
+            log.error("Void use case handler cannot be detected for the handlers: {}", UseCaseHandlerRegistry.INSTANCE.getRegistryForNoUseCaseHandlers());
+            throw new PaymentApiBusinessException("paymentapi.useCaseHandler.notDetected");
+        }
+    }
 }
