@@ -16,6 +16,7 @@ public class BeanAwareUseCasePublisher implements UseCasePublisher {
     public <R, T extends UseCase> R publish(Class<R> returnClass, T useCase) {
         var useCaseHandler = (UseCaseHandler<R, T>) UseCaseHandlerRegistry.INSTANCE.detectUseCaseHandlerFrom(useCase.getClass());
         validateUseCaseHandlerDetection(useCase, useCaseHandler);
+        useCase.isSatisfied();
         return useCaseHandler.handle(useCase);
     }
 
@@ -26,9 +27,11 @@ public class BeanAwareUseCasePublisher implements UseCasePublisher {
         if (Objects.isNull(voidUseCaseHandler)) {
             var useCaseHandler = (UseCaseHandler<R, T>) UseCaseHandlerRegistry.INSTANCE.detectUseCaseHandlerFrom(useCase.getClass());
             validateUseCaseHandlerDetection(useCase, useCaseHandler);
+            useCase.isSatisfied();
             useCaseHandler.handle(useCase);
         } else {
             validateVoidUseCaseHandlerDetection(useCase, voidUseCaseHandler);
+            useCase.isSatisfied();
             voidUseCaseHandler.handle(useCase);
         }
     }
